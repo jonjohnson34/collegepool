@@ -1,0 +1,14 @@
+
+<md-list>
+    <div class="ng-scope layout-row md-headline">
+        <div>
+            <div flex="33">Visting Team</div>
+            <md-list-item ng-repeat="game in gamesList.games" class="md-body-2">{{game.AwaySpread}} {{game.AwayTeam}}</md-list-item>
+        </div>
+        <div flex="5"></div>
+        <div>
+            <div flex="33">Home Team</div>
+            <md-list-item ng-repeat="game in gamesList.games" class="md-body-2">{{game.HomeSpread}} {{game.HomeTeam}}</md-list-item>
+        </div>
+    </div>
+</md-list>
