@@ -13,14 +13,16 @@
         <p class="md-body-2"> Use existing account</p>
       </div>
       <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
-        <md-button class="md-raised">
+        <md-button class="md-raised md-primary" ng-click="lc.gglogin()">
           <span> Google</span>
         </md-button>
-        <md-button class="md-raised">
+        <md-button class="md-icon-button" ng-click="lc.fclogin()">
+           <md-icon  md-svg-src="client/styles/FBLogo.png"></md-icon> 
           <span>Facebook </span>
         </md-button>
-        <md-button class="md-raised">
-          <span>Twitter </span>
+        <md-icon md-svg-icon="/client/styles/FBLogo.png"></md-icon>
+        <md-button class="md-raised md-primary">
+          <span>GitHub </span>
         </md-button>
       </div>
       <md-divider class="inset"></md-divider>

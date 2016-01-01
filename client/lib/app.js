@@ -7,7 +7,7 @@ angular.module('collegepool', [
 ]) 
 .config(function($mdThemingProvider){
      $mdThemingProvider.theme('default')
-     .primaryPalette('blue');
+     .primaryPalette('green');
   });
 
 angular.module('collegepool').config(($mdIconProvider) => {

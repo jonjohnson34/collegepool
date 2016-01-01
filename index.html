@@ -14,8 +14,10 @@
         <div class="navbar-right navbar-text">
             <md-button ng-href="/login" ng-hide="$root.currentUser">Login</md-button>
             <md-button ng-href="/register" ng-hide="$root.currentUser">Sign up</md-button>
-            <div ng-show="$root.currentUser" ng-bind="$root.currentUser"></div>
+            <div ng-show="$root.currentUser" ng-bind="$root.currentUser.email"></div>
             <md-button ng-href="/logout" ng-show="$root.currentUser">Logout</md-button>
+            <md-button ng-href="/picks">Picks</md-button>
+            <md-button ng-href="/allPicks">All Picks</md-button>
             <md-button ng-href="/about">About</md-button>
         </div>
 

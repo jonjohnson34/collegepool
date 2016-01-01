@@ -49,12 +49,18 @@ angular.module("collegepool")
                     }
                 }
             })
-            
-            .state('picks', {
-            url: "/picks",
-            template: '<picks></picks>'
-        });
 
-        $urlRouterProvider.otherwise("/home");
+            .state('picks', {
+                url: "/picks",
+                template: '<picks></picks>'
+            })
+            
+            .state('allPicks', {
+                url: "/allPicks",
+                template: '<allPicks></allPicks>'
+
+            });
+
+        $urlRouterProvider.otherwise("/login");
     });
     

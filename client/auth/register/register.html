@@ -26,30 +26,11 @@
           <md-button class="md-raised md-primary" ng-click="rc.register()" aria-label="login" ng-disabled="rc.registerForm.$invalid()">Register</md-button>
         </div>
       </form>
-
-      <md-divider class="inset"></md-divider>
-
-
-      <div layout="row" layout-fill layout-margin>
-        <p class="md-body-2"> Want to use an existing account? </p>
-      </div>
-
-      <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
-        <md-button class="md-raised">
-          <span> Google</span>
-        </md-button>
-        <md-button class="md-raised">
-          <span>Facebook </span>
-        </md-button>
-        <md-button class="md-raised">
-          <span>Twitter </span>
-        </md-button>
-      </div>
+     
       <md-toolbar ng-show="rc.error" class="md-warn" layout="row" layout-fill layout-padding layout-margin>
         <p class="md-body-1">{{ register.error }}</p>
       </md-toolbar>
-
-      <md-divider></md-divider>
+      
       <div layout="row" layout-align="center">
         <a class="md-button" href="/login">Already a user?</a>
       </div>

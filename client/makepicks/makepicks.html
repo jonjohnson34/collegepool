@@ -1,13 +1,23 @@
-<form name="makePicks" layout="column" layout-align="center right">
+<form name="makePicks" layout="column" layout-align="center lefts">
 
     <div>
         <br>
         <div class="input-group">
+            <span>
+                <label>Week</label>
+                    <md-select flex="35" aria-label="dropdown" id="week" type="text" ng-model="makepicks.newPick.week" placeholder="Week">
+                        <md-option>Week One</md-option>
+                        <md-option>Week Two</md-option>
+                        <md-option>Week Three</md-option>
+                    </md-select>
+                        
+            </span>
+        </div>
+        <div class="input-group">
             <span><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgotw" ng-model="makepicks.newPick.lockgotw"></md-checkbox>
                     <md-label>Game of the Week</md-label>
-                    <md-select aria-label="dropdown" id="gotw" type="text" ng-model="makepicks.newPick.gotw" >
-                        <md-option></md-option>
+                    <md-select flex="35" aria-label="dropdown" id="gotw" type="text" ng-model="makepicks.newPick.gotw" placeholder="GOTW">
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
                         
@@ -17,7 +27,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgametwo" ng-model="makepicks.newPick.lockGameTwo"></md-checkbox>
                     <md-label>Game Two</md-label>
-                    <md-select aria-label="dropdown" id="gameTwo" type="text" ng-model="makepicks.newPick.gameTwo" >
+                    <md-select flex="35" aria-label="dropdown" id="gameTwo" type="text" ng-model="makepicks.newPick.gameTwo" placeholder="Game Two" >
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -29,7 +39,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgamethree" ng-model="makepicks.newPick.lockGameThree"></md-checkbox>
                     <md-label>Game Three</md-label>
-                    <md-select aria-label="dropdown" id="gameThree" type="text" ng-model="makepicks.newPick.gameThree" >
+                    <md-select flex="35" aria-label="dropdown" id="gameThree" type="text" ng-model="makepicks.newPick.gameThree" placeholder="Game Three" >
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -40,7 +50,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgamefour" ng-model="makepicks.newPick.lockGameFour"></md-checkbox>
                     <md-label>Game Four</md-label>
-                    <md-select aria-label="dropdown" id="gameFour" type="text" ng-model="makepicks.newPick.gameFour" >
+                    <md-select flex="35" aria-label="dropdown" id="gameFour" type="text" ng-model="makepicks.newPick.gameFour" placeholder="Game Four">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -52,7 +62,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgamefive" ng-model="makepicks.newPick.lockGameFive"></md-checkbox>
                     <md-label>Game Five</md-label>
-                    <md-select aria-label="dropdown" id="gameFive" type="text" ng-model="makepicks.newPick.gameFive" >
+                    <md-select flex="35" aria-label="dropdown" id="gameFive" type="text" ng-model="makepicks.newPick.gameFive" placeholder="Game Five">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -64,7 +74,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green"  id="lockgamesix" ng-model="makepicks.newPick.lockGameSix"></md-checkbox>
                     <md-label>Game Six</md-label>
-                    <md-select aria-label="dropdown" id="gameSix" type="text" ng-model="makepicks.newPick.gameSix" >
+                    <md-select flex="35" aria-label="dropdown" id="gameSix" type="text" ng-model="makepicks.newPick.gameSix" placeholder="Game Six">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -76,7 +86,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgameseven" ng-model="makepicks.newPick.lockGameSeven"></md-checkbox>
                     <md-label>Game Seven</md-label>
-                    <md-select aria-label="dropdown" id="gameSeven" type="text" ng-model="makepicks.newPick.gameSeven" >
+                    <md-select flex="35" aria-label="dropdown" id="gameSeven" type="text" ng-model="makepicks.newPick.gameSeven" placeholder="Game Seven">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -87,7 +97,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green" id="lockgameeight" ng-model="makepicks.newPick.lockGameEight"></md-checkbox>
                     <md-label>Game Eight</md-label>
-                    <md-select aria-label="dropdown" id="gameEight" type="text" ng-model="makepicks.newPick.gameEight" >
+                    <md-select flex="35" aria-label="dropdown" id="gameEight" type="text" ng-model="makepicks.newPick.gameEight" placeholder="Game Eight">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -99,7 +109,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="green"   id="lockgamenine" ng-model="makepicks.newPick.lockgameNine"></md-checkbox>
                     <md-label>Game Nine</md-label>
-                    <md-select aria-label="dropdown" id="gameNine" type="text" ng-model="makepicks.newPick.gameNine" >
+                    <md-select flex="35" aria-label="dropdown" id="gameNine" type="text" ng-model="makepicks.newPick.gameNine" placeholder="Game Nine">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -111,7 +121,7 @@
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<md-checkbox aria-label="Lock" class="blue" id="lockgameten" ng-model="makepicks.newPick.lockgameTen"></md-checkbox>
                     <md-label>Game Ten</md-label>
-                    <md-select aria-label="dropdown" id="gameTen" type="text" ng-model="makepicks.newPick.gameTen" >
+                    <md-select flex="35" aria-label="dropdown" id="gameTen" type="text" ng-model="makepicks.newPick.gameTen" placeholder="Game Ten">
                         <md-option></md-option>
                         <md-option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</md-option>
                     </md-select>
@@ -119,5 +129,7 @@
 		      </span>
         </div>
     </div>
-    <md-button class="md-cornered" ng-click="makepicks.addPick()">Submit</md-button>
+    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+        <md-button flex="10" class="md-raised md-primary" ng-click="makepicks.addPick()">Submit</md-button>
+    </section>
 </form>

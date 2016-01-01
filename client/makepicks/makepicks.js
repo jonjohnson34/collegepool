@@ -3,10 +3,16 @@ angular.module("collegepool").directive('makepicks', function () {
         restrict: 'E',
         templateUrl: 'client/makepicks/makepicks.html',
         controllerAs: 'makepicks',
-        controller: function ($scope, $reactive) {
+        controller: function ($scope, $reactive, $state) {
             $reactive(this).attach($scope);   
             
             this.newPick = {};
+            
+            this.helpers({
+               isRequired: () =>{
+                   return true;
+               } 
+            }); 
             
             this.helpers({
                 teams: () => {
@@ -15,10 +21,9 @@ angular.module("collegepool").directive('makepicks', function () {
             });
              
             this.addPick = () => {
-                console.log(this.newPick);
                 Picks.insert(this.newPick);
                 this.newPick = {};  
-                return console.log('picks submitted');
+                $state.go('allPicks');
             };
             
         }

@@ -29,3 +29,5 @@ angular:angular-material
 http
 insecure
 autopublish
+service-configuration
+accounts-google
