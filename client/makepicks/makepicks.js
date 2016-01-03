@@ -21,9 +21,19 @@ angular.module("collegepool").directive('makepicks', function () {
             });
              
             this.addPick = () => {
-                Picks.insert(this.newPick);
-                this.newPick = {};  
-                $state.go('allPicks');
+                if (_.where(this.newPick, {lock: true}).length > 3)
+                {
+                    alert('Too Many Locks');
+                }
+                else if  (_.where(this.newPick, {lock: true}).length < 3)
+                {
+                    alert ('Not Enough Locks');
+                }
+                else {
+                    Picks.insert(this.newPick);
+                    this.newPick = {};  
+                    $state.go('allPicks');
+                }
             };
             
         }
