@@ -25,10 +25,10 @@ check
 email
 less
 planettraining:material-design-icons
-angular:angular-material
 http
 insecure
 autopublish
 service-configuration
 accounts-google
 underscore
+twbs:bootstrap

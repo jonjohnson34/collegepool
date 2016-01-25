@@ -2,9 +2,14 @@
 angular.module("collegepool")
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
 
         $stateProvider
+            
+            .state('/contact',{
+                url: '/contact',
+                templateUrl: 'client/home/home.html'
+            })
 
             .state('about', {
                 url: '/about',
@@ -19,7 +24,9 @@ angular.module("collegepool")
             .state('makepicks', {
                 url: '/makepicks',
                 template: '<makepicks></makepicks>'
-            }).state('login', {
+            })
+            
+            .state('login', {
                 url: '/login',
                 templateUrl: 'client/auth/login/login.html',
                 controller: 'LoginCtrl',
@@ -61,6 +68,6 @@ angular.module("collegepool")
 
             });
 
-        $urlRouterProvider.otherwise("/login");
+       $urlRouterProvider.otherwise("/login");
     });
     
