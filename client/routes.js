@@ -2,7 +2,7 @@
 angular.module("collegepool")
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         $stateProvider
             
@@ -68,6 +68,6 @@ angular.module("collegepool")
 
             });
 
-       $urlRouterProvider.otherwise("/login");
+       $urlRouterProvider.otherwise("/");
     });
     

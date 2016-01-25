@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <base href="/">
     <title>Kenny's College Pool</title>
 
     <!-- Bootstrap Core CSS -->
@@ -28,54 +28,29 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" ng-app="collegepool">
+<body data-spy="scroll" data-target=".navbar-fixed-top" ng-app="collegepool">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="/">
-                    <i class="fa fa-play-circle"></i> <span class="light">Kenny's</span> College Pool
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a class="page-scroll" ng-href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" ng-href="#login">Login</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" ng-href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+        <h2>
+            <span class="title">Kenny's College Pool</span>
+        </h2>
+        <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav">
+                <li><a ng-href="/login" class="page-scroll" ng-hide="$root.currentUser">Login</a></li>
+                <li><a ng-href="/register" class="page-scroll" ng-hide="$root.currentUser">Sign up</a></li>
+            <!--<div ng-show="$root.currentUser" ng-bind="$root.currentUser.email"></div> -->
+                <li><a ng-href="/logout" class="page-scroll" ng-show="$root.currentUser">Logout</a></li>
+                <li><a ng-href="/picks" class="page-scroll" ng-show="$root.currentUser">Picks</a></li>
+                <li><a ng-href="/allPicks" class="page-scroll" ng-show="$root.currentUser">All Picks</a></li>
+                <li><a ng-href="/about" class="page-scroll">About</a></li>
+             </ul>
         </div>
-        <!-- /.container -->
+
     </nav>
 
-    <!-- Main Section -->
-
+ <!-- Main Section -->
     <div ui-view></div>
-
-    <!-- Footer -->
-    <footer class="navbar-static-bottom">
-        <div class="container text-center">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <p class="intro-text">A college football pool
-                        <br>Created by Some Guy in his Parents Basement.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
