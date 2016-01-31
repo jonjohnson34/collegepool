@@ -2,7 +2,8 @@
 angular.module('collegepool', [
   'angular-meteor',
   'ui.router',
-  'accounts.ui'
+  'accounts.ui',
+  'ngFileUpload'
 ]);
 
 function onReady() {

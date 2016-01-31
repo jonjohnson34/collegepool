@@ -1,0 +1,36 @@
+angular.module("collegepool").directive('admin', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'client/admin/admin.html',
+        controllerAs: 'admin',
+        controller: function ($scope, $reactive) {
+            $reactive(this).attach($scope);
+
+            this.gamesOnSave = (files) => {
+                let f = files[0];
+                Papa.parse(f, {
+                    header: "true",
+                    complete: function (results) {
+                        for (i = 0; i < results.data.length; i++) {
+                            Scores.insert(results.data[i]);
+                        }
+                        console.log("Games Finished:");
+                    }
+                });
+            }
+
+            this.scoresOnSave = (files) => {
+                let f = files[0];
+                Papa.parse(f, {
+                    header: "true",
+                    complete: function (results) {
+                        for (i = 0; i < results.data.length; i++) {
+                            Scores.insert(results.data[i]);
+                        }
+                        console.log("Scores Finished:");
+                    }
+                });
+            }
+        }
+    }
+});

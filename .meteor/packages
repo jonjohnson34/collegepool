@@ -24,7 +24,6 @@ angularutils:pagination
 check
 email
 less
-planettraining:material-design-icons
 http
 insecure
 autopublish
@@ -32,3 +31,9 @@ service-configuration
 accounts-google
 underscore
 twbs:bootstrap
+harrison:papa-parse
+themeteorchef:bert
+reactive-var
+cfs:standard-packages
+cfs:gridfs
+danialfarid:ng-file-upload

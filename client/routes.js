@@ -62,6 +62,11 @@ angular.module("collegepool")
                 template: '<picks></picks>'
             })
             
+            .state('admin', {
+                url: "/admin",
+                template: '<admin></admin>'
+
+            })  
             .state('allPicks', {
                 url: "/allPicks",
                 template: '<allPicks></allPicks>'

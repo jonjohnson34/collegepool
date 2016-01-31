@@ -139,7 +139,7 @@ a:focus {
         background: #000;
     }
 }
-
+  
 .intro {
     display: table;
     width: 100%;
@@ -370,4 +370,8 @@ img::-moz-selection {
 
 body {
     webkit-tap-highlight-color: rgba(255,255,255,.2);
+}
+.flat-table{
+       
+    
 }
