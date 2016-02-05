@@ -1,20 +1,30 @@
 <div>
     <h4>Welcome to the Admin Page</h4>
-    <ul>
-        <li>import files with spreads each week</li>
-        <li>import files with scores each week</li>
-        <li>choose the week that needs to be picked</li>
-    </ul>
+
+    <h4 class="page-header">Set Active Week</h4>
+    <div class="input-group">
+
+        <select style="color:black" id="week" type="text" ng-model="adminL.activeWeek" placeholder="Week">
+            <option>Week One</option>
+            <option>Week Two</option>
+            <option>Week Three</option>
+        </select>
+        <p></p>
+        <button class="btn btn-default" ng-click="adminL.updateWeek()">Submit</button>
+    </div>
+    <div ng-repeat="admin in adminL.savedActiveWeek">
+        The Current Active Week: {{admin.week}}
+    </div>
 
     <h4 class="page-header">Upload Games</h4>
     <input type="file" ngf-select ng-model="files" name="file">
     <p></p>
-    <button class="btn btn-default" ng-click="admin.gamesOnSave(files)">Submit</button>
-    
+    <button class="btn btn-default" ng-click="adminL.gamesOnSave(files)">Submit</button>
+
     <h4 class="page-header">Upload Scores</h4>
     <input type="file" ngf-select ng-model="files" name="file">
     <p></p>
-    <button class="btn btn-default" ng-click="admin.scoresOnSave(files)">Submit</button>
- 
+    <button class="btn btn-default" ng-click="adminL.scoresOnSave(files)">Submit</button>
+
 
 </div>

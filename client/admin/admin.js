@@ -2,10 +2,22 @@ angular.module("collegepool").directive('admin', function () {
     return {
         restrict: 'E',
         templateUrl: 'client/admin/admin.html',
-        controllerAs: 'admin',
+        controllerAs: 'adminL',
         controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
-
+               
+            //this.activeWeek = {};                
+                
+            this.updateWeek = () => {
+                Weeks.update({_id: "kXb76mmhjh6zmbL2a"}, {"weekID": 1, "week": this.activeWeek},{upsert: true});
+            };
+            
+           this.helpers({
+                savedActiveWeek: () => {
+                   return (Weeks.find({}));
+                }
+            }); 
+                        
             this.gamesOnSave = (files) => {
                 let f = files[0];
                 Papa.parse(f, {

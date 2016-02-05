@@ -3,3 +3,4 @@ Picks = new Mongo.Collection("madePicks");
 Teams = new Mongo.Collection("teams");
 Scores = new Mongo.Collection("scores");
 Images = new Mongo.Collection("images");
+Weeks = new Mongo.Collection("activeWeek");
