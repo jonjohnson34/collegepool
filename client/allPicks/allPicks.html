@@ -1,19 +1,69 @@
-<md-card class="md-card" layout="row" layout-margin ng-repeat="pick in allPicks.picks">
-    <md-card-header>
-        <div flex>
-            Picks for {{pick.week}}
-        </div>
-    </md-card-header>
-    <md-card-content>
-        <li> {{pick.gotw.lock}} - {{pick.gotw.pick}} </li>
-        <li> {{pick.gameTwo.pick}} </li>
-        <li> {{pick.gameThree.pick}} </li>
-        <li> {{pick.gameFour.pick}} </li>
-        <li> {{pick.gameFive.pick}} </li>
-        <li> {{pick.gameSix.pick}} </li>
-        <li> {{pick.gameSeven.pick}} </li>
-        <li> {{pick.gameEight.pick}} </li>
-        <li> {{pick.gameNine.pick}} </li>
-        <li> {{pick.gameTen.pick}} </li>
-    </md-card-content>
-</md-card>
+<style>
+.locked {
+    font-style: italic;
+}    
+    
+ </style>  
+
+<div ng-repeat="admin in allPicks.savedActiveWeek">
+    <h6> The Current Active Week: {{admin.week}}</h6>
+</div>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>
+                <h5>UserName</h5></th>
+            <th>
+                <h5>Game of the Week</h5></th>
+            <th>
+                <h5>Game Two</h5></th>
+            <th>
+                <h5>Game Three</h5></th>
+            <th>
+                <h5>Game Four</h5></th>
+            <th>
+                <h5>Game Five</h5></th>
+            <th>
+                <h5>Game Six</h5></th>
+            <th>
+                <h5>Game Seven</h5></th>
+            <th>
+                <h5>Game Eight</h5></th>
+            <th>
+                <h5>Game Nine</h5></th>
+            <th>
+                <h5>Game Ten</h5></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="pick in allPicks.picks">
+            <td>
+                <h6>USERNAME</h6></td>
+            <td ngClass="{'locked': pick.gotw.lock}">
+                <h6>{{pick.gotw.pick}}</h6></td>
+            <td>
+                <h6>{{pick.gameTwo.pick}}</h6></td>
+            <td>
+                <h6>{{pick.gameThree.pick}}</h6></td>
+            <td>
+                <div ng-if="pick.gameFour.lock"><h1>{{pick.gameFour.pick}}</h1></div>
+                <div ng-if="!pick.gameFour.lock"><h6>{{pick.gameFour.pick}}</h6></div>
+             </td>
+            <td>
+                <h6>{{pick.gameFive.pick}}</h6></td>
+            <td>
+                <h6>{{pick.gameSix.pick}}</h6></td>
+            <td>
+                <h6>{{pick.gameSeven.pick}}</h6></td>
+            <td>
+                <h6>{{pick.gameEight.pick}}</h6></td>
+            <td>
+                <h6>{{pick.gameNine.pick}}</h6></td>
+            <td>
+                <div ng-if="pick.gameTen.lock"><h1>{{pick.gameTen.pick}}</h1></div>
+                <div ng-if="!pick.gameTen.lock"><h6>{{pick.gameTen.pick}}</h6></div>
+             </td>
+        </tr>
+    </tbody>
+</table>

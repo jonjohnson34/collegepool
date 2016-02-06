@@ -1,14 +1,18 @@
 <table class="table table-condensed">
     <thead>
-		<tr>
-			<th><h3>Visitor Team</h3></th>
-            <th><h3>Home Team</h3></th>
-		</tr>
-	</thead>
-	<tbody>
-			<tr ng-repeat="game in gamesList.games">
-				<td><h6>{{game.AwaySpread}} {{game.AwayTeam}} @</h6></td>
-				<td><h6> {{game.HomeTeam}} {{game.HomeSpread}}</h6></td>					
-			</tr>		
-	</tbody>
+        <tr>
+            <th>
+                <h3>Visitor Team</h3></th>
+            <th>
+                <h3>Home Team</h3></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="game in gamesList.games">
+            <td>
+                <h6>{{game.AwaySpread}} {{game.AwayTeam}} @</h6></td>
+            <td>
+                <h6> {{game.HomeTeam}} {{game.HomeSpread}}</h6></td>
+        </tr>
+    </tbody>
 </table>

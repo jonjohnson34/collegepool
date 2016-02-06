@@ -75,9 +75,9 @@
 
         <div class="form-group">
             <span class="input-group-addon"><label for="Lock Pick">Lock</label>
-					<input type ="checkbox" class="green" id="lockgameseven" ng-model="makepicks.newPick.gameSeven.pick">
+					<input type ="checkbox" class="green" id="lockgameseven" ng-model="makepicks.newPick.gameSeven.lock">
                     <label>Game Seven</label>
-                    <select flex="35" aria-label="dropdown" id="gameSeven" type="text" ng-model="makepicks.newPick.gameSeven.lock" placeholder="Game Seven">
+                    <select flex="35" aria-label="dropdown" id="gameSeven" type="text" ng-model="makepicks.newPick.gameSeven.pick" placeholder="Game Seven">
                         <option></option>
                         <option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</option>
                     </select>

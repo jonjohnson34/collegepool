@@ -12,6 +12,11 @@ angular.module("collegepool").directive('allpicks', function () {
                 }
             });
             
+            this.helpers({
+                savedActiveWeek: () => {
+                   return (Weeks.find({}));
+                }
+            });
         }
     }
 });
