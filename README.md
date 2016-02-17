@@ -9,12 +9,12 @@ This is an attempt at a meteor web application that creates a weekly college pic
 TO DO's 
 
 	AFTER SIGNING IN
-		- set the picks page to only allow 3 locked games 
+		- set the picks page to only allow 3 locked games (Done)
 		- make sure all games are filled out. 
 		
-		- after picks redirect to page with everyones picks. 
-			- create page with everyones picks laid out names vertically and picks horziontaly
-			- only show picks that have been submitted. 
+		- after picks redirect to page with everyones picks. (Done)
+			- create page with everyones picks laid out names vertically and picks horziontaly (Done)
+			- only show picks that have been submitted. (Done)
 		
 		- don't allow anyone to submit picks twice in one week
 			- add the week you are choosing to the submit form. 
@@ -31,6 +31,38 @@ TO DO's
 			- Don't calculate the two lowest scores.  
 
 	ADMIN PAGE
-		- allow the teams and spreads to be loaded each week
+		- allow the teams and spreads to be loaded each week (Done)
 		- calculate the scores of each person who picked 
 		
+
+
+    FLOW
+        - Home Page
+            Nav Bar 
+                Login
+                Sign Up
+                Picks (Only after login)
+                All Picks (Only after login and weekly picks have been submitted)
+                Admin (only certain users)
+                About
+            Intro Graphic
+            Contact Me Section
+        - Login
+        - Sign Up
+        - Picks
+                List of Games/Spreads
+                Form to pick the games
+        - All Picks
+                Shows all picks from all players
+        - Season Stats
+                Shows Weekly scores 
+                Shows Yearly totals
+                Shows Kenny's Awards
+        - Admin
+                Pick active week 
+                Load weekly games/spreads
+                Load scores from the games
+        - About
+            
+            
+                
