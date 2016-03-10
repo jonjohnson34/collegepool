@@ -21,19 +21,9 @@ angular.module("collegepool").directive('makepicks', function () {
             });
              
             this.addPick = () => {
-                if (_.where(this.newPick, {lock: true}).length > 3)
-                {
-                    alert('Too Many Locks');
-                }
-                else if  (_.where(this.newPick, {lock: true}).length < 3)
-                {
-                    alert ('Not Enough Locks');
-                }
-                else {
-                    Picks.insert(this.newPick);
-                    this.newPick = {};  
-                    $state.go('allPicks');
-                }
+                console.log(this.newPick);
+                Meteor.call('makePick', this.newPick);
+                
             };
             
         }

@@ -1,0 +1,34 @@
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>
+                <h3>Vistor Score</h3></th>
+            <th>
+                <h3>Visitor Team</h3></th>
+            <th>
+                <h3>Home Team</h3></th>
+            <th>
+                <h3>Home Score</h3></th>
+            <th> 
+                <h3>Game spread </h3></th> 
+            <th> 
+                <h3>Team that Covered</h3></th>       
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="score in scoreList.scores">
+            <td>
+                <h6>{{score.AwayScore}}</h6></td>
+            <td>
+                <h6>{{score.Away_Team}}</h6></td>
+            <td>
+                <h6>{{score.Home_Team}}</h6></td>
+            <td>
+                <h6>{{score.HomeScore}}</h6></td>
+            <td>
+                <h6>{{score.AwayScore - score.HomeScore}}</h6></td>
+            <td>
+                <h6>yes</h6></td>
+        </tr>
+    </tbody>
+</table>

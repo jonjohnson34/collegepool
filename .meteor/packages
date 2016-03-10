@@ -36,3 +36,4 @@ reactive-var
 cfs:standard-packages
 cfs:gridfs
 danialfarid:ng-file-upload
+monbro:mongodb-mapreduce-aggregation
