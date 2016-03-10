@@ -1,21 +1,32 @@
-<form name="makePicks">
-<h5>
-    <div class="form-group">
-         
-       
-        <div class="input-group">
-                <label for="Lock Pick">Lock</label>
-					<input type="checkbox" aria-label="Lock" id="lockgotw" ng-model="makepicks.newPick.gotw.lock">
-                   
-                    <label><h5>Game of the Week</h5></label>
-                   
-                    <select style="color:black" class="form-control" aria-label="dropdown" id="gotw" type="text" ng-model="makepicks.newPick.gotw.pick">
-                        <option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</option>
-                    </select>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+<form name="makePicks" class="pure-form">
+
+    <div class="col-med-8" align="right">
+        <h5>
+         <div class="form-group">
+           <label>Lock <input type="checkbox" id="lockgotw" ng-model="makepicks.newPick.gotw.lock"></label>     
+           <label>Game of the Week
+                <select class="pure-input-1-2" style="color:black" id="gotw" type="text" ng-model="makepicks.newPick.gotw.pick">
+                    <option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</option>
+                </select>            
+            </label>
         </div>
+        <br />
         
         <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+            <label>Lock</label> 
+            <input type="checkbox" aria-label="Lock" id="lockgametwo" ng-model="makepicks.newPick.gameTwo.lock">
+            <label>Game Two</label>
+            <select class="pure-input-1-2" style="color:black" id="gameTwo" type="text" ng-model="makepicks.newPick.gameTwo.pick">
+                <option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}}</option>
+            </select>
+        </div>
+        <br />
+        </h5>
+        <!--
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green" id="lockgametwo" ng-model="makepicks.newPick.gameTwo.lock">
                     <label>Game Two</label>
                     <select flex="35" aria-label="dropdown" id="gameTwo" type="text" ng-model="makepicks.newPick.gameTwo.pick" placeholder="Game Two" >
@@ -24,10 +35,10 @@
                     </select>
                         
 		      </span>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green" id="lockgamethree" ng-model="makepicks.newPick.gameThree.lock">
                     <label>Game Three</label>
                     <select flex="35" aria-label="dropdown" id="gameThree" type="text" ng-model="makepicks.newPick.gameThree.pick" placeholder="Game Three" >
@@ -36,9 +47,9 @@
                     </select>
                         
 		      </span>
-        </div>
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    </div>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green" id="lockgamefour" ng-model="makepicks.newPick.gameFour.lock">
                     <label>Game Four</label>
                     <select flex="35" aria-label="dropdown" id="gameFour" type="text" ng-model="makepicks.newPick.gameFour.pick" placeholder="Game Four">
@@ -47,10 +58,10 @@
                     </select>
                         
 		      </span>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green" id="lockgamefive" ng-model="makepicks.newPick.gameFive.lock">
                     <label>Game Five</label>
                     <select flex="35" aria-label="dropdown" id="gameFive" type="text" ng-model="makepicks.newPick.gameFive.pick" placeholder="Game Five">
@@ -59,10 +70,10 @@
                     </select>
                         
 		      </span>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green"  id="lockgamesix" ng-model="makepicks.newPick.gameSix.lock">
                     <label>Game Six</label>
                     <select flex="35" aria-label="dropdown" id="gameSix" type="text" ng-model="makepicks.newPick.gameSix.pick" placeholder="Game Six">
@@ -71,10 +82,10 @@
                     </select>
                         
 		      </span>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green" id="lockgameseven" ng-model="makepicks.newPick.gameSeven.lock">
                     <label>Game Seven</label>
                     <select flex="35" aria-label="dropdown" id="gameSeven" type="text" ng-model="makepicks.newPick.gameSeven.pick" placeholder="Game Seven">
@@ -83,9 +94,9 @@
                     </select>
                         
 		      </span>
-        </div>
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    </div>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green" id="lockgameeight" ng-model="makepicks.newPick.gameEight.lock">
                     <label>Game Eight</label>
                     <select flex="35" aria-label="dropdown" id="gameEight" type="text" ng-model="makepicks.newPick.gameEight.pick" placeholder="Game Eight">
@@ -94,10 +105,10 @@
                     </select>
                         
 		      </span>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="green"   id="lockgamenine" ng-model="makepicks.newPick.gameNine.lock">
                     <label>Game Nine</label>
                     <select flex="35" aria-label="dropdown" id="gameNine" type="text" ng-model="makepicks.newPick.gameNine.pick" placeholder="Game Nine">
@@ -106,10 +117,10 @@
                     </select>
                         
 		      </span>
-        </div>
+    </div>
 
-        <div class="form-group">
-            <span class="input-group-addon"><label for="Lock Pick">Lock</label>
+    <div class="form-group">
+        <span class="input-group-addon"><label for="Lock Pick">Lock</label>
 					<input type ="checkbox" class="blue" id="lockgameten" ng-model="makepicks.newPick.gameTen.lock">
                     <label>Game Ten</label>
                     <select flex="35" aria-label="dropdown" id="gameTen" type="text" ng-model="makepicks.newPick.gameTen.pick" placeholder="Game Ten">
@@ -118,10 +129,10 @@
                     </select>
                         
 		      </span>
-        </div>
     </div>
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
+    </div>
+    -->
         <button class="btn btn-default" ng-click="makepicks.addPick()">Submit</button>
-    </section>
-</h5>    
+
+    </div>
 </form>

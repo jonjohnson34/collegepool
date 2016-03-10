@@ -37,6 +37,12 @@ angular.module("collegepool")
                 controller: 'LoginCtrl',
                 controllerAs: 'lc'
             })
+           
+            .state('scores', {
+                url: '/scores',
+                template: '<scores></scores>'
+            })
+            
             .state('register', {
                 url: '/register',
                 templateUrl: 'client/auth/register/register.html',

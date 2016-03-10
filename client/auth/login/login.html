@@ -1,57 +1,58 @@
-    <div class="container text-center">
-        <div class="row">
+<div class="container text-center">
+    <div class="row">
 
-    <toolbar class="primary tall" layout="column" layout-align="end" layout-fill>
-      <div layout="row" class="toolbar-tools toolbar-tools-bottom">
-        <h3 class="display-1"> Sign in </h3>
-      </div>
-    </toolbar>
+        <toolbar class="primary tall" layout="column" layout-align="end" layout-fill>
+            <div layout="row" class="toolbar-tools toolbar-tools-bottom">
+                <h3 class="display-1"> Sign in </h3>
+            </div>
+        </toolbar>
 
-    <div layout="column" layout-fill layout-margin layout-padding>
-      <div layout="row" layout-fill layout-margin>
-        <p class="body-2"> Use existing account</p>
-      </div>
-      <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
-        <button class="btn btn-default btn-lg" ng-click="lc.gglogin()"><span class="network-name">Google</span></button>
-        <button class="btn btn-default btn-lg" ng-click="lc.fclogin()"><span class="network-name">Facebook</span></button>
-        <button class="btn btn-default btn-lg" ng-click="lc.ghlogin()"><span class="network-name">GitHub</span></button>
-      </div>
-      <divider class="inset"></divider>
+        <h5>
+        <div layout="column" layout-fill layout-margin layout-padding>
+            <div layout="row" layout-fill layout-margin>
+                <p class="body-2"> Use existing account</p>
+            </div>
+            <div layout="row" layout-fill layout-margin layout-padding layout-wrap>
+                <button class="btn btn-default btn-lg" ng-click="lc.gglogin()"><span class="network-name">Google</span></button>
+                <button class="btn btn-default btn-lg" ng-click="lc.fclogin()"><span class="network-name">Facebook</span></button>
+                <button class="btn btn-default btn-lg" ng-click="lc.ghlogin()"><span class="network-name">GitHub</span></button>
+            </div>
+             <br />
+             <br />
+             <br />
+                              
+            <form name="loginForm" class="form-inline"> 
+                <div class="form-group">
+                  <label> Sign in with your email</label>
+                </div> 
+                <br />                  
+                <div class="form-group">
+                    <input type="email" ng-model="lc.credentials.email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="password" ng-model="lc.credentials.password" class="form-control" id="exampleInputPassword1"
+                    placeholder="Password">
+                </div>
+                <br />
+                <div layout="row" layout-align="space-between center">
+                    <br />
+                    <button class="btn btn-default btn-lg" ng-click="lc.login()" aria-label="lc" ng-disabled="lc.loginForm.$invalid()">Sign In</button>
+                </div>              
+            </form>
+   
+        <toolbar ng-show="lc.error" class="warn" layout="row" layout-fill layout-padding layout-margin>
+            <p>{{ lc.error }}</p>
+        </toolbar>
+<br />
+        <div layout="row" layout-align="center">
+            <a href="/resetpw"><h5>Forgot password?</h5></a>
+    </div>
 
-     
-      <div layout="row" layout-fill layout-margin>
-        <p class="body-2"> Sign in with your email</p>
-      </div>
-
-      <form name="loginForm" class="form-inline">
-        <div class="form-group">
-            <input type="email" ng-model="lc.credentials.email" class="form-control btn btn-default btn-lg" id="exampleInputEmail1" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input type="password" ng-model="lc.credentials.password" class="form-control btn btn-default btn-lg" id="exampleInputPassword1" placeholder="Password">
-        </div>
-
-        <div layout="row" layout-align="space-between center">
-          <button class="btn btn-default btn-lg" ng-click="lc.login()" aria-label="lc"
-                     ng-disabled="lc.loginForm.$invalid()">Sign In
-          </button>
-        </div>
-      </form>
-      
-      <toolbar ng-show="lc.error" class="warn" layout="row" layout-fill layout-padding layout-margin>
-        <p class="body-1">{{ lc.error }}</p>
-      </toolbar>
-      
-      <divider></divider>
-      <div layout="row" layout-align="center">
-        <a href="/resetpw"><h5>Forgot password?</h5></a>
-      </div>
-      <divider></divider>
-      <div layout="row" layout-align="center">
+    <div layout="row" layout-align="center">
         <a href="/register"><h5>Need an account?</h5></a>
-      </div>
-
     </div>
 
-        </div>
-    </div>
+</div>
+</h5>
+</div>
+</div>
