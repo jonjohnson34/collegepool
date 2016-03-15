@@ -1,27 +1,21 @@
 
-angular.module("collegepool").directive('scores', function() {
-  return {
-    restrict: 'E',
-    templateUrl: 'client/scores/scores.html',
-    controllerAs: 'scoreList',
-    controller: function ($scope, $reactive) {
+angular.module("collegepool").directive('scores', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'client/scores/scores.html',
+        controllerAs: 'scoreList',
+        controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
-        
-            this.helpers({
-                scores: () => {
-                    return Scores.aggregate(
-                    [{
-                        $lookUp:
-                        {
-                            from: "Games",
-                            localField:"HomeTeam",
-                            foreignField: "HomeTeam",
-                            as: "Cover"
-                        }   
-                    }])
-                }       
-            });
-           
+
+            this.showGames = () => {
+                Meteor.call('showGames').then(
+                    function (data) {
+                        console.log('success inviting', data);
+                    },
+                    function (err) {
+                        console.log('failed', err);
+                    });
+            }
         }
-  }
+    }
 });

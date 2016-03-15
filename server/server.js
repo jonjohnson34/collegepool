@@ -34,12 +34,22 @@ Meteor.methods({
             Picks.insert(newPick);
             console.log('Success')
             newPick = {};
-           // $state.go('allPicks');
-        }        
+            // $state.go('allPicks');
+        }
+    },
+
+    showGames: function () {
+       Scores.aggregate(
+            [{
+                $lookUp:
+                {
+                    from: "Games",
+                    localField: "HomeTeam",
+                    foreignField: "HomeTeam",
+                    as: "Cover"
+                }
+            }]);
+       console.log('success');
     }
-    
-
-
 
 });
-
