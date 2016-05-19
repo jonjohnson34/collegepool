@@ -32,14 +32,14 @@ Meteor.methods({
         }
         else {
             Picks.insert(newPick);
-            console.log('Success')
+            console.log('Success');
             newPick = {};
             // $state.go('allPicks');
         }
     },
 
     showGames: function () {
-       Scores.aggregate(
+       var scores = Scores.aggregate(
             [{
                 $lookUp:
                 {
@@ -49,7 +49,7 @@ Meteor.methods({
                     as: "Cover"
                 }
             }]);
-       console.log('success');
+    return scores;
     }
 
 });

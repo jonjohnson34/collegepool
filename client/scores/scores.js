@@ -15,7 +15,7 @@ angular.module("collegepool").directive('scores', function () {
                     function (err) {
                         console.log('failed', err);
                     });
-            }
+            };
         }
-    }
+    };
 });
