@@ -9,14 +9,11 @@ mobile-experience       # Packages for a great mobile UX
 mongo                   # The database Meteor supports right now
 session                 # Client-side reactive dictionary for your app
 tracker                 # Meteor's client-side reactive programming library
-
-standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 
 angular
 angularui:angular-ui-router
 accounts-password
-dotansimha:accounts-ui-angular
 accounts-facebook
 accounts-twitter
 angularutils:pagination
@@ -37,3 +34,6 @@ cfs:standard-packages
 cfs:gridfs
 danialfarid:ng-file-upload
 monbro:mongodb-mapreduce-aggregation
+standard-minifier-css
+standard-minifier-js
+dotansimha:accounts-ui-angular
