@@ -37,3 +37,5 @@ monbro:mongodb-mapreduce-aggregation
 standard-minifier-css
 standard-minifier-js
 dotansimha:accounts-ui-angular
+accounts-ui
+nodets:mysql

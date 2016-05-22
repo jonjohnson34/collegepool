@@ -9,7 +9,7 @@ angular.module("collegepool").directive('makepicks', function () {
             this.newPick = {};
             
             this.helpers({
-               isRequired: () =>{
+               isRequired: () => {
                    return true;
                } 
             }); 

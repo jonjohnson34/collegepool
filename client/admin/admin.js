@@ -9,15 +9,33 @@ angular.module("collegepool").directive('admin', function () {
             //this.activeWeek = {};                
                 
             this.updateWeek = () => {
-                Weeks.update({_id: "kXb76mmhjh6zmbL2a"}, {"weekID": 1, "week": this.activeWeek},{upsert: true});
+                Weeks.update({ _id: "kXb76mmhjh6zmbL2a" }, { "weekID": 1, "week": this.activeWeek }, { upsert: true });
             };
-            
-           this.helpers({
+
+            this.helpers({
                 savedActiveWeek: () => {
-                   return (Weeks.find({}));
+                    return (Weeks.find({}));
                 }
-            }); 
-                        
+            });
+
+            this.testMySql = () => {
+                console.log('button clicked');
+                Meteor.call('testMySql', function (error, result) {
+                    if (error) {
+                        alert('Error');
+                    } else {
+                       console.log(result);
+                      Scores.update(result);
+                    }
+                });
+            }
+
+            this.helpers({
+                scoresShown: () => {
+                  return(Scores.find({}));
+                } 
+            });
+
             this.gamesOnSave = (files) => {
                 let f = files[0];
                 Papa.parse(f, {

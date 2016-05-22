@@ -1,8 +1,8 @@
 
 Meteor.startup(function () {
-    
     //process.env.MONGO_URL = 'mongodb://localhost:27017/collegepool';
     
+    //mySql connection     
     if (Games.find().count() === 0) {
         var games = JSON.parse(Assets.getText('picks.json'));
 
@@ -22,6 +22,22 @@ Meteor.startup(function () {
 
 Meteor.methods({
 
+    testMySql: function () {
+        var connectionSettings = {
+            host: 'localhost',
+            user: 'root',
+            password: 'Ricklefs34',
+            database: 'COLLEGEPOOL'
+        };
+
+        var db = Mysql.connect(connectionSettings);
+           return db.table("Scores").findAll({});
+            //.then(function (Scores) {
+            //console.log("SELECT * FROM Scores");
+       //     console.log(Scores);
+         //   return Scores;
+      },
+
     makePick: function (newPick) {
         this.newPick = newPick;
         if (_.where(this.newPick, { lock: true }).length > 3) {
@@ -39,7 +55,7 @@ Meteor.methods({
     },
 
     showGames: function () {
-       var scores = Scores.aggregate(
+        var scores = Scores.aggregate(
             [{
                 $lookUp:
                 {
@@ -49,7 +65,7 @@ Meteor.methods({
                     as: "Cover"
                 }
             }]);
-    return scores;
+        return scores;
     }
 
 });
