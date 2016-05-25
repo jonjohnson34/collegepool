@@ -18,31 +18,13 @@ angular.module("collegepool").directive('admin', function () {
                 }
             });
 
-            this.testMySql = () => {
-                console.log('button clicked');
-                Meteor.call('testMySql', function (error, result) {
-                    if (error) {
-                        alert('Error');
-                    } else {
-                       console.log(result);
-                      Scores.update(result);
-                    }
-                });
-            }
-
-            this.helpers({
-                scoresShown: () => {
-                  return(Scores.find({}));
-                } 
-            });
-
             this.gamesOnSave = (files) => {
                 let f = files[0];
                 Papa.parse(f, {
                     header: "true",
                     complete: function (results) {
                         for (i = 0; i < results.data.length; i++) {
-                            Scores.insert(results.data[i]);
+                            Games.insert(results.data[i]);
                         }
                         console.log("Games Finished:");
                     }

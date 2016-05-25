@@ -24,16 +24,6 @@
     <h4 class="page-header">Upload Scores</h4>
     <input type="file" ngf-select ng-model="files" name="file">
     <p></p>
-    <button class="btn btn-default" ng-click="adminL.scoresOnSave(files)">Submit</button>
-
-
-    <h4 class="page-header">Testing MySql</h4>
-    <button class="btn btn-default" ng-click="adminL.testMySql()">Submit</button>
-    
-    <div ng-repeat="admin in adminL.scoresShown">
-        The Current Active Week: {{admin.AwayScore}}
-    </div>
-    
-    
+    <button class="btn btn-default" ng-click="adminL.scoresOnSave(files)">Submit</button>    
    
 </div>

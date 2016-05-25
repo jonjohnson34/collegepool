@@ -1,5 +1,12 @@
 
 Meteor.startup(function () {
+    
+var connectionSettings = {
+            host: 'localhost',
+            user: 'root',
+            password: 'Ricklefs34',
+            database: 'COLLEGEPOOL'
+     }
     //process.env.MONGO_URL = 'mongodb://localhost:27017/collegepool';
     
     //mySql connection     
@@ -21,15 +28,9 @@ Meteor.startup(function () {
 }),
 
 Meteor.methods({
-
-    testMySql: function () {
-        var connectionSettings = {
-            host: 'localhost',
-            user: 'root',
-            password: 'Ricklefs34',
-            database: 'COLLEGEPOOL'
-        };
-
+        
+    testMySql: function (connectionSettings) {
+        
         var db = Mysql.connect(connectionSettings);
            return db.table("Scores").findAll({});
             //.then(function (Scores) {
@@ -54,6 +55,7 @@ Meteor.methods({
         }
     },
 
+    //TODO: connect to mysql and bring back scores and spreads based on team and week
     showGames: function () {
         var scores = Scores.aggregate(
             [{
