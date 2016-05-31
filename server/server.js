@@ -8,10 +8,7 @@ Meteor.startup(function () {
             };
 
             var db = Mysql.connect(connectionSettings);
-            //console.log(db);
             Picks = db.meteorCollection("Picks", 'pickscollection');
-//            console.log(Picks);
-
          
     if (Games.find().count() === 0) {
         var games = JSON.parse(Assets.getText('picks.json'));
@@ -34,7 +31,6 @@ Meteor.startup(function () {
 
         makePick: function (newPick) {
             
-   
             this.newPick = newPick;
             if (_.where(this.newPick, { lock: true }).length > 31) {
                 throw new Meteor.Error("Too Many Locks");
@@ -54,8 +50,11 @@ Meteor.startup(function () {
         },
 
         //TODO: connect to mysql and bring back scores and spreads based on team and week
-        showGames: function () {
-
+        showGames: function (activeWeek) {
+            console.log(activeWeek);
+            //var showPicksId = Picks.find({});
+            var showPicks = Picks.findOne({'week': activeWeek});
+            return showPicks;       
         }
 
     });

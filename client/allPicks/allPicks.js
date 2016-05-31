@@ -6,17 +6,20 @@ angular.module("collegepool").directive('allpicks', function () {
         controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
 
-            this.helpers({
-                picks: () => {
-                   return Picks.find({}); 
-                }
-            });
-            
-            this.helpers({
-                savedActiveWeek: () => {
-                   return (Weeks.find({}));
-                }
-            });
+            this.weekChange = (activeWeek) => {
+
+                //console.log(this.activeWeek);
+
+                Meteor.call('showGames', this.activeWeek, function(res, err){
+                    if (err){
+                       console.log(err); 
+                    }   
+                    else{
+                        console.log(res);
+                    }
+                });
+                
+            }
         }
     }
 });

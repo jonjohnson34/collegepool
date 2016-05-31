@@ -23,7 +23,7 @@ angular.module("collegepool").directive('makepicks', function () {
              
             this.addPick = () => {
                 var activeWeek = this.savedActiveWeek;                
-                console.log(this.newPick);
+
                 this.newPick.week = activeWeek[0].week;
                 console.log(this.newPick);
                 
