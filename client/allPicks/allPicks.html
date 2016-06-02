@@ -12,7 +12,8 @@
             <option>Week Two</option>
             <option>Week Three</option>
         </select>
-
+       
+<!--
 <table class="table table-condensed">
     <thead>
         <tr>
@@ -41,9 +42,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="picks in allPicks.weeklyPicks">
-            <td>UserName</td>
-            <td>Testing</td>
+        <tr ng-repeat="pick in allPicks.weeklyChanges()">
+            <td>{{pick.gotw}}</td>
         </tr>
     </tbody>
 </table>
+-->
+<h5>
+<div ng-repeat="picks in allPicks.weekChange">
+    <ul>
+        <li> {{picks.gotw}}</li>
+    </ul>
+</div>
+</h5>

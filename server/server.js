@@ -53,8 +53,8 @@ Meteor.startup(function () {
         showGames: function (activeWeek) {
             console.log(activeWeek);
             //var showPicksId = Picks.find({});
-            var showPicks = Picks.findOne({'week': activeWeek});
-            return showPicks;       
+            var respJson = Picks.findOne({'week': activeWeek});
+            return respJson;       
         }
 
     });
