@@ -4,16 +4,29 @@
 
 <select style="color:black" id="week" type="text" 
         ng-model="allPicks.activeWeek" 
-        ng-change="allPicks.weekChanged()"
-        placeholder="Choose Week">
+        ng-change="allPicks.weekChanged()" placeholder="Choose Week">
             <option>Week One</option>
             <option>Week Two</option>
             <option>Week Three</option>
         </select>
 
-
-<div ng-repeat="pick in allPicks.getData">
-    <ul>
-        <li> {{pick.gotw}}</li>
-    </ul>
-</div>
+<table class="table table-condensed" >
+    <thead>
+        <td>
+            ID
+        </td>
+        <td>
+            GOTW
+        </td>
+    </thead>
+    <tbody>
+<tr ng-repeat="picks in allPicks.testing">
+    <td>
+        <h6>{{picks.gotw}}</h6>
+   </td>
+   <td>
+        <h6>{{picks.userPicksId}}</h6>
+   </td>
+</tr>
+    </tbody>
+</table>
