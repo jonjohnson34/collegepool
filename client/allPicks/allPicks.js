@@ -3,17 +3,32 @@ angular.module("collegepool").directive('allpicks', function () {
         restrict: 'E',
         templateUrl: 'client/allPicks/allPicks.html',
         controllerAs: 'allPicks',
-        controller: function ($scope, $reactive) {
+        controller: function ($scope, $reactive, $q) {
             $reactive(this).attach($scope);
-             
-              this.weekChange = () => {
-                 this.call('showGames', this.activeWeek, (err, result) => {
-                        this.result = result;
-                        console.log(this.result);
-                 });                   
-              }
+
+            var activeWeek = this.activeWeek;
+
+            this.weekChanged = (activeWeek) => {
+                getData(activeWeek).then((data) => {
+                    //console.log('this fired');
+                    this.getData = data;
+                });
+            };
+
+            var getData = (activeWeek) => {
+                var deferred = $q.defer();
+                Meteor.call('showGames', this.activeWeek, (error, result) => {
+                    if (error) {
+                        console.log('failed', error);
+                        deferred.reject('error');
+                    } else {
+                        console.log('success', result);
+                        deferred.resolve(result);
+                    }
+                });
+                return deferred.promise;
+            };
             
-            
-       }
+        }
     }
 });

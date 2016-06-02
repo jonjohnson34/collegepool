@@ -1,57 +1,19 @@
-<style>
-.locked {
-    font-style: italic;
-}    
-    
- </style>  
-        <label><h5>Choose Week</h5></label>
-        <select style="color:black" id="week" type="text" 
-                ng-model="allPicks.activeWeek" placeholder="Choose Week"
-                ng-change="allPicks.weekChange()">
+<!--ng-change="allPicks.weekChange()"-->
+
+<label><h5>Choose Week</h5></label>
+
+<select style="color:black" id="week" type="text" 
+        ng-model="allPicks.activeWeek" 
+        ng-change="allPicks.weekChanged()"
+        placeholder="Choose Week">
             <option>Week One</option>
             <option>Week Two</option>
             <option>Week Three</option>
         </select>
-       
-<!--
-<table class="table table-condensed">
-    <thead>
-        <tr>
-            <th>
-                <h5>UserName</h5></th>
-            <th>
-                <h5>Game of the Week</h5></th>
-            <th>
-                <h5>Game Two</h5></th>
-            <th>
-                <h5>Game Three</h5></th>
-            <th>
-                <h5>Game Four</h5></th>
-            <th>
-                <h5>Game Five</h5></th>
-            <th>
-                <h5>Game Six</h5></th>
-            <th>
-                <h5>Game Seven</h5></th>
-            <th>
-                <h5>Game Eight</h5></th>
-            <th>
-                <h5>Game Nine</h5></th>
-            <th>
-                <h5>Game Ten</h5></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="pick in allPicks.weeklyChanges()">
-            <td>{{pick.gotw}}</td>
-        </tr>
-    </tbody>
-</table>
--->
-<h5>
-<div ng-repeat="picks in allPicks.weekChange">
+
+
+<div ng-repeat="pick in allPicks.getData">
     <ul>
-        <li> {{picks.gotw}}</li>
+        <li> {{pick.gotw}}</li>
     </ul>
 </div>
-</h5>
