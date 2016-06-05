@@ -4,17 +4,29 @@ angular.module("collegepool").directive('scores', function () {
         restrict: 'E',
         templateUrl: 'client/scores/scores.html',
         controllerAs: 'scoreList',
-        controller: function ($scope, $reactive) {
+        controller: function ($scope, $reactive, $q) {
             $reactive(this).attach($scope);
 
-            this.showGames = () => {
-                Meteor.call('showGames').then(
-                    function (data) {
-                        console.log('success inviting', data);
-                    },
-                    function (err) {
-                        console.log('failed', err);
-                    });
+           this.weekChanged = (activeWeek) => {
+                getData(activeWeek).then((data) => {
+                    console.log(typeof data);
+                    this.testing = data;
+                    console.log(this.testing);
+                });
+            };
+
+            var getData = (activeWeek) => {
+                var deferred = $q.defer();
+                Meteor.call('showGames', this.activeWeek, (error, result) => {
+                    if (error) {
+                        console.log('failed', error);
+                        deferred.reject('error');
+                    } else {
+                        console.log('success', result);
+                        deferred.resolve(result);
+                    }
+                });
+                return deferred.promise;
             };
         }
     };

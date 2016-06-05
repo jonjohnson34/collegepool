@@ -9,7 +9,7 @@ Meteor.startup(function () {
 
     var db = Mysql.connect(connectionSettings);
     Picks = db.meteorCollection('Picks', 'pickscollection');
-
+    Scores = db.meteorCollection('Scores', 'scorescollection');
 
     if (Games.find().count() === 0) {
         var games = JSON.parse(Assets.getText('picks.json'));
@@ -51,10 +51,16 @@ Meteor.startup(function () {
         },
 
         //TODO: connect to mysql and bring back scores and spreads based on team and week
+        showPicks: function(activeWeek){
+            var getPicks =  Picks.find({week: activeWeek}).fetch();  
+            return getPicks;   
+        },
+
         showGames: function(activeWeek){
             console.log(activeWeek);
-            var test =  Picks.find({week: activeWeek}).fetch();          
-           return test;   
+            var getScores =  Scores.find({week: activeWeek}).fetch();  
+            console.log(getScores.length)        
+            return getScores;   
         }
         
 });

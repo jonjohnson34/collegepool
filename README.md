@@ -10,10 +10,10 @@ TO DO's
 1.1.3
 
 	AFTER SIGNING IN
-		- set the picks page to only allow 3 locked games (Done)
+		- set the picks page to only allow 3 locked games 
 		- make sure all games are filled out. 
 		
-		- after picks redirect to page with everyones picks. (Done)
+		- after picks redirect to page with everyones picks. 
 			- create page with everyones picks laid out names vertically and picks horziontaly (Done)
 			- only show picks that have been submitted. (Done)
 		
@@ -33,7 +33,7 @@ TO DO's
 
 	ADMIN PAGE
 		- allow the teams and spreads to be loaded each week (Done)
-		- calculate the scores of each person who picked 
+		- calculate the scores of each person who picked in database
 		
 
 

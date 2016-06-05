@@ -10,15 +10,14 @@ angular.module("collegepool").directive('allpicks', function () {
                     
             this.weekChanged = (activeWeek) => {
                 getData(activeWeek).then((data) => {
-                    console.log(typeof data);
-                    this.testing = data;
-                    console.log(this.testing);
+                    this.gotPicks = data;
+                    //console.log(this.gotPicks);
                 });
             };
 
             var getData = (activeWeek) => {
                 var deferred = $q.defer();
-                Meteor.call('showGames', this.activeWeek, (error, result) => {
+                Meteor.call('showPicks', this.activeWeek, (error, result) => {
                     if (error) {
                         console.log('failed', error);
                         deferred.reject('error');

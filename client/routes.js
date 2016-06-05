@@ -25,7 +25,12 @@ angular.module("collegepool")
                url: '/scores',
                template: '<scores></scores>'
             })
-
+            
+            .state('totals',{
+               url: '/totals',
+               template: '<totals></totals>'
+            })
+                
             .state('makepicks', {
                 url: '/makepicks',
                 template: '<makepicks></makepicks>'

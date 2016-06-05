@@ -2,31 +2,90 @@
 
 <label><h5>Choose Week</h5></label>
 
-<select style="color:black" id="week" type="text" 
-        ng-model="allPicks.activeWeek" 
-        ng-change="allPicks.weekChanged()" placeholder="Choose Week">
+<select style="color:black" id="week" type="text" ng-model="allPicks.activeWeek" ng-change="allPicks.weekChanged()" placeholder="Choose Week">
             <option>Week One</option>
             <option>Week Two</option>
             <option>Week Three</option>
         </select>
 
-<table class="table table-condensed" >
+<table class="table table-condensed">
     <thead>
         <td>
             Week
         </td>
         <td>
+            UserName
+        </td>
+        <td>
             GOTW
+        </td>
+        <td>
+            Game Two
+        </td>
+        <td>
+            Game Three
+        </td>
+        <td>
+            Game Four
+        </td>
+        <td>
+            Game Five
+        </td>
+        <td>
+            Game Six
+        </td>
+        <td>
+            Game Seven
+        </td>
+        <td>
+            Game Eight
+        </td>
+        <td>
+            Game Nine
+        </td>
+        <td>
+            Game Ten
         </td>
     </thead>
     <tbody>
-<tr ng-repeat="picks in allPicks.testing">
-    <td>
-        <h6>{{picks.week}}</h6>
-   </td>
-   <td>
-        <h6>{{picks.gotw}}</h6>
-   </td>
-</tr>
+        <tr ng-repeat="picks in allPicks.gotPicks">
+            <td>
+                <h6>{{picks.week}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.username}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gotw}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gametwo}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gamethree}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gamefour}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gamefive}}</h6>
+            </td>
+
+            <td>
+                <h6>{{picks.gamesix}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gameseven}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gameeight}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gamenine}}</h6>
+            </td>
+            <td>
+                <h6>{{picks.gameten}}</h6>
+            </td>
+        </tr>
     </tbody>
 </table>

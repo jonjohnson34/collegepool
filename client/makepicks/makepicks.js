@@ -8,7 +8,6 @@ angular.module("collegepool").directive('makepicks', function () {
             
             this.newPick = {};
                
-            
             this.helpers({
                 savedActiveWeek: () => {
                     return (Weeks.find({}));
@@ -25,6 +24,7 @@ angular.module("collegepool").directive('makepicks', function () {
                 var activeWeek = this.savedActiveWeek;                
 
                 this.newPick.week = activeWeek[0].week;
+                
                 console.log(this.newPick);
                 
                 Meteor.call('makePick', this.newPick, function(err, res){

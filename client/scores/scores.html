@@ -1,29 +1,36 @@
 <table class="table table-condensed">
-    <button class="btn btn-default" ng-click="scoreList.showGames()">Submit</button>
+    <label><h5>Choose Week</h5></label>
+
+<select style="color:black" id="week" type="text" ng-model="scoreList.activeWeek" ng-change="scoreList.weekChanged()" placeholder="Choose Week">
+            <option>Week One</option>
+            <option>Week Two</option>
+            <option>Week Three</option>
+        </select>
+        <br />
     <thead>
         <tr>
             <th>
-                <h3>Vistor Score</h3></th>
+                <h6>Vistor Score</h6></th>
             <th>
-                <h3>Visitor Team</h3></th>
+                <h6>Visitor Team</h6></th>
             <th>
-                <h3>Home Team</h3></th>
+                <h6>Home Team</h6></th>
             <th>
-                <h3>Home Score</h3></th>
+                <h6>Home Score</h6></th>
             <th> 
-                <h3>Game spread </h3></th> 
+                <h6>Game spread </h6></th> 
             <th> 
-                <h3>Team that Covered</h3></th>       
+                <h6>Team that Covered</h6></th>       
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="score in scoreList.scores">
+        <tr ng-repeat="score in scoreList.testing">
             <td>
                 <h6>{{score.AwayScore}}</h6></td>
             <td>
-                <h6>{{score.Away_Team}}</h6></td>
+                <h6>{{score.AwayTeam}}</h6></td>
             <td>
-                <h6>{{score.Home_Team}}</h6></td>
+                <h6>{{score.HomeTeam}}</h6></td>
             <td>
                 <h6>{{score.HomeScore}}</h6></td>
             <td>
