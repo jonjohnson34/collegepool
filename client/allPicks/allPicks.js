@@ -7,12 +7,12 @@ angular.module("collegepool").directive('allpicks', function () {
             $reactive(this).attach($scope);
 
             var activeWeek = this.activeWeek;
-
+                    
             this.weekChanged = (activeWeek) => {
                 getData(activeWeek).then((data) => {
-                    //console.log(data);
+                    console.log(typeof data);
                     this.testing = data;
-                    //console.log(this.getData);
+                    console.log(this.testing);
                 });
             };
 
@@ -29,7 +29,6 @@ angular.module("collegepool").directive('allpicks', function () {
                 });
                 return deferred.promise;
             };
-            
         }
     }
 });

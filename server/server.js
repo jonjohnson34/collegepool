@@ -1,16 +1,16 @@
 
 Meteor.startup(function () {
-         var connectionSettings = {
-                host: 'localhost',
-                user: 'root',
-                password: 'Ricklefs34',
-                database: 'COLLEGEPOOL'
-            };
+    var connectionSettings = {
+        host: 'localhost',
+        user: 'root',
+        password: 'Ricklefs34',
+        database: 'COLLEGEPOOL'
+    };
 
-            var db = Mysql.connect(connectionSettings);
-            Picks = db.meteorCollection("Picks", 'pickscollection');
-            
-           
+    var db = Mysql.connect(connectionSettings);
+    Picks = db.meteorCollection('Picks', 'pickscollection');
+
+
     if (Games.find().count() === 0) {
         var games = JSON.parse(Assets.getText('picks.json'));
 
@@ -31,7 +31,7 @@ Meteor.startup(function () {
     Meteor.methods({
 
         makePick: function (newPick) {
-            
+
             this.newPick = newPick;
             if (_.where(this.newPick, { lock: true }).length > 31) {
                 throw new Meteor.Error("Too Many Locks");
@@ -40,9 +40,9 @@ Meteor.startup(function () {
                 throw new Meteor.Error("Not Enough Locks");
             }
             else {
-                
-                console.log(newPick);           
-                var newPicksId = Picks.insert(newPick);  
+
+                console.log(newPick);
+                var newPicksId = Picks.insert(newPick);
                 console.log(newPicksId);
                 return { success: 'Success' };
                 // newPick = {};
@@ -51,13 +51,11 @@ Meteor.startup(function () {
         },
 
         //TODO: connect to mysql and bring back scores and spreads based on team and week
-        showGames: function (activeWeek) {
+        showGames: function(activeWeek){
             console.log(activeWeek);
-            return Picks.find({week: activeWeek});
-            //console.log(respJson);
-        
-            //console.log(results); 
-            //return respJson;       
+            var test =  Picks.find({week: activeWeek}).fetch();          
+           return test;   
         }
+        
+});
 
-    });
