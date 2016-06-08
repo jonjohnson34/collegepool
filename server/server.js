@@ -1,15 +1,20 @@
 
 Meteor.startup(function () {
+    //Change to cloud mysql database
     var connectionSettings = {
-        host: 'localhost',
-        user: 'root',
-        password: 'Ricklefs34',
-        database: 'COLLEGEPOOL'
+        URL: 'mysql://b915fcfdf8ee29:c2739825@us-cdbr-iron-east-04.cleardb.net/heroku_1a8cfca05b2b94f?reconnect=true',
     };
 
     var db = Mysql.connect(connectionSettings);
-    Picks = db.meteorCollection('Picks', 'pickscollection');
-    Scores = db.meteorCollection('Scores', 'scorescollection');
+    if (db){
+        console.log(db);
+    }
+    else {
+        console.log('error');
+    }
+    
+  //  Picks = db.meteorCollection('Picks', 'pickscollection');
+  //  Scores = db.meteorCollection('Scores', 'scorescollection');
 
     if (Games.find().count() === 0) {
         var games = JSON.parse(Assets.getText('picks.json'));
