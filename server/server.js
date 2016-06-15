@@ -1,20 +1,18 @@
 
 Meteor.startup(function () {
     //Change to cloud mysql database
-    var connectionSettings = {
-        URL: 'mysql://b915fcfdf8ee29:c2739825@us-cdbr-iron-east-04.cleardb.net/heroku_1a8cfca05b2b94f?reconnect=true',
-    };
-
-    var db = Mysql.connect(connectionSettings);
-    if (db){
-        console.log(db);
-    }
-    else {
-        console.log('error');
-    }
-    
-  //  Picks = db.meteorCollection('Picks', 'pickscollection');
-  //  Scores = db.meteorCollection('Scores', 'scorescollection');
+     
+        var connectionSettings = {
+             host: 'localhost',
+             user: 'root',
+             password: 'Ricklefs34',
+             database: 'COLLEGEPOOL'
+         };
+ 
+         var db = Mysql.connect(connectionSettings);
+     
+    Picks = db.meteorCollection('Picks', 'pickscollection');
+    Scores = db.meteorCollection('Scores', 'scorescollection');
 
     if (Games.find().count() === 0) {
         var games = JSON.parse(Assets.getText('picks.json'));
@@ -38,33 +36,50 @@ Meteor.startup(function () {
         makePick: function (newPick) {
 
             this.newPick = newPick;
-            if (_.where(this.newPick, { lock: true }).length > 31) {
+            
+            var numLocks = 0;
+            var numPicks = 0;
+            
+            _.each(this.newPick, function(value, key){
+                if (value === true){
+                     numLocks++;
+                }
+            });
+            
+            _.each(this.newPick, function(value, key){
+                if (typeof(value) === "string" && key != "week"){
+                    numPicks++
+                }        
+            });  
+            console.log(numPicks);
+            
+            if(numPicks != 10){
+                throw new Meteor.Error("Please make all your picks");
+            }          
+            else if(numLocks > 3){
                 throw new Meteor.Error("Too Many Locks");
             }
-            else if (_.where(this.newPick, { lock: true }).length < 0) {
+            else if (numLocks < 3){
                 throw new Meteor.Error("Not Enough Locks");
             }
             else {
-
-                console.log(newPick);
                 var newPicksId = Picks.insert(newPick);
-                console.log(newPicksId);
                 return { success: 'Success' };
-                // newPick = {};
-                // $state.go('allPicks');
             }
+        
         },
 
         //TODO: connect to mysql and bring back scores and spreads based on team and week
         showPicks: function(activeWeek){
-            var getPicks =  Picks.find({week: activeWeek}).fetch();  
+            var getPicks =  Picks.find({week: activeWeek}).fetch();
+            console.log(getPicks);  
             return getPicks;   
         },
 
         showGames: function(activeWeek){
-            console.log(activeWeek);
+            //console.log(activeWeek);
             var getScores =  Scores.find({week: activeWeek}).fetch();  
-            console.log(getScores.length)        
+            //console.log(getScores.length)        
             return getScores;   
         }
         
