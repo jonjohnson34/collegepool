@@ -47,7 +47,7 @@ Meteor.startup(function () {
             });
             
             _.each(this.newPick, function(value, key){
-                if (typeof(value) === "string" && key != "week"){
+                if (typeof(value) === "string" && key != "week"  && key != "username"){
                     numPicks++
                 }        
             });  
@@ -72,7 +72,7 @@ Meteor.startup(function () {
         //TODO: connect to mysql and bring back scores and spreads based on team and week
         showPicks: function(activeWeek){
             var getPicks =  Picks.find({week: activeWeek}).fetch();
-            console.log(getPicks);  
+            //console.log(getPicks);  
             return getPicks;   
         },
 

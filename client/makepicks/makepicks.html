@@ -1,17 +1,18 @@
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
 <form name="makePicks" class="pure-form">
-    
+
     <div class="col-med-8" align="right">
         <h5>
         <div>
-            The Current User Logged In is: jonjohnson34 
+            <label>UserName:</label>
+            <input type="text" id="username" ng-model="makepicks.newPick.username">
         </div>
         <br />
         <div ng-repeat="admin in makepicks.savedActiveWeek" ng-model="makepicks.newPick.week">
             The Current Active Week: {{admin.week}}
         </div>
-       <br />
+        <br />
          <div class="form-group">
            <label>Lock</label> 
                <input type="checkbox" id="lockgotw" ng-model="makepicks.newPick.gotwlock">     
@@ -103,7 +104,7 @@
             </select>
     </div>
     </h5>
-           <button class="btn btn-default" ng-click="makepicks.addPick()">Submit</button>
+        <button class="btn btn-default" ng-click="makepicks.addPick()">Submit</button>
 
     </div>
 </form>
