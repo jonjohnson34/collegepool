@@ -66,4 +66,30 @@ TO DO's
         - About
             
             
+Database Flow
+        - Load Scores
+                run stored proc to get the difference 
                 
+                
+                
+Team - Locked Point, Lock Tie Points, Regular Point, Regular Tie Points, Loss Points. 
+
+Mich (-7)
+ND (+7)
+
+Mich v ND
+Mich 14 - ND 10
+Mich -4
+ND + 4
+
+If Diff is less then favorite spread then favorite wins 
+If Diff is equal to favorite spread then tie
+else underdog wins 
+
+
+
+
+
+
+
+

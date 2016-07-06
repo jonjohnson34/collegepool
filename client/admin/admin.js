@@ -5,9 +5,9 @@ angular.module("collegepool").directive('admin', function () {
         controllerAs: 'adminL',
         controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
-               
+
             //this.activeWeek = {};                
-                
+
             this.updateWeek = () => {
                 Weeks.update({ _id: "kXb76mmhjh6zmbL2a" }, { "weekID": 1, "week": this.activeWeek }, { upsert: true });
             };
@@ -23,10 +23,14 @@ angular.module("collegepool").directive('admin', function () {
                 Papa.parse(f, {
                     header: "true",
                     complete: function (results) {
-                        for (i = 0; i < results.data.length; i++) {
-                            Games.insert(results.data[i]);
-                        }
-                        console.log("Games Finished:");
+                        Meteor.call('insertGames', results, function (err, res) {
+                                if (err) {
+                                    alert(err);
+                                }
+                                else {
+                                    alert("Games Finished:");
+                                }
+                         });
                     }
                 });
             }

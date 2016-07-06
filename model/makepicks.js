@@ -1,4 +1,4 @@
-Games = new Mongo.Collection("games");
+
 Teams = new Mongo.Collection("teams");
 Scores = new Mongo.Collection("scores");
 Images = new Mongo.Collection("images");

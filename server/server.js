@@ -1,27 +1,21 @@
 
 Meteor.startup(function () {
     //Change to cloud mysql database
-     
-        var connectionSettings = {
-             host: 'localhost',
-             user: 'root',
-             password: 'Ricklefs34',
-             database: 'COLLEGEPOOL'
-         };
- 
-         var db = Mysql.connect(connectionSettings);
-     
+    
+    var connectionSettings = {
+            host: 'localhost',
+            user: 'root',
+            password: 'Ricklefs34',
+            database: 'COLLEGEPOOL'
+        };
+
+    var db = Mysql.connect(connectionSettings);
+    
     Picks = db.meteorCollection('Picks', 'pickscollection');
     Scores = db.meteorCollection('Scores', 'scorescollection');
-
-    if (Games.find().count() === 0) {
-        var games = JSON.parse(Assets.getText('picks.json'));
-
-        for (var i = 0; i < games.length; i++) {
-            Games.insert(games[i]);
-        }
-    }
-
+    Games = db.meteorCollection('Games', 'gamescollection');
+    
+    
     if (Teams.find().count() === 0) {
         var teams = JSON.parse(Assets.getText('teams.json'));
 
@@ -81,6 +75,18 @@ Meteor.startup(function () {
             var getScores =  Scores.find({week: activeWeek}).fetch();  
             //console.log(getScores.length)        
             return getScores;   
+        },
+        
+        getGames: function(activeWeek) {
+            var getGames = Games.find({week: activeWeek}).fetch();
+            return getGames;
+        },
+        
+        insertGames: function(results){
+            for (var index = 0; index < results.data.length; index++) {
+                var newGameId = Games.insert(results.data[index]);
+            }
+             return { success: 'Success' };  
         }
         
 });

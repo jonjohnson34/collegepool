@@ -6,11 +6,19 @@ angular.module("collegepool").directive('games', function () {
         controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
 
-            this.helpers({
-                games: () => {
-                    return Games.find({});
-                }
-            });
+         var getData = (activeWeek) => {
+                var deferred = $q.defer();
+                Meteor.call('getGames', this.activeWeek, (error, result) => {
+                    if (error) {
+                        console.log('failed', error);
+                        deferred.reject('error');
+                    } else {
+                        console.log('success', result);
+                        deferred.resolve(result);
+                    }
+                });
+                return deferred.promise;
+            };
             
         }
     }
