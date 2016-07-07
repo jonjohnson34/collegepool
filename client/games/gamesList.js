@@ -3,10 +3,18 @@ angular.module("collegepool").directive('games', function () {
         restrict: 'E',
         templateUrl: 'client/games/gamesList.html',
         controllerAs: 'gamesList',
-        controller: function ($scope, $reactive) {
+        controller: function ($scope, $reactive, $q) {
             $reactive(this).attach($scope);
-            
-         var getData = (activeWeek) => {
+
+            this.weekChanged = (activeWeek) => {
+                getData(activeWeek).then((data) => {
+                    //console.log(typeof data);
+                    this.testing = data;
+                    //console.log(this.testing);
+                });
+            };
+
+            var getData = (activeWeek) => {
                 var deferred = $q.defer();
                 Meteor.call('getGames', this.activeWeek, (error, result) => {
                     if (error) {
@@ -19,7 +27,6 @@ angular.module("collegepool").directive('games', function () {
                 });
                 return deferred.promise;
             };
-            
         }
     }
 });

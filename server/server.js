@@ -69,7 +69,7 @@ Meteor.startup(function () {
             return getPicks;   
         },
 
-        showGames: function(activeWeek){
+        getScores: function(activeWeek){
             //console.log(activeWeek);
             var getScores =  Scores.find({week: activeWeek}).fetch();  
             //console.log(getScores.length)        
@@ -77,9 +77,9 @@ Meteor.startup(function () {
         },
         
         getGames: function(activeWeek) {
-            console.log(activeWeek);
-            var getGames = Games.find({week: activeWeek}).fetch();
-           // console.log(getGames);
+            //console.log(activeWeek);
+            var getGames = Games.find({gameweek: activeWeek}).fetch();
+            //console.log(getGames);
             return getGames;
         },
         
