@@ -63,7 +63,6 @@ Meteor.startup(function () {
         
         },
 
-        //TODO: connect to mysql and bring back scores and spreads based on team and week
         showPicks: function(activeWeek){
             var getPicks =  Picks.find({week: activeWeek}).fetch();
             //console.log(getPicks);  
@@ -78,7 +77,9 @@ Meteor.startup(function () {
         },
         
         getGames: function(activeWeek) {
+            console.log(activeWeek);
             var getGames = Games.find({week: activeWeek}).fetch();
+           // console.log(getGames);
             return getGames;
         },
         
@@ -87,7 +88,13 @@ Meteor.startup(function () {
                 var newGameId = Games.insert(results.data[index]);
             }
              return { success: 'Success' };  
-        }
+        },
         
+        insertScores: function(results){
+            for (var index = 0; index < results.data.length; index++) {
+                var newScoreId = Scores.insert(results.data[index]);
+            }
+             return { success: 'Success' };  
+        }
 });
 

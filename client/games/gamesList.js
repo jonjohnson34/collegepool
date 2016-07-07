@@ -5,7 +5,7 @@ angular.module("collegepool").directive('games', function () {
         controllerAs: 'gamesList',
         controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
-
+            
          var getData = (activeWeek) => {
                 var deferred = $q.defer();
                 Meteor.call('getGames', this.activeWeek, (error, result) => {

@@ -40,10 +40,14 @@ angular.module("collegepool").directive('admin', function () {
                 Papa.parse(f, {
                     header: "true",
                     complete: function (results) {
-                        for (i = 0; i < results.data.length; i++) {
-                            Scores.insert(results.data[i]);
-                        }
-                        console.log("Scores Finished:");
+                         Meteor.call('insertScores', results, function (err, res) {
+                                if (err) {
+                                    alert(err);
+                                }
+                                else {
+                                    alert("Scores Finished:");
+                                }
+                         });
                     }
                 });
             }
