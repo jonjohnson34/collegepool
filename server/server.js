@@ -14,6 +14,7 @@ Meteor.startup(function () {
     Picks = db.meteorCollection('Picks', 'pickscollection');
     Scores = db.meteorCollection('Scores', 'scorescollection');
     Games = db.meteorCollection('Games', 'gamescollection');
+    Totals = db.meteorCollection('Totals', 'totalscollection');
     
     
     if (Teams.find().count() === 0) {
@@ -65,22 +66,22 @@ Meteor.startup(function () {
 
         showPicks: function(activeWeek){
             var getPicks =  Picks.find({week: activeWeek}).fetch();
-            //console.log(getPicks);  
             return getPicks;   
         },
 
         getScores: function(activeWeek){
-            //console.log(activeWeek);
             var getScores =  Scores.find({week: activeWeek}).fetch();  
-            //console.log(getScores.length)        
             return getScores;   
         },
         
         getGames: function(activeWeek) {
-            //console.log(activeWeek);
             var getGames = Games.find({gameweek: activeWeek}).fetch();
-            //console.log(getGames);
             return getGames;
+        },
+        
+        getTotals: function(){
+           var getTotals = Totals.find({}).fetch();
+           return getTotals;  
         },
         
         insertGames: function(results){

@@ -8,9 +8,7 @@ angular.module("collegepool").directive('games', function () {
 
             this.weekChanged = (activeWeek) => {
                 getData(activeWeek).then((data) => {
-                    //console.log(typeof data);
                     this.testing = data;
-                    //console.log(this.testing);
                 });
             };
 
