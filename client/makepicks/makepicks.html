@@ -6,9 +6,10 @@
         <h5>
         <div>
             <label>UserName:</label>
-            <input type="text" id="username" ng-model="makepicks.newPick.username">
+            <input style="color:black;" type="text" id="username" ng-model="makepicks.newPick.username">
         </div>
         <br />
+        
         <div ng-repeat="admin in makepicks.savedActiveWeek" ng-model="makepicks.newPick.week">
             The Current Active Week: {{admin.week}}
         </div>

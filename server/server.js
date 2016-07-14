@@ -14,7 +14,7 @@ Meteor.startup(function () {
     Picks = db.meteorCollection('Picks', 'pickscollection');
     Scores = db.meteorCollection('Scores', 'scorescollection');
     Games = db.meteorCollection('Games', 'gamescollection');
-    Totals = db.meteorCollection('Totals', 'totalscollection');
+    Totals = db.meteorCollection('weeklyScores', 'weeklyScorescollection');
     
     
     if (Teams.find().count() === 0) {
