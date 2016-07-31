@@ -7,14 +7,19 @@
     <meta name="author" content="">
     <base href="/">
     <title>Kenny's College Pool</title>
-
+    
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+   
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/grayscale.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
+      <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -25,7 +30,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body data-spy="scroll" data-target=".navbar-fixed-top" ng-app="collegepool">
@@ -33,38 +37,36 @@
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-static-top" role="navigation">
         <h2>
-            <span class="title">Kenny's College Pool</span>
+            <span class="title">Kennys College Pool</span>
         </h2>
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <li><a ng-href="/login" class="page-scroll" ng-hide="$root.currentUser">Login</a></li>
-               <!-- <li><a ng-href="/register" class="page-scroll" ng-hide="$root.currentUser">Sign up</a></li>-->
-               <!--<div ng-show="$root.currentUser" ng-bind="$root.currentUser.email"></div>--> 
-               <!--<li><a ng-href="/logout" class="page-scroll" ng-show="$root.currentUser">Logout</a></li>-->
-                <li><a ng-href="/picks" class="page-scroll">Picks</a></li>
-                <li><a ng-href="/allPicks" class="page-scroll">All Picks</a></li>
-                
-                <li><a ng-href="/scores" class="page-scroll">Scores</a></li>
-                <li><a ng-href="/totals" class="page-scroll">Totals</a></li>
-                <li><a ng-href="/about" class="page-scroll">About</a></li>
-             </ul>
+                <li><a ui-sref="login" class="page-scroll" ng-hide="$root.currentUser">Login</a></li>
+                <!-- <li><a ui-sref="/register" class="page-scroll" ng-hide="$root.currentUser">Sign up</a></li>-->
+                <!--<div ng-show="$root.currentUser" ng-bind="$root.currentUser.email"></div>-->
+                <!--<li><a ui-sref="/logout" class="page-scroll" ng-show="$root.currentUser">Logout</a></li>-->
+                <li><a ui-sref="picks" class="page-scroll">Picks</a></li>
+                <li><a ui-sref="allPicks" class="page-scroll">All Picks</a></li>
+                <li><a ui-sref="scores" class="page-scroll">Scores</a></li>
+                <li><a ui-sref="totals" class="page-scroll">Totals</a></li>
+                <li><a ui-sref="about" class="page-scroll">About</a></li>
+            </ul>
         </div>
 
     </nav>
-
- <!-- Main Section -->
+    <!-- Main Section -->
     <div ui-view></div>
-
+    
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="client/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="client/js/bootstrap.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
+    <script src="client/js/jquery.easing.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/grayscale.js"></script>
+    <script src="client/js/grayscale.js"></script>
 
 </body>

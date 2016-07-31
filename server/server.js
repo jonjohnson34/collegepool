@@ -2,23 +2,25 @@
 Meteor.startup(function () {
     //Change to cloud mysql database
     //production
-    var connectionSettings = {
+    
+     var connectionSettings = {
             host: '138.68.5.242',
             port: '3306',
             user: 'root',
             password: 'Ricklefs34',
             database: 'COLLEGEPOOL' 
         };
-        
+         
+  
     //dev
-   /* 
+    /* 
    var connectionSettings = {
             host: 'localhost',
             user: 'root',
             password: 'Ricklefs34',
             database: 'COLLEGEPOOL' 
         };
-   */        
+  */
     
     var db = Mysql.connect(connectionSettings);
     

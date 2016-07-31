@@ -6,7 +6,7 @@ angular.module("collegepool")
 
         $stateProvider
             
-            .state('/contact',{
+            .state('contact',{
                 url: '/contact',
                 templateUrl: 'client/home/home.html'
             })

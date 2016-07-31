@@ -5,16 +5,15 @@ angular.module('collegepool', [
   'ngFileUpload'
 ]);
 
-function onReady() {
-  angular.bootstrap(document, ['collegepool'], {
-    strictDi: true
-  });
+/*function onReady() {
+    angular.bootstrap(document, ['collegepool'], {
+        strictDi: true
+    });
 }
 
 if (Meteor.isCordova)
-  angular.element(document).on("deviceready", onReady);
+    angular.element(document).on("deviceready", onReady);
 else
-  angular.element(document).ready(onReady);
-  
-  
+    angular.element(document).ready(onReady);
+  */
   
