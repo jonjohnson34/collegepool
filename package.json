@@ -1,0 +1,19 @@
+{
+  "name": "collegepool",
+  "version": "1.0.0",
+  "description": "collegepool-meteor",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonjohnson34/collegepool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonjohnson34/collegepool/issues"
+  },
+  "homepage": "https://github.com/jonjohnson34/collegepool#readme"
+}

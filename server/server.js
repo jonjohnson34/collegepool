@@ -1,14 +1,25 @@
 
 Meteor.startup(function () {
     //Change to cloud mysql database
-    
+    //production
     var connectionSettings = {
+            host: '138.68.5.242',
+            port: '3306',
+            user: 'root',
+            password: 'Ricklefs34',
+            database: 'COLLEGEPOOL' 
+        };
+        
+    //dev
+   /* 
+   var connectionSettings = {
             host: 'localhost',
             user: 'root',
             password: 'Ricklefs34',
-            database: 'COLLEGEPOOL'
+            database: 'COLLEGEPOOL' 
         };
-
+   */        
+    
     var db = Mysql.connect(connectionSettings);
     
     Picks = db.meteorCollection('Picks', 'pickscollection');
