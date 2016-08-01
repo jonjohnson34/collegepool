@@ -1,9 +1,4 @@
 
-angular.module('collegepool', [
-  'angular-meteor',
-  'ui.router',
-  'ngFileUpload'
-]);
 
 /*function onReady() {
     angular.bootstrap(document, ['collegepool'], {
@@ -16,4 +11,10 @@ if (Meteor.isCordova)
 else
     angular.element(document).ready(onReady);
   */
-  
+
+
+angular.module('collegepool', [
+    'angular-meteor',
+    'ui.router',
+    'ngFileUpload'
+]);
