@@ -36,7 +36,8 @@ danialfarid:ng-file-upload
 monbro:mongodb-mapreduce-aggregation
 standard-minifier-css
 standard-minifier-js
-dotansimha:accounts-ui-angular
 accounts-ui
 deanius:promise
 nodets:mysql
+jquery
+dotansimha:accounts-ui-angular
