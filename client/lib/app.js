@@ -11,14 +11,11 @@ if (Meteor.isCordova)
 else
     angular.element(document).ready(onReady);
   */
-<<<<<<< HEAD
 
 
 angular.module('collegepool', [
     'angular-meteor',
     'ui.router',
+    'ngRoute',
     'ngFileUpload'
 ]);
-=======
-  
->>>>>>> f8a3aecf96e18d21b4112d4e26641412fef5f0ef
