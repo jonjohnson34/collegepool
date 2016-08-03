@@ -41,21 +41,22 @@
         </h2>
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
             <ul class="nav navbar-nav">
-                <li><a ui-sref="login" ui-sref-active="active" ng-hide="$root.currentUser">Login</a></li>
+                <li><a ng-href="login" ui-sref-active="active" ng-hide="$root.currentUser">Login</a></li>
                 <!-- <li><a ui-sref="/register" class="page-scroll" ng-hide="$root.currentUser">Sign up</a></li>-->
                 <!--<div ng-show="$root.currentUser" ng-bind="$root.currentUser.email"></div>-->
                 <!--<li><a ui-sref="/logout" class="page-scroll" ng-show="$root.currentUser">Logout</a></li>-->
-                <li><a ui-sref="picks" ui-sref-active="active" class="page-scroll">Picks</a></li>
-                <li><a ui-sref="allPicks" ui-sref-active="active" class="page-scroll">All Picks</a></li>
-                <li><a ui-sref="scores" ui-sref-active="active" class="page-scroll">Scores</a></li>
-                <li><a ui-sref="totals" ui-sref-active="active" class="page-scroll">Totals</a></li>
-                <li><a ui-sref="about" ui-sref-active="active" >About</a></li>
+                <li><a ng-href="picks">Picks</a></li>
+                <li><a ng-href="allPicks">All Picks</a></li>
+                <li><a ng-href="scores">Scores</a></li>
+                <li><a ng-href="totals">Totals</a></li>
+                <li><a ng-href="about">About</a></li>
             </ul>
         </div>
 
     </nav>
     <!-- Main Section -->
     <div ui-view=""></div>
+    
     
     <!-- jQuery -->
     <script src="js/jquery.js"></script>

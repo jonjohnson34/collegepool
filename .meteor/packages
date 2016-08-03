@@ -40,4 +40,4 @@ accounts-ui
 deanius:promise
 nodets:mysql
 jquery
-dotansimha:accounts-ui-angular
+angular:angular-route

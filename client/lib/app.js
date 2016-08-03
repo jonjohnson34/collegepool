@@ -16,5 +16,6 @@ else
 angular.module('collegepool', [
     'angular-meteor',
     'ui.router',
+    'ngRoute',
     'ngFileUpload'
 ]);

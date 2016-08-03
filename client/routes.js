@@ -5,39 +5,28 @@ angular.module("collegepool")
         $locationProvider.html5Mode(true);
 
         $stateProvider
-            
-            .state('about', {
+            .state('about',{
                 url: '/about',
                 template: '<about></about>'
             })
 
-            .state('games', {
-                url: '/games',
-                template: '<games></games>'
+            .state('scores', {
+                url: '/scores',
+                template: '<scores></scores>'
             })
-            
-            .state('scores',{
-               url: '/scores',
-               template: '<scores></scores>'
+
+            .state('totals', {
+                url: '/totals',
+                template: '<totals></totals>'
             })
-            
-            .state('totals',{
-               url: '/totals',
-               template: '<totals></totals>'
-            })
-                
-            .state('makepicks', {
-                url: '/makepicks',
-                template: '<makepicks></makepicks>'
-            })
-            
+
             .state('login', {
                 url: '/login',
                 templateUrl: 'client/auth/login/login.html',
                 controller: 'LoginCtrl',
                 controllerAs: 'lc'
             })
-           
+
             .state('register', {
                 url: '/register',
                 templateUrl: 'client/auth/register/register.html',
@@ -50,20 +39,8 @@ angular.module("collegepool")
                 controller: 'ResetCtrl',
                 controllerAs: 'rpc'
             })
-            .state('logout', {
-                url: '/logout',
-                resolve: {
-                    "logout": function ($meteor, $state) {
-                        return $meteor.logout().then(function () {
-                            $state.go('login');
-                        }, function (err) {
-                            console.log('logout error - ', err);
-                        });
-                    }
-                }
-            })
-
-            .state('picks', {
+           
+           .state('picks', {
                 url: "/picks",
                 template: '<picks></picks>'
             })
@@ -77,8 +54,22 @@ angular.module("collegepool")
                 url: "/allPicks",
                 template: '<allPicks></allPicks>'
 
-            });
+            })
 
-       $urlRouterProvider.otherwise("/");
+            .state('logout', {
+                url: '/logout',
+                resolve: {
+                    "logout": function ($meteor, $state) {
+                        return $meteor.logout().then(function () {
+                            $state.go('login');
+                        }, function (err) {
+                            console.log('logout error - ', err);
+                        });
+                    }
+                }
+            });
+ 
+
+        $urlRouterProvider.otherwise("/");
     });
-    
+
