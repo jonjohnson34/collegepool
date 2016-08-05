@@ -32,6 +32,7 @@ angular.module("collegepool").directive('makepicks', function () {
                     }
                     else {
                         alert('your picks have been submitted');
+              
                     }
                 });
                 

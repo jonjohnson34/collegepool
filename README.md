@@ -7,7 +7,6 @@ This is a simple college football pick'em pool for my friends.
 This is an attempt at a meteor web application that creates a weekly college pick'em pool. 
 
 TO DO's 
-1.1.3
 
 	AFTER SIGNING IN
 		- set the picks page to only allow 3 locked games (Done)
@@ -18,10 +17,8 @@ TO DO's
 			- create page with everyones picks laid out names vertically and picks horziontaly (Done)
 			- only show picks that have been submitted. (Done)
 		
-		- don't allow anyone to submit picks twice in one week
+		- don't allow anyone to submit picks twice in one week (Done)
 			- add the week you are choosing to the submit form.(Done)
-			- add vaildation that if that week is in the db don't give them access to the picks page. 
-		 
 			
 		- have a page showing the yearly standing and highlight the weekly winner 
 			- Don't calculate the two lowest scores.  

@@ -9,10 +9,10 @@ Meteor.startup(function () {
             user: 'root',
             password: 'Ricklefs34',
             database: 'COLLEGEPOOL' 
-        };
-         
+        };         
    */
-    //dev
+  
+   //dev
    
    var connectionSettings = {
             host: 'localhost',
@@ -48,13 +48,11 @@ Meteor.startup(function () {
             var numLocks = 0;
             var numPicks = 0;
             var submitted = 0;
-              
-             
-            if (Picks.find({week: this.newPick.activeWeek, user: this.newPick.username}).fetch){
-                submitted = 1; 
-            }
-            console.log(submitted);  
-              
+            
+            
+            var weeklyPick = Picks.find({username: this.newPick.username}, {week: this.newPick.week}).fetch();
+            
+                                     
             _.each(this.newPick, function(value, key){
                 if (value === true){
                      numLocks++;
@@ -66,9 +64,9 @@ Meteor.startup(function () {
                     numPicks++
                 }        
             });  
-            console.log(numPicks);
+           // console.log(numPicks);
             
-            if (submitted === 1){
+            if (weeklyPick.length > 0){
                 throw new Meteor.Error("You have already submitted your picks for this week");   
             }             
             else if(numPicks != 10){
