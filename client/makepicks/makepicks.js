@@ -24,7 +24,7 @@ angular.module("collegepool").directive('makepicks', function () {
                 var activeWeek = this.savedActiveWeek;                
                 this.newPick.week = activeWeek[0].week;
                 
-                console.log(this.newPick);
+                //console.log(this.newPick);
                 
                 Meteor.call('makePick', this.newPick, function(err, res){
                     if (err){

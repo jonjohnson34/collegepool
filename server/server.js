@@ -2,7 +2,7 @@
 Meteor.startup(function () {
     //Change to cloud mysql database
     //production
-    
+   /*   
      var connectionSettings = {
             host: '138.68.5.242',
             port: '3306',
@@ -11,16 +11,16 @@ Meteor.startup(function () {
             database: 'COLLEGEPOOL' 
         };
          
-  
+   */
     //dev
-    /* 
+   
    var connectionSettings = {
             host: 'localhost',
             user: 'root',
             password: 'Ricklefs34',
             database: 'COLLEGEPOOL' 
         };
-  */
+ 
     
     var db = Mysql.connect(connectionSettings);
     
@@ -47,7 +47,14 @@ Meteor.startup(function () {
             
             var numLocks = 0;
             var numPicks = 0;
-            
+            var submitted = 0;
+              
+             
+            if (Picks.find({week: this.newPick.activeWeek, user: this.newPick.username}).fetch){
+                submitted = 1; 
+            }
+            console.log(submitted);  
+              
             _.each(this.newPick, function(value, key){
                 if (value === true){
                      numLocks++;
@@ -61,7 +68,10 @@ Meteor.startup(function () {
             });  
             console.log(numPicks);
             
-            if(numPicks != 10){
+            if (submitted === 1){
+                throw new Meteor.Error("You have already submitted your picks for this week");   
+            }             
+            else if(numPicks != 10){
                 throw new Meteor.Error("Please make all your picks");
             }          
             else if(numLocks > 3){
@@ -73,7 +83,7 @@ Meteor.startup(function () {
             else {
                 var newPicksId = Picks.insert(newPick);
                 return { success: 'Success' };
-            }
+            }            
         
         },
 

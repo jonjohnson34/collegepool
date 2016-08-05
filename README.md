@@ -10,30 +10,25 @@ TO DO's
 1.1.3
 
 	AFTER SIGNING IN
-		- set the picks page to only allow 3 locked games 
-		- make sure all games are filled out. 
+		- set the picks page to only allow 3 locked games (Done)
+		- make sure all games are filled out. (Done)
+                
 		
 		- after picks redirect to page with everyones picks. 
 			- create page with everyones picks laid out names vertically and picks horziontaly (Done)
 			- only show picks that have been submitted. (Done)
 		
 		- don't allow anyone to submit picks twice in one week
-			- add the week you are choosing to the submit form. 
+			- add the week you are choosing to the submit form.(Done)
 			- add vaildation that if that week is in the db don't give them access to the picks page. 
-		
-		- show a page with the score of that week's game. 
-			- calculate the spread of each game 
-			- highlight the team that is covering. 
-		
-		- have a page showing the weekly winner based on the spread of the games
-			- have a drop down for the week so that you can see historical games
+		 
 			
-		- have a page showing the yearly standing 
+		- have a page showing the yearly standing and highlight the weekly winner 
 			- Don't calculate the two lowest scores.  
 
 	ADMIN PAGE
 		- allow the teams and spreads to be loaded each week (Done)
-		- calculate the scores of each person who picked in database
+		- calculate the scores of each person who picked in database (Done)
 		
 
 
@@ -46,8 +41,7 @@ TO DO's
                 All Picks (Only after login and weekly picks have been submitted)
                 Admin (only certain users)
                 About
-            Intro Graphic
-            Contact Me Section
+                
         - Login
         - Sign Up
         - Picks
@@ -58,37 +52,14 @@ TO DO's
         - Season Stats
                 Shows Weekly scores 
                 Shows Yearly totals
-                Shows Kenny's Awards
+        - Kenny's Awards
         - Admin
                 Pick active week 
                 Load weekly games/spreads
                 Load scores from the games
         - About
-            
-            
-Database Flow
-        - Load Scores
-                run stored proc to get the difference 
-                
-                
-                
-Team - Locked Point, Lock Tie Points, Regular Point, Regular Tie Points, Loss Points. 
-
-Mich (-7)
-ND (+7)
-
-Mich v ND
-Mich 14 - ND 10
-Mich -4
-ND + 4
-
-If Diff is less then favorite spread then favorite wins 
-If Diff is equal to favorite spread then tie
-else underdog wins 
-
-
-
-
+                 
+                 
 
 
 
