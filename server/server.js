@@ -12,20 +12,26 @@ var connectionSettings = {
 
 MySql = Npm.require('mysql');
 
-var connectionSettings = {
+//Production MySql Database
+var connectionSettingsProd = {
     connectLimit: 25,
-            host: '138.68.5.242',
-        port: '3306',
-        user: 'root',
-        password: 'Ricklefs34',
-        database: 'COLLEGEPOOL' 
-   // host: 'localhost',
-   // database: 'COLLEGEPOOL',
-   // user: 'root',
-   // password: 'Ricklefs34'
+    host: '138.68.5.242',
+    port: '3306',
+    user: 'root',
+    password: 'Ricklefs34',
+    database: 'COLLEGEPOOL' 
 };
-//DEV
-var pool = MySql.createPool(connectionSettings);
+
+//Development MySql Database
+var connectionSettingsDev = {
+    connectLimit: 25,
+    host: 'localhost',
+    database: 'COLLEGEPOOL',
+    user: 'root',
+    password: 'Ricklefs34'
+};
+
+var pool = MySql.createPool(connectionSettingsProd);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -122,14 +128,32 @@ Meteor.methods({
 
     insertGames: function (results) {
         for (var index = 0; index < results.data.length; index++) {
-            var newGameId = Games.insert(results.data[index]);
+            pool.query('INSERT INTO Games SET ?', results.data[index], function(err, result) {
+                  if (!err){
+                        return { success: 'Success' };
+                  }
+                  else 
+                  {
+                      throw new Meteor.Error(err);
+                  }
+            });
+            //var newGameId = Games.insert(results.data[index]);
         }
         return { success: 'Success' };
     },
 
     insertScores: function (results) {
         for (var index = 0; index < results.data.length; index++) {
-            var newScoreId = Scores.insert(results.data[index]);
+            pool.query('INSERT INTO Scores SET ?', results.data[index], function(err, result) {
+                  if (!err){
+                        return { success: 'Success' };
+                  }
+                  else 
+                  {
+                      throw new Meteor.Error(err);
+                  }
+            });
+            //var newScoreId = Scores.insert(results.data[index]);
         }
         return { success: 'Success' };
     }
