@@ -4,6 +4,7 @@ angular.module("collegepool").directive('games', function () {
         templateUrl: 'client/games/gamesList.html',
         controllerAs: 'gamesList',
         controller: function ($scope, $reactive, $q) {
+            
             $reactive(this).attach($scope);
 
             this.weekChanged = (activeWeek) => {

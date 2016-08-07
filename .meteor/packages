@@ -38,6 +38,6 @@ standard-minifier-css
 standard-minifier-js
 accounts-ui
 deanius:promise
-nodets:mysql
 jquery
 angular:angular-route
+alt:replication

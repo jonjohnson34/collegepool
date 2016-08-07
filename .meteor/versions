@@ -7,6 +7,7 @@ accounts-twitter@1.0.10
 accounts-ui@1.1.9
 accounts-ui-unstyled@1.1.12
 allow-deny@1.0.5
+alt:replication@1.0.2
 angular@1.3.11
 angular-meteor-data@1.3.11
 angular-templates@1.0.3
@@ -96,7 +97,6 @@ monbro:mongodb-mapreduce-aggregation@1.0.1
 mongo@1.1.9_1
 mongo-id@1.0.5
 mongo-livedata@1.0.12
-nodets:mysql@2.8.6
 npm-bcrypt@0.8.7
 npm-mongo@1.4.44_1
 oauth@1.1.11

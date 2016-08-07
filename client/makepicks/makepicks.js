@@ -3,7 +3,7 @@ angular.module("collegepool").directive('makepicks', function () {
         restrict: 'E',
         templateUrl: 'client/makepicks/makepicks.html',
         controllerAs: 'makepicks',
-        controller: function ($scope, $reactive, $state) {
+        controller: function ($scope, $reactive, $state, $location) {
             $reactive(this).attach($scope);   
             
             this.newPick = {};
@@ -32,7 +32,7 @@ angular.module("collegepool").directive('makepicks', function () {
                     }
                     else {
                         alert('your picks have been submitted');
-              
+                        $location.path('allpicks');
                     }
                 });
                 
