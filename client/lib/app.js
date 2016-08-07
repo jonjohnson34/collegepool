@@ -12,7 +12,6 @@ else
     angular.element(document).ready(onReady);
   */
 
-
 angular.module('collegepool', [
     'angular-meteor',
     'ui.router',

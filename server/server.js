@@ -12,13 +12,20 @@ var connectionSettings = {
 
 MySql = Npm.require('mysql');
 
+var connectionSettings = {
+    connectLimit: 25,
+            host: '138.68.5.242',
+        port: '3306',
+        user: 'root',
+        password: 'Ricklefs34',
+        database: 'COLLEGEPOOL' 
+   // host: 'localhost',
+   // database: 'COLLEGEPOOL',
+   // user: 'root',
+   // password: 'Ricklefs34'
+};
 //DEV
-var pool = MySql.createPool({
-    host: 'localhost',
-    database: 'COLLEGEPOOL',
-    user: 'root',
-    password: 'Ricklefs34'
-})
+var pool = MySql.createPool(connectionSettings);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -26,6 +33,7 @@ var Games = Meteor.Replication('Games', ds.id('idGames'), 'Select * from COLLEGE
 var Picks = Meteor.Replication('Picks', ds.id('newPickId'), 'Select * from COLLEGEPOOL.Picks');
 var Totals = Meteor.Replication('weeklyScores', ds.id('idWeekly Scores'), 'Select * from COLLEGEPOOL.weeklyScores');
 var Scores = Meteor.Replication('Scores', ds.id('ScoreID'), 'Select * from COLLEGEPOOL.Scores');
+
 
 Meteor.startup(function () {
 
@@ -36,12 +44,6 @@ Meteor.startup(function () {
             Teams.insert(teams[i]);
         }
     }
-
-    //dev
-
-
-    //console.log(Games.data);
-
 });
 
 Meteor.methods({
@@ -84,10 +86,16 @@ Meteor.methods({
             throw new Meteor.Error("Not Enough Locks");
         }
         else {
-            var newPicksId = Picks.insert(newPick);
-            return { success: 'Success' };
+             pool.query('INSERT INTO Picks SET ?', this.newPick, function(err, result) {
+                  if (!err){
+                        return { success: 'Success' };
+                  }
+                  else 
+                  {
+                      throw new Meteor.Error(err);
+                  }
+            });
         }
-
     },
 
     showPicks: function (activeWeek) {
