@@ -18,7 +18,7 @@ var connectionSettingsProd = {
     host: '138.68.5.242',
     port: '3306',
     user: 'root',
-    password: 'Ricklefs34',
+    
     database: 'COLLEGEPOOL' 
 };
 
@@ -28,7 +28,7 @@ var connectionSettingsDev = {
     host: 'localhost',
     database: 'COLLEGEPOOL',
     user: 'root',
-    password: 'Ricklefs34'
+    
 };
 
 var pool = MySql.createPool(connectionSettingsProd);
