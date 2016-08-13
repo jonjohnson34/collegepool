@@ -30,10 +30,7 @@ angular.module("collegepool").directive('makepicks', function () {
                     if (err){
                         alert(err);
                     }
-                    else {
-                        alert('your picks have been submitted');
-                        $location.path('allpicks');
-                    }
+                    document.location = '/allPicks';
                 });
                 
             };
