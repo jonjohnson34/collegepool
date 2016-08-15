@@ -31,7 +31,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsDev);
+var pool = MySql.createPool(connectionSettingsProd);
 
 var ds = Meteor.Replication.DataSource(pool);
 

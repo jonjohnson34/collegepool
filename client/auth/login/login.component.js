@@ -1,12 +1,13 @@
-angular.module("collegepool").controller("LoginCtrl", ['$meteor', '$state',
-    function ($meteor, $state) {
+angular.module("collegepool").controller("LoginCtrl", ['$meteor', '$state', '$rootScope',
+    function ($meteor, $state, $rootScope) {
         var vm = this;
-
+        
+        
         vm.credentials = {
             email: '',
             password: ''
         };
-
+               
         vm.error = '';
 
         vm.fclogin = () => {
@@ -34,7 +35,9 @@ angular.module("collegepool").controller("LoginCtrl", ['$meteor', '$state',
         vm.login = function () {
             $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then(
                 function () {
-                    $state.go('picks');
+                   $state.go('picks');
+                   $rootScope.username = vm.credentials.email;
+                   //console.log($rootScope.username);
                 },
                 function (err) {
                     vm.error = 'Login error - ' + err;

@@ -16,5 +16,7 @@ angular.module('collegepool', [
     'angular-meteor',
     'ui.router',
     'ngRoute',
-    'ngFileUpload'
-]);
+    'ngFileUpload',
+ ]).run(function ($rootScope) {
+     $rootScope.username = '';     
+ });

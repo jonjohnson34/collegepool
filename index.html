@@ -46,9 +46,9 @@
                 <!-- <li><a ui-sref="/register" class="page-scroll" ng-hide="$root.currentUser">Sign up</a></li>-->
                 <!--<div ng-show="$root.currentUser" ng-bind="$root.currentUser.email"></div>-->
                 <li><a ng-href="/logout" ng-show="$root.currentUser">Logout</a></li>
-                <li><a ng-href="picks">Picks</a></li>
-                <li><a ng-href="allPicks">All Picks</a></li>
-                <li><a ng-href="totals">Totals</a></li>
+                <li><a ng-href="picks" ng-show="$root.currentUser">Picks</a></li>
+                <!--<li><a ng-href="allPicks"ng-show="$root.currentUser">All Picks</a></li>-->
+                <li><a ng-href="totals"ng-show="$root.currentUser">Totals</a></li>
                 <li><a ng-href="about">About</a></li>
             </ul>
         </div>
