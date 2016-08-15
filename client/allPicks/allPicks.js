@@ -11,7 +11,6 @@ angular.module("collegepool").directive('allpicks', function () {
             this.weekChanged = (activeWeek) => {
                 getData(activeWeek).then((data) => {
                     this.gotPicks = data;
-                    //console.log(this.gotPicks);
                 });
             };
 
