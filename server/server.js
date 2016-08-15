@@ -116,7 +116,6 @@ Meteor.methods({
 
     getGames: function (activeWeek) {
         var getGames = Games.find({ gameweek: activeWeek }).fetch();
-        console.log(getGames);
         return getGames;
 
     },

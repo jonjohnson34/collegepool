@@ -1,5 +1,5 @@
-angular.module("collegepool").controller("RegisterCtrl", ['$meteor', '$state',
-  function ($meteor, $state) {
+angular.module("collegepool").controller("RegisterCtrl", ['$meteor', '$state', '$rootScope',
+  function ($meteor, $state, $rootScope) {
     var vm = this;
  
     vm.credentials = {
@@ -13,6 +13,8 @@ angular.module("collegepool").controller("RegisterCtrl", ['$meteor', '$state',
       $meteor.createUser(vm.credentials).then(
         function () {
           $state.go('picks');
+          $rootScope.username = vm.credentials.email;
+          
         },
         function (err) {
           vm.error = 'Registration error - ' + err;
