@@ -31,7 +31,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsDev);
+var pool = MySql.createPool(connectionSettingsProd);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -61,11 +61,13 @@ Meteor.methods({
         var numLocks = 0;
         var numPicks = 0;
         var submitted = 0;
+        
+        console.log(this.newPick.week);
 
-
-        var weeklyPick = Picks.find({ username: this.newPick.username }, { week: this.newPick.week }).fetch();
-
-
+        var weeklyPick = Picks.find({ username: this.newPick.username, week: this.newPick.week}).fetch();
+        console.log
+        console.log(weeklyPick.length);
+      
         _.each(this.newPick, function (value, key) {
             if (value === true) {
                 numLocks++;
