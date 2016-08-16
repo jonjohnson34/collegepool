@@ -1,15 +1,3 @@
-//Change to cloud mysql database
-//production
-/*   
-var connectionSettings = {
-        host: '138.68.5.242',
-        port: '3306',
-        user: 'root',
-        password: 'Ricklefs34',
-        database: 'COLLEGEPOOL' 
-    };         
-*/
-
 MySql = Npm.require('mysql');
 
 //Production MySql Database
@@ -19,7 +7,7 @@ var connectionSettingsProd = {
     port: '3306',
     user: 'root',
     password: 'Ricklefs34',
-    database: 'COLLEGEPOOL' 
+    database: 'COLLEGEPOOL'
 };
 
 //Development MySql Database
@@ -31,7 +19,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsProd);
+var pool = MySql.createPool(connectionSettingsDev);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -61,13 +49,13 @@ Meteor.methods({
         var numLocks = 0;
         var numPicks = 0;
         var submitted = 0;
-        
+
         console.log(this.newPick.week);
 
-        var weeklyPick = Picks.find({ username: this.newPick.username, week: this.newPick.week}).fetch();
+        var weeklyPick = Picks.find({ username: this.newPick.username, week: this.newPick.week }).fetch();
         console.log
         console.log(weeklyPick.length);
-      
+
         _.each(this.newPick, function (value, key) {
             if (value === true) {
                 numLocks++;
@@ -94,14 +82,13 @@ Meteor.methods({
             throw new Meteor.Error("Not Enough Locks");
         }
         else {
-             pool.query('INSERT INTO Picks SET ?', this.newPick, function(err, result) {
-                  if (!err){
-                        return { success: 'Success' };
-                  }
-                  else 
-                  {
-                      throw new Meteor.Error(err);
-                  }
+            pool.query('INSERT INTO Picks SET ?', this.newPick, function (err, result) {
+                if (!err) {
+                    return { success: 'Success' };
+                }
+                else {
+                    throw new Meteor.Error(err);
+                }
             });
         }
     },
@@ -129,14 +116,13 @@ Meteor.methods({
 
     insertGames: function (results) {
         for (var index = 0; index < results.data.length; index++) {
-            pool.query('INSERT INTO Games SET ?', results.data[index], function(err, result) {
-                  if (!err){
-                        return { success: 'Success' };
-                  }
-                  else 
-                  {
-                      throw new Meteor.Error(err);
-                  }
+            pool.query('INSERT INTO Games SET ?', results.data[index], function (err, result) {
+                if (!err) {
+                    return { success: 'Success' };
+                }
+                else {
+                    throw new Meteor.Error(err);
+                }
             });
             //var newGameId = Games.insert(results.data[index]);
         }
@@ -145,17 +131,42 @@ Meteor.methods({
 
     insertScores: function (results) {
         for (var index = 0; index < results.data.length; index++) {
-            pool.query('INSERT INTO Scores SET ?', results.data[index], function(err, result) {
-                  if (!err){
-                        return { success: 'Success' };
-                  }
-                  else 
-                  {
-                      throw new Meteor.Error(err);
-                  }
+            pool.query('INSERT INTO Scores SET ?', results.data[index], function (err, result) {
+                if (!err) {
+                    return { success: 'Success' };
+                }
+                else {
+                    throw new Meteor.Error(err);
+                }
             });
             //var newScoreId = Scores.insert(results.data[index]);
         }
         return { success: 'Success' };
+    },
+
+    teamsCovered: function (activeWeek) {
+        console.log(activeWeek);
+        pool.query('CALL COLLEGEPOOL.teamsThatCovered("' + activeWeek + '")',  function (err, result) {
+            if (!err) {
+                return { success: 'Success' };
+            }
+            else {
+                throw new Meteor.Error(err);
+            }
+        });
+    },
+    
+    weeklyScores: function (activeWeek) {
+        console.log(activeWeek);
+        pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")',  function (err, result) {
+            if (!err) {
+                return { success: 'Success' };
+            }
+            else {
+                throw new Meteor.Error(err);
+            }
+        });
     }
+
+
 });

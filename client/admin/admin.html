@@ -34,6 +34,15 @@
     <h4 class="page-header">Upload Scores</h4>
     <input type="file" ngf-select ng-model="files" name="file">
     <p></p>
-    <button class="btn btn-default" ng-click="adminL.scoresOnSave(files)">Submit</button>    
+    <button class="btn btn-default" ng-click="adminL.scoresOnSave(files)">Submit</button>  
+    
+    <h4 class="page-header">Teams that Covered</h4>
+    <p></p>
+    <button class="btn btn-default" ng-click="adminL.teamsThatCovered()">Submit</button>   
+    
+    <h4 class="page-header">Calculate Weekly Scores</h4>
+    <p></p>
+    <button class="btn btn-default" ng-click="adminL.weeklyScores()">Submit</button>      
+      
    
 </div>

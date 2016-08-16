@@ -6,8 +6,6 @@ angular.module("collegepool").directive('admin', function () {
         controller: function ($scope, $reactive) {
             $reactive(this).attach($scope);
 
-            //this.activeWeek = {};                
-
             this.updateWeek = () => {
                 Weeks.update({ _id: "kXb76mmhjh6zmbL2a" }, { "weekID": 1, "week": this.activeWeek }, { upsert: true });
             };
@@ -18,19 +16,45 @@ angular.module("collegepool").directive('admin', function () {
                 }
             });
 
+            this.teamsThatCovered = () => {
+                var activeWeek = this.savedActiveWeek[0].week;
+                Meteor.call('teamsCovered', activeWeek, function (err, res) {
+                    if (err) {
+
+                        alert(err);
+                    }
+                    else {
+                        alert("Records Created");
+                    }
+                });
+            };
+
+            this.weeklyScores = () => {
+                var activeWeek = this.savedActiveWeek[0].week;
+                Meteor.call('weeklyScores', activeWeek, function (err, res) {
+                    if (err) {
+
+                        alert(err);
+                    }
+                    else {
+                        alert("Records Created");
+                    }
+                });
+            };
+
             this.gamesOnSave = (files) => {
                 let f = files[0];
                 Papa.parse(f, {
                     header: "true",
                     complete: function (results) {
                         Meteor.call('insertGames', results, function (err, res) {
-                                if (err) {
-                                    alert(err);
-                                }
-                                else {
-                                    alert("Games Finished:");
-                                }
-                         });
+                            if (err) {
+                                alert(err);
+                            }
+                            else {
+                                alert("Games Finished:");
+                            }
+                        });
                     }
                 });
             }
@@ -40,14 +64,14 @@ angular.module("collegepool").directive('admin', function () {
                 Papa.parse(f, {
                     header: "true",
                     complete: function (results) {
-                         Meteor.call('insertScores', results, function (err, res) {
-                                if (err) {
-                                    alert(err);
-                                }
-                                else {
-                                    alert("Scores Finished:");
-                                }
-                         });
+                        Meteor.call('insertScores', results, function (err, res) {
+                            if (err) {
+                                alert(err);
+                            }
+                            else {
+                                alert("Scores Finished:");
+                            }
+                        });
                     }
                 });
             }
