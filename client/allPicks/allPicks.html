@@ -1,5 +1,3 @@
-<!--ng-change="allPicks.weekChange()"-->
-
 <label><h5>Choose Week</h5></label>
 
 <select style="color:black" id="week" type="text" ng-model="allPicks.activeWeek" ng-change="allPicks.weekChanged()" placeholder="Choose Week">
@@ -18,7 +16,7 @@
             <option>Week Thirteen</option>
         </select>
 
-<table class="table table-condensed">
+<table class="u-full-width">
     <thead>
         <td>
             Week
@@ -60,41 +58,41 @@
     <tbody>
         <tr ng-repeat="picks in allPicks.gotPicks">
             <td>
-                <h6>{{picks.week}}</h6>
+                {{picks.week}}
             </td>
             <td>
-                <h6>{{picks.username}}</h6>
+                {{picks.username}}
             </td>
             <td>
-                <h6>{{picks.gotw}}</h6>
+                {{picks.gotw}}
             </td>
             <td>
-                <h6>{{picks.gametwo}}</h6>
+                {{picks.gametwo}}
             </td>
             <td>
-                <h6>{{picks.gamethree}}</h6>
+                {{picks.gamethree}}
             </td>
             <td>
-                <h6>{{picks.gamefour}}</h6>
+                {{picks.gamefour}}
             </td>
             <td>
-                <h6>{{picks.gamefive}}</h6>
+                {{picks.gamefive}}
             </td>
 
             <td>
-                <h6>{{picks.gamesix}}</h6>
+                {{picks.gamesix}}
             </td>
             <td>
-                <h6>{{picks.gameseven}}</h6>
+                {{picks.gameseven}}
             </td>
             <td>
-                <h6>{{picks.gameeight}}</h6>
+                {{picks.gameeight}}
             </td>
             <td>
-                <h6>{{picks.gamenine}}</h6>
+                {{picks.gamenine}}
             </td>
             <td>
-                <h6>{{picks.gameten}}</h6>
+                {{picks.gameten}}
             </td>
         </tr>
     </tbody>

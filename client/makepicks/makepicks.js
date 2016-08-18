@@ -31,7 +31,9 @@ angular.module("collegepool").directive('makepicks', function () {
                     if (err){
                         alert(err);
                     }
-                    document.location = '/allPicks';
+                    else{
+                        document.location = '/allPicks';
+                    }
                 });
                 
             };

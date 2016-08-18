@@ -1,5 +1,5 @@
 <table class="table table-condensed">
-   <label><h5>Choose Week:</h5></label>
+   <label>Choose Week:</label>
     <select style="color:black" id="week" type="text" ng-model="gamesList.activeWeek" ng-change="gamesList.weekChanged()">
             <option>Week One</option>
             <option>Week Two</option>
@@ -18,17 +18,17 @@
     <thead>
         <tr>
             <th>
-                <h3>Visitor Team</h3></th>
+                Visitor Team</th>
             <th>
-                <h3>Home Team</h3></th>
+               Home Team</th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="game in gamesList.testing">
             <td>
-                <h6>{{game.awayspread}} {{game.awayteam}} </h6></td>
+                 {{game.awayspread}} {{game.awayteam}}</td>
             <td>
-                <h6> {{game.hometeam}} {{game.homespread}}</h6></td>
+                 {{game.hometeam}} {{game.homespread}}</td>
         </tr>
     </tbody>
 </table>
