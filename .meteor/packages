@@ -4,41 +4,42 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-base             # Packages every Meteor app needs to have
-mobile-experience       # Packages for a great mobile UX
-mongo                   # The database Meteor supports right now
-session                 # Client-side reactive dictionary for your app
-tracker                 # Meteor's client-side reactive programming library
-es5-shim                # ECMAScript 5 compatibility for older browsers.
+meteor-base@1.0.4             # Packages every Meteor app needs to have
+mobile-experience@1.0.4       # Packages for a great mobile UX
+mongo@1.1.11                   # The database Meteor supports right now
+session@1.1.6                 # Client-side reactive dictionary for your app
+tracker@1.1.0                 # Meteor's client-side reactive programming library
+es5-shim@4.6.14                # ECMAScript 5 compatibility for older browsers.
 
 angular
 angularui:angular-ui-router
-accounts-password
-accounts-facebook
-accounts-twitter
+accounts-password@1.3.0
+accounts-facebook@1.0.10
+accounts-twitter@1.1.11
 angularutils:pagination
-check
-email
-less
-http
-insecure
-autopublish
-service-configuration
-accounts-google
-underscore
+check@1.2.3
+email@1.1.17
+less@2.7.5
+http@1.2.9
+insecure@1.0.7
+autopublish@1.0.7
+service-configuration@1.0.10
+accounts-google@1.0.10
+underscore@1.0.9
 twbs:bootstrap
 harrison:papa-parse
 themeteorchef:bert
-reactive-var
+reactive-var@1.0.10
 cfs:standard-packages
 cfs:gridfs
 danialfarid:ng-file-upload
 monbro:mongodb-mapreduce-aggregation
-standard-minifier-css
-standard-minifier-js
-accounts-ui
+standard-minifier-css@1.2.0
+standard-minifier-js@1.2.0
+accounts-ui@1.1.9
 deanius:promise
-jquery
+jquery@1.11.9
 angular:angular-route
 alt:replication
 nodets:mysql
+shell-server

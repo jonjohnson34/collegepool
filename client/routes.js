@@ -75,6 +75,6 @@ angular.module("collegepool")
             });
  
 
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/login");
     });
 
