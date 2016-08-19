@@ -4,6 +4,7 @@
   "description": "collegepool-meteor",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^0.8.7",
     "mysql": "*"
   },
   "scripts": {
