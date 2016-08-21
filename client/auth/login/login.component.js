@@ -33,10 +33,10 @@ angular.module("collegepool").controller("LoginCtrl", ['$meteor', '$state', '$ro
                 );
         };
         vm.login = function () {
-            $meteor.loginWithPassword(vm.credentials.email, vm.credentials.password).then(
+            $meteor.loginWithPassword(vm.credentials.username, vm.credentials.password).then(
                 function () {
                    $state.go('picks');
-                   $rootScope.username = vm.credentials.email;
+                   $rootScope.username = vm.credentials.username;
                    //console.log($rootScope.username);
                 },
                 function (err) {

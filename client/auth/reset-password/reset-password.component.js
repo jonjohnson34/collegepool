@@ -10,8 +10,11 @@ angular.module("collegepool").controller("ResetCtrl", ['$meteor', '$state',
  
     vm.reset = function () {
       $meteor.forgotPassword(vm.credentials).then(
+        
         function () {
-          $state.go('picks');
+          console.log(vm.credentials);
+          console.log('email sent');
+          alert('forgot email sent');
         },
         function (err) {
           vm.error = 'Error sending forgot password email - ' + err;

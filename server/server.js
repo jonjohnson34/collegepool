@@ -19,7 +19,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsProd);
+var pool = MySql.createPool(connectionSettingsDev);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -30,6 +30,9 @@ var Scores = Meteor.Replication('Scores', ds.id('ScoreID'), 'Select * from COLLE
 
 
 Meteor.startup(function () {
+    
+   // process.env.MAIL_URL = 'smtp://smtp.gmail.com:jr2034@gmail.com:H@yden2015:587';
+      process.env.MAIL_URL = 'smtp://jr2034@gmail.com:H@yden2014@smtp.gmail.com:587';
 
     if (Teams.find().count() === 0) {
         var teams = JSON.parse(Assets.getText('teams.json'));

@@ -11,7 +11,11 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <form name="registerForm">
-                    <h5>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" ng-model="rc.credentials.username" placeholder="Username" required/>
+                    </div>
+                     
                     <div class="form-group">
                         <label>Email</label>
                         <input type="text" class="form-control" ng-model="rc.credentials.email" placeholder="email" required/>
@@ -23,9 +27,9 @@
                     </div>
                     
                     <div id="submit">
-                        <button class="btn btn-default btn-lg" ng-click="rc.register()" aria-label="login" ng-disabled="rc.registerForm.$invalid()">Register</button>
+                        <button class="button button-primary" ng-click="rc.register()" aria-label="login" ng-disabled="rc.registerForm.$invalid()">Register</button>
                     </div>
-                    </h5>
+                     
                 </form>
 
                 <div ng-show="rc.error" class="warn" layout="row" layout-fill layout-padding layout-margin>

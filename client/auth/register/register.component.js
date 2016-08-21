@@ -3,6 +3,7 @@ angular.module("collegepool").controller("RegisterCtrl", ['$meteor', '$state', '
     var vm = this;
  
     vm.credentials = {
+      username: '',
       email: '',
       password: ''
     };
@@ -13,7 +14,7 @@ angular.module("collegepool").controller("RegisterCtrl", ['$meteor', '$state', '
       $meteor.createUser(vm.credentials).then(
         function () {
           $state.go('picks');
-          $rootScope.username = vm.credentials.email;
+          $rootScope.username = vm.credentials.username;
           
         },
         function (err) {
