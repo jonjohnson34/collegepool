@@ -5,8 +5,8 @@ angular.module("collegepool").directive('totals', function () {
         controllerAs: 'totalsList',
         controller: function ($scope, $reactive, $q) {
             $reactive(this).attach($scope);
-              
-                
+
+
             var getData = () => {
                 var deferred = $q.defer();
                 Meteor.call('getTotals', (error, result) => {
@@ -18,10 +18,10 @@ angular.module("collegepool").directive('totals', function () {
                 });
                 return deferred.promise;
             };
-            
+
             getData().then((data) => {
-                    this.testing = data;
-                });
+                this.testing = data;
+            });    
         }
     }
 });

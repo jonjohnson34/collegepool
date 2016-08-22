@@ -19,7 +19,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsDev);
+var pool = MySql.createPool(connectionSettingsProd);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -147,7 +147,7 @@ Meteor.methods({
     },
 
     teamsCovered: function (activeWeek) {
-        console.log(activeWeek);
+        //console.log(activeWeek);
         pool.query('CALL COLLEGEPOOL.teamsThatCovered("' + activeWeek + '")',  function (err, result) {
             if (!err) {
                 return { success: 'Success' };
@@ -159,15 +159,26 @@ Meteor.methods({
     },
     
     weeklyScores: function (activeWeek) {
-        console.log(activeWeek);
+        //console.log(activeWeek);
         pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")',  function (err, result) {
             if (!err) {
-                return { success: 'Success' };
+                
             }
             else {
                 throw new Meteor.Error(err);
             }
         });
+    },
+        
+    calculateTotals: function(){   
+        pool.query('CALL COLLEGEPOOL.overall_totals()',  function (err, result) {
+                    if (!err) {
+                        return { success: 'Success' };
+                    }
+                    else {
+                        throw new Meteor.Error(err);
+                    }
+                });
     }
 
 

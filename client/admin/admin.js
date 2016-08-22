@@ -37,7 +37,20 @@ angular.module("collegepool").directive('admin', function () {
                         alert(err);
                     }
                     else {
-                        alert("Records Created");
+                        alert("Totals Created");
+                    }
+                });
+            };
+            
+            this.overallTotals = () => {
+                var activeWeek = this.savedActiveWeek[0].week;
+                Meteor.call('calculateTotals', activeWeek, function (err, res) {
+                    if (err) {
+
+                        alert(err);
+                    }
+                    else {
+                        alert("Totals Created");
                     }
                 });
             };
