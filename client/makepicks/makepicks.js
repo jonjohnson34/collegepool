@@ -25,7 +25,7 @@ angular.module("collegepool").directive('makepicks', function () {
                 var activeWeek = this.savedActiveWeek;                
                 this.newPick.week = activeWeek[0].week;
                 this.newPick.username = $rootScope.username;
-                console.log(this.newPick);
+               // console.log(this.newPick);
                 Meteor.call('makePick', this.newPick, function(err, res){
                     
                     if (err){
