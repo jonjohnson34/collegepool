@@ -29,9 +29,10 @@ angular.module("collegepool").directive('makepicks', function () {
                 Meteor.call('makePick', this.newPick, function(err, res){
                     
                     if (err){
-                        alert(err);
+                        swal("Oh No!", err, "error");
                     }
                     else{
+                        
                         document.location = '/allPicks';
                     }
                 });

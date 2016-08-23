@@ -20,11 +20,10 @@ angular.module("collegepool").directive('admin', function () {
                 var activeWeek = this.savedActiveWeek[0].week;
                 Meteor.call('teamsCovered', activeWeek, function (err, res) {
                     if (err) {
-
-                        alert(err);
+                        swal("Oh No!", err, "error")
                     }
                     else {
-                        alert("Records Created");
+                        swal("Good job!","You have added all the Teams that have covered", "success")
                     }
                 });
             };
@@ -33,24 +32,22 @@ angular.module("collegepool").directive('admin', function () {
                 var activeWeek = this.savedActiveWeek[0].week;
                 Meteor.call('weeklyScores', activeWeek, function (err, res) {
                     if (err) {
-
-                        alert(err);
+                        swal("Oh No!", err, "error")
                     }
                     else {
-                        alert("Totals Created");
+                        swal("Good job!", "You have calculated all the totals for the week", "success")
                     }
                 });
             };
-            
+
             this.overallTotals = () => {
                 var activeWeek = this.savedActiveWeek[0].week;
                 Meteor.call('calculateTotals', activeWeek, function (err, res) {
                     if (err) {
-
-                        alert(err);
+                        swal("Oh No!", err, "error")
                     }
                     else {
-                        alert("Totals Created");
+                        swal("Good job!", "You have updated the Overall Total Scores", "success")
                     }
                 });
             };
@@ -62,10 +59,10 @@ angular.module("collegepool").directive('admin', function () {
                     complete: function (results) {
                         Meteor.call('insertGames', results, function (err, res) {
                             if (err) {
-                                alert(err);
+                                swal("Oh No!", err, "error")
                             }
                             else {
-                                alert("Games Finished:");
+                                swal("Good job!", "All the Weeks Games have been uploaded!", "success")
                             }
                         });
                     }
@@ -79,10 +76,10 @@ angular.module("collegepool").directive('admin', function () {
                     complete: function (results) {
                         Meteor.call('insertScores', results, function (err, res) {
                             if (err) {
-                                alert(err);
+                                swal("Oh No!", err, "error")
                             }
                             else {
-                                alert("Scores Finished:");
+                                swal("Good job!", "All the Weeks Scores have been uploaded!", "success")
                             }
                         });
                     }

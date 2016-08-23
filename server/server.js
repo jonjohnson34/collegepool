@@ -27,7 +27,7 @@ var Games = Meteor.Replication('Games', ds.id('idGames'), 'Select * from COLLEGE
 var Picks = Meteor.Replication('Picks', ds.id('newPickId'), 'Select * from COLLEGEPOOL.Picks');
 var Totals = Meteor.Replication('weeklyScores', ds.id('idWeekly Scores'), 'Select * from COLLEGEPOOL.weeklyScores');
 var Scores = Meteor.Replication('Scores', ds.id('ScoreID'), 'Select * from COLLEGEPOOL.Scores');
-
+var Covered = Meteor.Replication('Covered', ds.id('idCovered'), 'Select * from COLLEGEPOOL.Covered');
 
 Meteor.startup(function () {
     
@@ -113,23 +113,59 @@ Meteor.methods({
     },
 
     insertGames: function (results) {
-        for (var index = 0; index < results.data.length; index++) {
-            pool.query('INSERT INTO Games SET ?', results.data[index], function (err, result) {
-                if (!err) {
-                    return { success: 'Success' };
-                }
-                else {
-                    throw new Meteor.Error(err);
-                }
-            });
-            //var newGameId = Games.insert(results.data[index]);
+        var alreadySubmittedGames = Games.find({gameweek: results.data[0].gameweek }).fetch();
+        
+        if (alreadySubmittedGames.length > 0){
+            throw new Meteor.Error("You have already inserted this weeks games");
+        }
+        else 
+        {
+            for (var index = 0; index < results.data.length; index++) {
+                pool.query('INSERT INTO Games SET ?', results.data[index], function (err, result) {
+                    if (!err) {
+                        return { success: 'Success' };
+                    }
+                    else {
+                        throw new Meteor.Error(err);
+                    }
+                });
+             }
         }
         return { success: 'Success' };
     },
 
     insertScores: function (results) {
-        for (var index = 0; index < results.data.length; index++) {
-            pool.query('INSERT INTO Scores SET ?', results.data[index], function (err, result) {
+        var alreadySubmittedScores = Scores.find({week: results.data[0].week }).fetch();
+        
+        if (alreadySubmittedScores.length > 0){
+            throw new Meteor.Error("You have already inserted this weeks Scores");
+        }
+        else 
+        {
+            for (var index = 0; index < results.data.length; index++) {
+                pool.query('INSERT INTO Scores SET ?', results.data[index], function (err, result) {
+                    if (!err) {
+                        return { success: 'Success' };
+                    }
+                    else {
+                        throw new Meteor.Error(err);
+                    }
+                });
+            }
+        }
+        return { success: 'Success' };
+    },
+
+    teamsCovered: function (activeWeek) {
+        var alreadySubmittedCovered = Covered.find({gameweek: activeWeek }).fetch();
+        
+        if (alreadySubmittedCovered.length > 0)
+        {
+            throw new Meteor.Error("You have already update this weeks covered table");
+        }
+        else 
+        {
+            pool.query('CALL COLLEGEPOOL.teamsThatCovered("' + activeWeek + '")',  function (err, result) {
                 if (!err) {
                     return { success: 'Success' };
                 }
@@ -137,33 +173,18 @@ Meteor.methods({
                     throw new Meteor.Error(err);
                 }
             });
-            //var newScoreId = Scores.insert(results.data[index]);
         }
-        return { success: 'Success' };
-    },
-
-    teamsCovered: function (activeWeek) {
-        //console.log(activeWeek);
-        pool.query('CALL COLLEGEPOOL.teamsThatCovered("' + activeWeek + '")',  function (err, result) {
-            if (!err) {
-                return { success: 'Success' };
-            }
-            else {
-                throw new Meteor.Error(err);
-            }
-        });
     },
     
     weeklyScores: function (activeWeek) {
-        //console.log(activeWeek);
-        pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")',  function (err, result) {
-            if (!err) {
-                
-            }
-            else {
-                throw new Meteor.Error(err);
-            }
-        });
+            pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")',  function (err, result) {
+                if (!err) {
+                    
+                }
+                else {
+                    throw new Meteor.Error(err);
+                }
+            });
     },
         
     calculateTotals: function(){   
