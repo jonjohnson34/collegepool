@@ -50,6 +50,11 @@ angular.module("collegepool")
                 template: '<picks></picks>'
             })
             
+           .state('awards', {
+                url: "/awards",
+                template: '<awards></awards>'
+            })
+            
             .state('admin', {
                 url: "/admin",
                 template: '<admin></admin>'

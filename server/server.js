@@ -111,6 +111,15 @@ Meteor.methods({
         var getTotals = Totals.find({}).fetch();
         return getTotals;
     },
+    
+    alreadySubmitted: function(loggedIn, activeWeek){
+      var alreadySubmitted = Picks.find ({ week: activeWeek, username: loggedIn }).fetch();
+        if (alreadySubmitted.length > 0){
+            return true;
+        }
+        return false;
+    },
+    
 
     insertGames: function (results) {
         var alreadySubmittedGames = Games.find({gameweek: results.data[0].gameweek }).fetch();

@@ -8,6 +8,8 @@ This is an attempt at a meteor web application that creates a weekly college pic
 
 TO DO's 
 
+    on the list of spreads, add contrast with every other line. 
+
 	AFTER SIGNING IN
 		- set the picks page to only allow 3 locked games (Done)
 		- make sure all games are filled out. (Done)
