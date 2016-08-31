@@ -1,3 +1,4 @@
+
 <label><h5>Choose Week</h5></label>
 
 <select style="color:black" id="week" type="text" ng-model="allPicks.activeWeek" ng-change="allPicks.weekChanged()" placeholder="Choose Week">
@@ -63,35 +64,35 @@
             <td>
                 {{picks.username}}
             </td>
-            <td>
-                {{picks.gotw}}
+            
+            <td ng-class="{classy: picks.gotwlock[0]}">
+                 {{picks.gotw}}
             </td>
-            <td>
+            <td ng-class="{classy: picks.gametwolock[0]}">
                 {{picks.gametwo}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gamethreelock[0]}">
                 {{picks.gamethree}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gamefourlock[0]}">
                 {{picks.gamefour}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gamefivelock[0]}">
                 {{picks.gamefive}}
             </td>
-
-            <td>
+             <td ng-class="{classy: picks.gamesixlock[0]}">
                 {{picks.gamesix}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gamesevenlock[0]}">
                 {{picks.gameseven}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gameeightlock[0]}">
                 {{picks.gameeight}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gameninelock[0]}">
                 {{picks.gamenine}}
             </td>
-            <td>
+             <td ng-class="{classy: picks.gametenlock[0]}">
                 {{picks.gameten}}
             </td>
         </tr>

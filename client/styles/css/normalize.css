@@ -428,3 +428,7 @@ td,
 th {
   padding: 0;
 }
+
+td.classy {
+     font-weight: bold;
+}    
