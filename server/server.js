@@ -79,6 +79,9 @@ Meteor.methods({
         else if (numLocks < 3) {
             throw new Meteor.Error("Not Enough Locks");
         }
+        else if (!this.newPick.username){
+            throw new Meteor.Error('You are not logged in');
+        }        
         else {
             pool.query('INSERT INTO Picks SET ?', this.newPick, function (err, result) {
                 if (!err) {

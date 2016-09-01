@@ -9,6 +9,10 @@ angular.module("collegepool").directive('picks', function () {
       $reactive(this).attach($scope);
 
       var loggedIn = $rootScope.username;
+      
+      if (!loggedIn){
+        document.location = '/login';
+      }
 
       this.helpers({
         savedActiveWeek: () => {
