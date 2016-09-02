@@ -8,12 +8,9 @@ angular.module("collegepool").directive('picks', function () {
 
       $reactive(this).attach($scope);
 
-      var loggedIn = $rootScope.username;
+      var loggedIn= Meteor.user().username;
+            
       
-      if (!loggedIn){
-        document.location = '/login';
-      }
-
       this.helpers({
         savedActiveWeek: () => {
           return (Weeks.find({}));
@@ -23,13 +20,12 @@ angular.module("collegepool").directive('picks', function () {
       var activeWeek = this.savedActiveWeek[0].week;
 
       Meteor.call('alreadySubmitted', loggedIn, activeWeek, function (err, res) {
-        console.log(res);
-        if (err) {
+       if (err) {
           swal("Oh No!", err, "error");
         }
         else {
           if (res === false){
-             //document.location = '/picks';
+             
           }
           else {
              document.location = '/allPicks';   

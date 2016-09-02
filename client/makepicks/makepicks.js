@@ -6,7 +6,8 @@ angular.module("collegepool").directive('makepicks', function () {
         controller: function ($scope, $reactive, $state, $location, $rootScope) {
             $reactive(this).attach($scope);   
             
-                        
+            this.username = Meteor.user().username;
+                                                      
             this.newPick = {};
                
             this.helpers({
@@ -24,10 +25,8 @@ angular.module("collegepool").directive('makepicks', function () {
             this.addPick = () => {
                 var activeWeek = this.savedActiveWeek;                
                 this.newPick.week = activeWeek[0].week;
-                this.newPick.username = $rootScope.username;
-               // console.log(this.newPick);
+                this.newPick.username = this.username;
                 Meteor.call('makePick', this.newPick, function(err, res){
-                    
                     if (err){
                         swal("Oh No!", err, "error");
                     }
