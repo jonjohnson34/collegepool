@@ -54,6 +54,8 @@ Meteor.methods({
 
         var weeklyPick = Picks.find({ username: this.newPick.username, week: this.newPick.week }).fetch();
         
+        
+        
         _.each(this.newPick, function (value, key) {
             if (value === true) {
                 numLocks++;
@@ -191,7 +193,7 @@ Meteor.methods({
     weeklyScores: function (activeWeek) {
             pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")',  function (err, result) {
                 if (!err) {
-                    
+                   return { success: 'Success'}; 
                 }
                 else {
                     throw new Meteor.Error(err);
