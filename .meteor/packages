@@ -43,3 +43,4 @@ alt:replication
 nodets:mysql
 shell-server
 kit:sweetalert
+insecure

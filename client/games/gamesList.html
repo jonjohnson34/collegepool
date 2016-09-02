@@ -21,6 +21,8 @@
                 Visitor Team</th>
             <th>
                Home Team</th>
+            <th>
+                Game Date</th>
         </tr>
     </thead>
     <tbody>
@@ -29,6 +31,8 @@
                  {{game.awayspread}} {{game.awayteam}}</td>
             <td>
                  {{game.hometeam}} {{game.homespread}}</td>
+            <td>
+                {{game.gameTime | date:'MM/dd/yyyy @ h:mma'}}</td>
         </tr>
     </tbody>
 </table>

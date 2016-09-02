@@ -15,7 +15,11 @@ angular.module("collegepool").directive('makepicks', function () {
                     return (Weeks.find({}));
                 }
             });
-                        
+            
+            //TODO - change the drop down to pull form the list of games uploaded
+            //TODO - inculde date time and filter list based on the games before 
+            //         current date time
+                                    
             this.helpers({
                 teams: () => {
                     return Teams.find({});
