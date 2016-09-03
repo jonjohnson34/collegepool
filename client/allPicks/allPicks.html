@@ -28,6 +28,9 @@
             UserName
         </td>
         <td>
+            Date Submitted
+        </td>
+        <td>
             GOTW
         </td>
         <td>
@@ -66,7 +69,9 @@
             <td>
                 {{picks.username}}
             </td>
-            
+            <td>
+                {{picks.submittedDate | date:'MM/dd/yyyy @ h:mma'}}
+            </td>
             <td ng-class="{classy: picks.gotwlock[0]}">
                  {{picks.gotw}}
             </td>
