@@ -30,8 +30,8 @@ var Scores = Meteor.Replication('Scores', ds.id('ScoreID'), 'Select * from COLLE
 var Covered = Meteor.Replication('Covered', ds.id('idCovered'), 'Select * from COLLEGEPOOL.Covered');
 
 Meteor.startup(function () {
-    
-      process.env.MAIL_URL = 'smtp://thecollegespread@gmail.com:Ricklefs34@smtp.gmail.com:587';
+
+    process.env.MAIL_URL = 'smtp://thecollegespread@gmail.com:Ricklefs34@smtp.gmail.com:587';
 
     if (Teams.find().count() === 0) {
         var teams = JSON.parse(Assets.getText('teams.json'));
@@ -53,9 +53,9 @@ Meteor.methods({
         var submitted = 0;
 
         var weeklyPick = Picks.find({ username: this.newPick.username, week: this.newPick.week }).fetch();
-        
-        
-        
+
+
+
         _.each(this.newPick, function (value, key) {
             if (value === true) {
                 numLocks++;
@@ -81,9 +81,9 @@ Meteor.methods({
         else if (numLocks < 3) {
             throw new Meteor.Error("Not Enough Locks");
         }
-        else if (!this.newPick.username){
+        else if (!this.newPick.username) {
             throw new Meteor.Error('You are not logged in');
-        }        
+        }
         else {
             pool.query('INSERT INTO Picks SET ?', this.newPick, function (err, result) {
                 if (!err) {
@@ -116,24 +116,23 @@ Meteor.methods({
         var getTotals = Totals.find({}).fetch();
         return getTotals;
     },
-    
-    alreadySubmitted: function(loggedIn, activeWeek){
-      var alreadySubmitted = Picks.find ({ week: activeWeek, username: loggedIn }).fetch();
-        if (alreadySubmitted.length > 0){
+
+    alreadySubmitted: function (loggedIn, activeWeek) {
+        var alreadySubmitted = Picks.find({ week: activeWeek, username: loggedIn }).fetch();
+        if (alreadySubmitted.length > 0) {
             return true;
         }
         return false;
     },
-    
+
 
     insertGames: function (results) {
-        var alreadySubmittedGames = Games.find({gameweek: results.data[0].gameweek }).fetch();
-        
-        if (alreadySubmittedGames.length > 0){
+        var alreadySubmittedGames = Games.find({ gameweek: results.data[0].gameweek }).fetch();
+
+        if (alreadySubmittedGames.length > 0) {
             throw new Meteor.Error("You have already inserted this weeks games");
         }
-        else 
-        {
+        else {
             for (var index = 0; index < results.data.length; index++) {
                 pool.query('INSERT INTO Games SET ?', results.data[index], function (err, result) {
                     if (!err) {
@@ -143,19 +142,18 @@ Meteor.methods({
                         throw new Meteor.Error(err);
                     }
                 });
-             }
+            }
         }
         return { success: 'Success' };
     },
 
     insertScores: function (results) {
-        var alreadySubmittedScores = Scores.find({week: results.data[0].week }).fetch();
-        
-        if (alreadySubmittedScores.length > 0){
+        var alreadySubmittedScores = Scores.find({ week: results.data[0].week }).fetch();
+
+        if (alreadySubmittedScores.length > 0) {
             throw new Meteor.Error("You have already inserted this weeks Scores");
         }
-        else 
-        {
+        else {
             for (var index = 0; index < results.data.length; index++) {
                 pool.query('INSERT INTO Scores SET ?', results.data[index], function (err, result) {
                     if (!err) {
@@ -171,15 +169,13 @@ Meteor.methods({
     },
 
     teamsCovered: function (activeWeek) {
-        var alreadySubmittedCovered = Covered.find({gameweek: activeWeek }).fetch();
-        
-        if (alreadySubmittedCovered.length > 0)
-        {
+        var alreadySubmittedCovered = Covered.find({ gameweek: activeWeek }).fetch();
+
+        if (alreadySubmittedCovered.length > 0) {
             throw new Meteor.Error("You have already update this weeks covered table");
         }
-        else 
-        {
-            pool.query('CALL COLLEGEPOOL.teamsThatCovered("' + activeWeek + '")',  function (err, result) {
+        else {
+            pool.query('CALL COLLEGEPOOL.teamsThatCovered("' + activeWeek + '")', function (err, result) {
                 if (!err) {
                     return { success: 'Success' };
                 }
@@ -189,28 +185,38 @@ Meteor.methods({
             });
         }
     },
-    
+
     weeklyScores: function (activeWeek) {
-            pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")',  function (err, result) {
-                if (!err) {
-                   return { success: 'Success'}; 
-                }
-                else {
-                    throw new Meteor.Error(err);
-                }
-            });
-    },
-        
-    calculateTotals: function(){   
-        pool.query('CALL COLLEGEPOOL.overall_totals()',  function (err, result) {
-                    if (!err) {
-                        return { success: 'Success' };
-                    }
-                    else {
-                        throw new Meteor.Error(err);
-                    }
+        pool.query('CALL COLLEGEPOOL.weeklyScores("' + activeWeek + '")', function (err, result) {
+            if (!err) {
+                return { success: 'Success' };
+            }
+            else {
+                throw new Meteor.Error(err);
+            }
         });
+    },
+
+    calculateTotals: function () {
+        pool.query('CALL COLLEGEPOOL.overall_totals()', function (err, result) {
+            if (!err) {
+                return { success: 'Success' };
+            }
+            else {
+                throw new Meteor.Error(err);
+            }
+        });
+    },
+
+    getTeams: function (activeWeek) {
+        var res = Games.find({ gameweek: activeWeek }).fetch();
+        for (var i = 0; i < res.length; i++) {
+            getTeams.insert( { 'Team': res[i].hometeam, 'Time': res[i].gameTime });
+            getTeams.insert( { 'Team': res[i].awayteam, 'Time': res[i].gameTime });
+        }
+        //console.log( getTeams.find({}).fetch() );        
     }
+
 
 
 });

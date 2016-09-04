@@ -27,7 +27,7 @@ angular.module("collegepool").directive('admin', function () {
                     }
                 });
             };
-
+                        
             this.weeklyScores = () => {
                 var activeWeek = this.savedActiveWeek[0].week;
                 Meteor.call('weeklyScores', activeWeek, function (err, res) {
