@@ -133,9 +133,10 @@ Meteor.methods({
             throw new Meteor.Error("You have already inserted this weeks games");
         }
         else {
-            for (var index = 0; index < results.data.length; index++) {
-                pool.query('INSERT INTO Games SET ?', results.data[index], function (err, result) {
+            for (var i = 0; i < results.data.length; i++) {
+                pool.query('INSERT INTO Games SET ?', results.data[i], function (err, result) {
                     if (!err) {
+
                         return { success: 'Success' };
                     }
                     else {
@@ -210,13 +211,16 @@ Meteor.methods({
 
     getTeams: function (activeWeek) {
         var res = Games.find({ gameweek: activeWeek }).fetch();
-        for (var i = 0; i < res.length; i++) {
-            getTeams.insert( { 'Team': res[i].hometeam, 'Time': res[i].gameTime });
-            getTeams.insert( { 'Team': res[i].awayteam, 'Time': res[i].gameTime });
+        var alreadyListed = getTeams.find({'Week': activeWeek}).fetch();
+        
+        if (alreadyListed.length > 0) {
+               console.log('already in for the week');
         }
-        //console.log( getTeams.find({}).fetch() );        
+        else {
+            for (var i = 0; i < res.length; i++) {
+                getTeams.insert({ 'Team': res[i].hometeam, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
+                getTeams.insert({ 'Team': res[i].awayteam, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
+            }
+        }
     }
-
-
-
 });

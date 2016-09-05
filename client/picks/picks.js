@@ -18,6 +18,7 @@ angular.module("collegepool").directive('picks', function () {
       });
 
       var activeWeek = this.savedActiveWeek[0].week;
+      
 
       Meteor.call('alreadySubmitted', loggedIn, activeWeek, function (err, res) {
        if (err) {
@@ -34,6 +35,16 @@ angular.module("collegepool").directive('picks', function () {
         }
 
       });
+      
+      Meteor.call('getTeams', activeWeek, function(err, res){
+          if (!err){
+            console.log('success');
+          }
+          else {
+            console.log('error');
+          }
+      });
+
     }
   }
 });

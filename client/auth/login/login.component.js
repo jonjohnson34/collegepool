@@ -20,7 +20,7 @@ angular.module("collegepool").controller("LoginCtrl", ['$meteor', '$state', '$ro
                 function (err) {
                     vm.error = 'Login error - ' + err;
                 }
-                );
+            );
         };
     }
 ]);

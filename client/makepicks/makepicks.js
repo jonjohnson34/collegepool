@@ -16,31 +16,27 @@ angular.module("collegepool").directive('makepicks', function () {
                 }
             });
 
-             var activeWeek = this.savedActiveWeek[0].week;
+            var activeWeek = this.savedActiveWeek[0].week;
 
             this.helpers({
                 teams: () => {
-                    return getTeams.find({});
+                    return getTeams.find({ 'Week': activeWeek, 'Time': { $gt: new Date() } } );
                 }     
             });
-
-
-            console.log(this.teams);    
 
             this.addPick = () => {
                 var submittedDate = new Date();
                 var activeWeek = this.savedActiveWeek;
                 this.newPick.week = activeWeek[0].week;
                 this.newPick.username = this.username;
-                this.newPick.submittedDate = submittedDate;
+                this.newPick.dateSubmitted = submittedDate;
 
                 Meteor.call('makePick', this.newPick, function (err, res) {
                     if (err) {
                         swal("Oh No!", err, "error");
                     }
                     else {
-
-                        document.location = '/allPicks';
+                        setTimeout(document.location = '/allPicks', 3000);
                     }
                 });
 

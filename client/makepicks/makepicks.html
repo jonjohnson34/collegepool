@@ -21,7 +21,7 @@
                     <input type="checkbox" id="lockgotw" ng-model="makepicks.newPick.gotwlock"> LOCK
                 </label>
                 <select class="u-full-width" id="gotw" type="text" ng-model="makepicks.newPick.gotw">
-                   <option ng-repeat="team in makepicks.teams" value="{{team.Team}}">{{team.Team}}</option>
+                   <option ng-repeat="team in makepicks.teams | orderBy: 'Team'" value="{{team.Team}}">{{team.Team}} - {{team.Time | date:'MM/dd/yyyy @ h:mma'}}</option>
                 </select>
             </fieldset>
 
