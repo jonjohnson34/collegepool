@@ -222,5 +222,10 @@ Meteor.methods({
                 getTeams.insert({ 'Team': res[i].awayteam, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
             }
         }
-    }
+    },
+    
+     test_showPicks: function (activeWeek) {
+        var getPicks = Picks.find({ week: activeWeek }).fetch();
+        return getPicks;
+    },
 });

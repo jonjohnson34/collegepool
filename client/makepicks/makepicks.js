@@ -18,9 +18,10 @@ angular.module("collegepool").directive('makepicks', function () {
 
             var activeWeek = this.savedActiveWeek[0].week;
 
+            //TODO: Change back to $gt
             this.helpers({
                 teams: () => {
-                    return getTeams.find({ 'Week': activeWeek, 'Time': { $gt: new Date() } } );
+                    return getTeams.find({ 'Week': activeWeek, 'Time': { $lt: new Date() } } );
                 }     
             });
 
