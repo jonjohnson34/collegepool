@@ -65,11 +65,6 @@ angular.module("collegepool")
                 template: '<allPicks></allPicks>'
 
             })
-            .state('testing', {
-                url: "/testing",
-                template: '<testing></testing>'
-
-            })            
                 
             .state('logout', {
                 url: '/logout',

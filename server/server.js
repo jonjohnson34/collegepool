@@ -19,7 +19,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsDev);
+var pool = MySql.createPool(connectionSettingsProd);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -224,8 +224,4 @@ Meteor.methods({
         }
     },
     
-     test_showPicks: function (activeWeek) {
-        var getPicks = Picks.find({ week: activeWeek }).fetch();
-        return getPicks;
-    },
 });
