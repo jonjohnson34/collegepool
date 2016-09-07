@@ -32,7 +32,7 @@
             <td>
                  {{game.hometeam}} {{game.homespread}}</td>
             <td>
-                {{game.gameTime | date:'MM/dd/yyyy @ h:mma'}}</td>
+                 {{game.gameTime | date:'MM/dd/yyyy @ h:mma' : '+000'}}</td>
         </tr>
     </tbody>
 </table>
