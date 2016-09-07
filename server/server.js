@@ -214,7 +214,7 @@ Meteor.methods({
         var alreadyListed = getTeams.find({'Week': activeWeek}).fetch();
         
         if (alreadyListed.length > 0) {
-               console.log('already in for the week');
+              // console.log('already in for the week');
         }
         else {
             for (var i = 0; i < res.length; i++) {
@@ -222,6 +222,6 @@ Meteor.methods({
                 getTeams.insert({ 'Team': res[i].awayteam, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
             }
         }
-    },
+    }
     
 });
