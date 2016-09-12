@@ -19,7 +19,7 @@ var connectionSettingsDev = {
     password: 'Ricklefs34'
 };
 
-var pool = MySql.createPool(connectionSettingsProd);
+var pool = MySql.createPool(connectionSettingsDev);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -63,7 +63,13 @@ Meteor.methods({
         });
 
         _.each(this.newPick, function (value, key) {
-            if (typeof (value) === "string" && key != "week" && key != "username") {
+            if (typeof (value) === "string" && key != "week" && key != "username" 
+                                            && key != 'gotwSpread' && key != 'gametwoSpread'
+                                            && key != 'gamethreeSpread' && key != 'gamefourSpread'
+                                            && key != 'gamefiveSpread' && key != 'gamesixSpread'
+                                            && key != 'gamesevenSpread' && key != 'gameeightSpread'
+                                            && key != 'gamenineSpread' && key != 'gametenSpread') 
+                                            {
                 numPicks++
             }
         });
@@ -218,8 +224,8 @@ Meteor.methods({
         }
         else {
             for (var i = 0; i < res.length; i++) {
-                getTeams.insert({ 'Team': res[i].hometeam, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
-                getTeams.insert({ 'Team': res[i].awayteam, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
+                getTeams.insert({ 'Team': res[i].hometeam, 'Spread': res[i].homespread, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
+                getTeams.insert({ 'Team': res[i].awayteam, 'Spread': res[i].awayspread, 'Time': res[i].gameTime, 'Week': res[i].gameweek });
             }
         }
     }
