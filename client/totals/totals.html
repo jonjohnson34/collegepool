@@ -52,8 +52,8 @@
     </thead>
     <tbody>
         <tr ng-repeat="total in totalsList.testing | orderBy: '-overallTotal'">
-            <td>{{total.username}}</td>
-            <td>{{total.overallTotal}}</td>
+            <td><b>{{total.username}}</b></td>
+            <td><font color="red"><b>{{total.overallTotal}}</b></font></td>
             <td>{{total.weekonescore}}</td>
             <td>{{total.weektwoscore}}</td>
             <td>{{total.weekthreescore}}</td>
