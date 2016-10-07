@@ -20,19 +20,27 @@
             <th>
                 Visitor Team</th>
             <th>
-               Home Team</th>
+                Home Team</th>
             <th>
                 Game Date</th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="game in gamesList.testing">
+       <tr ng-repeat="game in gamesList.testing | filter: {gotw: 'yes'} ">
+            <td class="classy">
+                 {{game.awayspread}} {{game.awayteam}}</td>
+            <td class="classy">
+                 {{game.hometeam}} {{game.homespread}}</td>
+            <td class="classy">
+                 {{game.gameTime | date:'MM/dd/yyyy @ h:mma' : '-700'}}</td>
+        </tr>
+        <tr ng-repeat="game in gamesList.testing | filter: {gotw: 'No'} |  orderBy: 'gameTime' ">
             <td>
                  {{game.awayspread}} {{game.awayteam}}</td>
             <td>
                  {{game.hometeam}} {{game.homespread}}</td>
             <td>
-                 {{game.gameTime | date:'MM/dd/yyyy @ h:mma' : '+000'}}</td>
+                 {{game.gameTime | date:'MM/dd/yyyy @ h:mma' : '-700'}}</td>
         </tr>
     </tbody>
 </table>
