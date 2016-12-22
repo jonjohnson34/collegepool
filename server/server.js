@@ -1,8 +1,12 @@
 MySql = Npm.require('mysql');
 
-DB = require('./config.js');
+connectDev = require('../configDev.js');
+connectProd = require('../configProd.js');
 
-var pool = MySql.createPool(DB.connectionSettingsDev);
+//Production MySql Database
+
+
+let pool = MySql.createPool(connectDev);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -13,8 +17,6 @@ var Scores = Meteor.Replication('Scores', ds.id('ScoreID'), 'Select * from COLLE
 var Covered = Meteor.Replication('Covered', ds.id('idCovered'), 'Select * from COLLEGEPOOL.Covered');
 
 Meteor.startup(function () {
-
-    process.env.MAIL_URL = 'smtp://thecollegespread@gmail.com:Ricklefs34@smtp.gmail.com:587';
 
     if (Teams.find().count() === 0) {
         var teams = JSON.parse(Assets.getText('teams.json'));
