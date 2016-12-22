@@ -1,25 +1,8 @@
 MySql = Npm.require('mysql');
 
-//Production MySql Database
-var connectionSettingsProd = {
-    connectLimit: 25,
-    host: '138.68.5.242',
-    port: '3306',
-    user: 'root',
-    password: 'Ricklefs34',
-    database: 'COLLEGEPOOL'
-};
+DB = require('./config.js');
 
-//Development MySql Database
-var connectionSettingsDev = {
-    connectLimit: 25,
-    host: 'localhost',
-    database: 'COLLEGEPOOL',
-    user: 'root',
-    password: 'Ricklefs34'
-};
-
-var pool = MySql.createPool(connectionSettingsDev);
+var pool = MySql.createPool(DB.connectionSettingsDev);
 
 var ds = Meteor.Replication.DataSource(pool);
 
