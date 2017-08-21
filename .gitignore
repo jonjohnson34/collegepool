@@ -49,7 +49,3 @@ node_modules
 dev_bundle
 local
 root@138.68.1.105
-settings.json
-mup.js
-configDev.js
-configProd.js

@@ -38,7 +38,7 @@ angular.module("collegepool").directive('picks', function () {
       
       Meteor.call('getTeams', activeWeek, function(err, res){
           if (!err){
-            console.log('success');
+            console.log('all good');
           }
           else {
             console.log('error');

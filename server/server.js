@@ -1,12 +1,12 @@
 MySql = Npm.require('mysql');
 
-connectDev = require('../configDev.js');
-connectProd = require('../configProd.js');
+import {connectionSettingsDev} from '../configDev.js';
+import {connectionSettingsProd} from '../configProd.js';
 
-//Production MySql Database
+let pool = MySql.createPool(connectionSettingsProd);
+//if pool {console.log('connected to production')};
+//let pool = MySql.createPool(connectionSettingsDev);
 
-
-let pool = MySql.createPool(connectDev);
 
 var ds = Meteor.Replication.DataSource(pool);
 
@@ -99,6 +99,7 @@ Meteor.methods({
 
     getGames: function (activeWeek) {
         var getGames = Games.find({ gameweek: activeWeek }).fetch();
+        console.log(getGames);
         return getGames;
 
     },
