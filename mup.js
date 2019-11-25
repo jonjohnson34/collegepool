@@ -1,22 +1,22 @@
-module.exports = {
+deploymodule.exports = {
   servers: {
     one: {
       "host": "138.68.5.242",
       "username": "root",
       // pem:
-      "password": "Ricklefs34" 
+       "password": "Ricklefs34"
       // or leave blank for authenticate from ssh-agent
     }
   },
 
   meteor: {
     name: 'kennycollegepool',
-    path: '/home/jonrjohnson/webdevelopment/collegepool',
+    path: '',
     servers: {
       one: {}
     },
     buildOptions: {
-      serverOnly: true,
+      serverOnly: true
     },
     env: {
       ROOT_URL: "http://138.68.5.242",
@@ -31,7 +31,7 @@ module.exports = {
     oplog: true,
     port: 27017,
     servers: {
-      one: {},
-    },
+      one: {}
+    }
   },
 };
