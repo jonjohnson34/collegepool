@@ -1,0 +1,71 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <h2 class="fw-bold text-primary">Welcome Back</h2>
+              <p class="text-muted">Sign in to your account</p>
+            </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input 
+                  type="email" 
+                  class="form-control" 
+                  id="email"
+                  formControlName="email"
+                  [class.is-invalid]="isFieldInvalid('email')"
+                  placeholder="Enter your email">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                  Please enter a valid email address.
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  id="password"
+                  formControlName="password"
+                  [class.is-invalid]="isFieldInvalid('password')"
+                  placeholder="Enter your password">
+                <div class="invalid-feedback" *ngIf="isFieldInvalid('password')">
+                  Password is required.
+                </div>
+              </div>
+
+              <div class="d-grid mb-3">
+                <button 
+                  type="submit" 
+                  class="btn btn-primary btn-lg"
+                  [disabled]="loginForm.invalid || loading">
+                  <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  {{ loading ? 'Signing in...' : 'Sign In' }}
+                </button>
+              </div>
+
+              <div *ngIf="error" class="alert alert-danger" role="alert">
+                {{ error }}
+              </div>
+
+              <div *ngIf="success" class="alert alert-success" role="alert">
+                {{ success }}
+              </div>
+            </form>
+
+            <div class="text-center mt-4">
+              <p class="mb-0">
+                Don't have an account? 
+                <a routerLink="/register" class="text-decoration-none">Sign up</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

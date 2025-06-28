@@ -1,0 +1,103 @@
+<div class="min-vh-100 bg-gradient-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-opacity-75">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" routerLink="/">Robs Hockey Pool</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
+          </li>
+          <ng-container *ngIf="!isLoggedIn; else loggedInNav">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/register">Register</a>
+            </li>
+          </ng-container>
+          <ng-template #loggedInNav>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <button (click)="logout()" class="btn btn-link nav-link">Logout</button>
+            </li>
+          </ng-template>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="text-center text-white mb-5">
+        <h1 class="display-3 fw-bold mb-3">Welcome to Robs Hockey Pool</h1>
+        <p class="lead mb-4">Your MEAN Stack Application</p>
+        
+        <ng-container *ngIf="!isLoggedIn; else welcomeUser">
+          <p class="fs-5 mb-4 opacity-75">
+            Join our platform to experience a full-stack application built with MongoDB, Express.js, Angular, and Node.js.
+          </p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a routerLink="/register" class="btn btn-success btn-lg px-4">Get Started</a>
+            <a routerLink="/login" class="btn btn-outline-light btn-lg px-4">Sign In</a>
+          </div>
+        </ng-container>
+        
+        <ng-template #welcomeUser>
+          <p class="fs-5 mb-4 opacity-75">
+            Welcome back, {{ currentUser?.firstName }}! You're successfully logged in.
+          </p>
+          <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a routerLink="/dashboard" class="btn btn-success btn-lg px-4">Go to Dashboard</a>
+            <a routerLink="/profile" class="btn btn-outline-light btn-lg px-4">View Profile</a>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="row g-4 mt-5">
+        <div class="col-12">
+          <h2 class="text-center text-white mb-4">Features</h2>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 bg-dark bg-opacity-50 text-white border-0">
+            <div class="card-body text-center">
+              <h5 class="card-title">User Authentication</h5>
+              <p class="card-text">Secure login and registration with JWT tokens</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 bg-dark bg-opacity-50 text-white border-0">
+            <div class="card-body text-center">
+              <h5 class="card-title">RESTful API</h5>
+              <p class="card-text">Full CRUD operations with Express.js backend</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 bg-dark bg-opacity-50 text-white border-0">
+            <div class="card-body text-center">
+              <h5 class="card-title">Modern UI</h5>
+              <p class="card-text">Responsive design with Angular and Bootstrap</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 bg-dark bg-opacity-50 text-white border-0">
+            <div class="card-body text-center">
+              <h5 class="card-title">Database</h5>
+              <p class="card-text">MongoDB with Mongoose ODM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 

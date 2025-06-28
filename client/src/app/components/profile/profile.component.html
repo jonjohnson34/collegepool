@@ -1,0 +1,183 @@
+<div class="min-vh-100 bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a class="navbar-brand fw-bold" routerLink="/">Robs Hockey Pool</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <button (click)="authService.logout()" class="btn btn-link nav-link">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+              <h3 class="card-title mb-0">User Profile</h3>
+            </div>
+            <div class="card-body p-4">
+              <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                  <div class="mb-3">
+                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                      <span class="text-white fs-1 fw-bold">{{ currentUser?.firstName?.charAt(0) }}{{ currentUser?.lastName?.charAt(0) }}</span>
+                    </div>
+                  </div>
+                  <h5 class="mb-1">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</h5>
+                  <p class="text-muted mb-0">{{ currentUser?.email }}</p>
+                </div>
+                
+                <div class="col-md-8">
+                  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          id="firstName"
+                          formControlName="firstName"
+                          [class.is-invalid]="isFieldInvalid('firstName')">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('firstName')">
+                          First name is required.
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          id="lastName"
+                          formControlName="lastName"
+                          [class.is-invalid]="isFieldInvalid('lastName')">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('lastName')">
+                          Last name is required.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input 
+                        type="email" 
+                        class="form-control" 
+                        id="email"
+                        formControlName="email"
+                        [class.is-invalid]="isFieldInvalid('email')">
+                      <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                        Please enter a valid email address.
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="favoriteNHLTeam" class="form-label">Favorite NHL Team</label>
+                      <select 
+                        class="form-select" 
+                        id="favoriteNHLTeam"
+                        formControlName="favoriteNHLTeam"
+                        [class.is-invalid]="isFieldInvalid('favoriteNHLTeam')">
+                        <option value="">Select your favorite team</option>
+                        <option *ngFor="let team of nhlTeams" [value]="team">{{ team }}</option>
+                      </select>
+                      <div class="invalid-feedback" *ngIf="isFieldInvalid('favoriteNHLTeam')">
+                        Please select your favorite NHL team.
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="currentPassword" class="form-label">Current Password</label>
+                      <input 
+                        type="password" 
+                        class="form-control" 
+                        id="currentPassword"
+                        formControlName="currentPassword"
+                        placeholder="Enter current password to confirm changes">
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input 
+                          type="password" 
+                          class="form-control" 
+                          id="newPassword"
+                          formControlName="newPassword"
+                          placeholder="Leave blank to keep current password">
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                        <input 
+                          type="password" 
+                          class="form-control" 
+                          id="confirmPassword"
+                          formControlName="confirmPassword"
+                          placeholder="Confirm new password">
+                      </div>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                      <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        [disabled]="profileForm.invalid || loading">
+                        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+                        {{ loading ? 'Updating...' : 'Update Profile' }}
+                      </button>
+                      <a routerLink="/dashboard" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+
+                    <div *ngIf="error" class="alert alert-danger mt-3" role="alert">
+                      {{ error }}
+                    </div>
+
+                    <div *ngIf="success" class="alert alert-success mt-3" role="alert">
+                      {{ success }}
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="row">
+                <div class="col-12">
+                  <h5>Account Information</h5>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><strong>Member Since:</strong> {{ currentUser?.createdAt | date:'mediumDate' }}</p>
+                      <p><strong>Last Updated:</strong> {{ currentUser?.updatedAt | date:'mediumDate' }}</p>
+                      <p><strong>Favorite NHL Team:</strong> {{ currentUser?.favoriteNHLTeam }}</p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><strong>Account Status:</strong> <span class="badge bg-success">Active</span></p>
+                      <p><strong>User ID:</strong> {{ currentUser?._id }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div> 
