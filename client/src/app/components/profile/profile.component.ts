@@ -3,11 +3,12 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, DatePipe],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, DatePipe, HeaderComponent],
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent implements OnInit {
@@ -58,35 +59,41 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       favoriteNHLTeam: ['', Validators.required],
-      currentPassword: [''],
       newPassword: [''],
       confirmPassword: ['']
     }, { validators: this.passwordMatchValidator });
   }
 
   ngOnInit() {
-    const currentUser = this.authService.currentUserValue;
-    if (currentUser) {
+    this.loadUserData();
+  }
+
+  get currentUser() {
+    return this.authService.currentUserValue;
+  }
+
+  loadUserData() {
+    if (this.currentUser) {
       this.profileForm.patchValue({
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        email: currentUser.email,
-        favoriteNHLTeam: currentUser.favoriteNHLTeam
+        firstName: this.currentUser.firstName,
+        lastName: this.currentUser.lastName,
+        username: this.currentUser.username,
+        email: this.currentUser.email,
+        favoriteNHLTeam: this.currentUser.favoriteNHLTeam
       });
     }
   }
 
   passwordMatchValidator(form: FormGroup) {
-    const newPassword = form.get('newPassword');
-    const confirmPassword = form.get('confirmPassword');
+    const newPassword = form.get('newPassword')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
     
-    if (newPassword && confirmPassword && newPassword.value && confirmPassword.value && newPassword.value !== confirmPassword.value) {
-      confirmPassword.setErrors({ passwordMismatch: true });
+    if (newPassword && confirmPassword && newPassword !== confirmPassword) {
       return { passwordMismatch: true };
     }
-    
     return null;
   }
 
@@ -95,18 +102,14 @@ export class ProfileComponent implements OnInit {
     return !!(field && field.invalid && (field.dirty || field.touched));
   }
 
-  get currentUser() {
-    return this.authService.currentUserValue;
-  }
-
   onSubmit() {
     if (this.profileForm.valid) {
       this.loading = true;
       this.error = '';
       this.success = '';
 
-      // Here you would typically call an API to update the profile
-      // For now, we'll just simulate success
+      // Here you would typically make an API call to update the user profile
+      // For now, we'll just simulate a successful update
       setTimeout(() => {
         this.loading = false;
         this.success = 'Profile updated successfully!';

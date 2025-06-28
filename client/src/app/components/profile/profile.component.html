@@ -1,28 +1,5 @@
 <div class="min-vh-100 bg-light">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-      <a class="navbar-brand fw-bold" routerLink="/">Robs Hockey Pool</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/profile">Profile</a>
-          </li>
-          <li class="nav-item">
-            <button (click)="authService.logout()" class="btn btn-link nav-link">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <app-header></app-header>
 
   <main class="py-5">
     <div class="container">
@@ -54,7 +31,8 @@
                           class="form-control" 
                           id="firstName"
                           formControlName="firstName"
-                          [class.is-invalid]="isFieldInvalid('firstName')">
+                          [class.is-invalid]="isFieldInvalid('firstName')"
+                          placeholder="Enter your first name">
                         <div class="invalid-feedback" *ngIf="isFieldInvalid('firstName')">
                           First name is required.
                         </div>
@@ -67,23 +45,41 @@
                           class="form-control" 
                           id="lastName"
                           formControlName="lastName"
-                          [class.is-invalid]="isFieldInvalid('lastName')">
+                          [class.is-invalid]="isFieldInvalid('lastName')"
+                          placeholder="Enter your last name">
                         <div class="invalid-feedback" *ngIf="isFieldInvalid('lastName')">
                           Last name is required.
                         </div>
                       </div>
                     </div>
 
-                    <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input 
-                        type="email" 
-                        class="form-control" 
-                        id="email"
-                        formControlName="email"
-                        [class.is-invalid]="isFieldInvalid('email')">
-                      <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
-                        Please enter a valid email address.
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input 
+                          type="text" 
+                          class="form-control" 
+                          id="username"
+                          formControlName="username"
+                          [class.is-invalid]="isFieldInvalid('username')"
+                          placeholder="Enter your username">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('username')">
+                          Username is required.
+                        </div>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input 
+                          type="email" 
+                          class="form-control" 
+                          id="email"
+                          formControlName="email"
+                          [class.is-invalid]="isFieldInvalid('email')"
+                          placeholder="Enter your email">
+                        <div class="invalid-feedback" *ngIf="isFieldInvalid('email')">
+                          Please enter a valid email address.
+                        </div>
                       </div>
                     </div>
 
@@ -102,16 +98,9 @@
                       </div>
                     </div>
 
-                    <div class="mb-3">
-                      <label for="currentPassword" class="form-label">Current Password</label>
-                      <input 
-                        type="password" 
-                        class="form-control" 
-                        id="currentPassword"
-                        formControlName="currentPassword"
-                        placeholder="Enter current password to confirm changes">
-                    </div>
+                    <hr class="my-4">
 
+                    <h5 class="mb-3">Change Password (Optional)</h5>
                     <div class="row">
                       <div class="col-md-6 mb-3">
                         <label for="newPassword" class="form-label">New Password</label>
@@ -160,16 +149,20 @@
 
               <div class="row">
                 <div class="col-12">
-                  <h5>Account Information</h5>
+                  <h5 class="mb-3">Account Information</h5>
                   <div class="row">
                     <div class="col-md-6">
                       <p><strong>Member Since:</strong> {{ currentUser?.createdAt | date:'mediumDate' }}</p>
                       <p><strong>Last Updated:</strong> {{ currentUser?.updatedAt | date:'mediumDate' }}</p>
-                      <p><strong>Favorite NHL Team:</strong> {{ currentUser?.favoriteNHLTeam }}</p>
                     </div>
                     <div class="col-md-6">
-                      <p><strong>Account Status:</strong> <span class="badge bg-success">Active</span></p>
-                      <p><strong>User ID:</strong> {{ currentUser?._id }}</p>
+                      <p><strong>Account Status:</strong> 
+                        <span class="badge bg-success" *ngIf="currentUser?.isActive">Active</span>
+                        <span class="badge bg-danger" *ngIf="!currentUser?.isActive">Inactive</span>
+                      </p>
+                      <p><strong>Role:</strong> 
+                        <span class="badge bg-primary">{{ currentUser?.role }}</span>
+                      </p>
                     </div>
                   </div>
                 </div>

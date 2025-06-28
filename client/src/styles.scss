@@ -1,8 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
-/* Custom Bootstrap overrides and additions */
+/* ===== COLOR PALETTE SYSTEM ===== */
+/* 
+  To change the color palette, simply uncomment one of the theme sections below
+  and comment out the others. All components will automatically use the new colors.
+*/
+
+/* ===== CUSTOM THEME: MODERN GRAY/BLUE THEME ===== */
 :root {
-  --bs-primary: #007bff;
+  --bs-primary: #2b2d42;      /* Dark Blue-Gray */
+  --bs-success: #8d99ae;      /* Medium Gray */
+  --bs-info: #edf2f4;         /* Light Gray-White */
+  --bs-warning: #ffaa00;      /* Orange */
+  --bs-danger: #ff0066;       /* Pink */
+  --bs-secondary: #6c757d;    /* Gray */
+  --bs-dark: #2b2d42;         /* Dark Blue-Gray */
+  --bs-light: #edf2f4;        /* Light Gray-White */
+  
+  /* Custom theme colors */
+  --theme-primary: #2b2d42;
+  --theme-primary-dark: #1a1b2a;
+  --theme-primary-light: #4a4d6a;
+  --theme-secondary: #8d99ae;
+  --theme-accent: #edf2f4;
+  --theme-warm: #ffaa00;
+  --theme-danger: #ff0066;
+  --theme-neutral: #6c757d;
+  --theme-light: #edf2f4;
+  --theme-dark: #2b2d42;
+  
+  /* Gradient colors */
+  --gradient-start: #2b2d42;
+  --gradient-end: #8d99ae;
+}
+
+/* ===== THEME 1: OCEAN/TEAL THEME (Professional & Calming) ===== */
+/* Uncomment this section and comment out Custom Theme to use Ocean/Teal
+:root {
+  --bs-primary: #20c997;
   --bs-success: #28a745;
   --bs-info: #17a2b8;
   --bs-warning: #ffc107;
@@ -10,30 +45,291 @@
   --bs-secondary: #6c757d;
   --bs-dark: #343a40;
   --bs-light: #f8f9fa;
+  
+  --theme-primary: #20c997;
+  --theme-primary-dark: #1ba085;
+  --theme-primary-light: #75d7c7;
+  --theme-secondary: #17a2b8;
+  --theme-accent: #28a745;
+  --theme-warm: #ffc107;
+  --theme-danger: #dc3545;
+  --theme-neutral: #6c757d;
+  --theme-light: #f8f9fa;
+  --theme-dark: #343a40;
+  
+  --gradient-start: #20c997;
+  --gradient-end: #17a2b8;
 }
+*/
 
-/* Custom gradient background */
+/* ===== THEME 2: FOREST GREEN THEME (Nature & Growth) ===== */
+/* Uncomment this section and comment out Custom Theme to use Forest Green
+:root {
+  --bs-primary: #198754;
+  --bs-success: #20c997;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-secondary: #6c757d;
+  --bs-dark: #343a40;
+  --bs-light: #f8f9fa;
+  
+  --theme-primary: #198754;
+  --theme-primary-dark: #146c43;
+  --theme-primary-light: #75b798;
+  --theme-secondary: #20c997;
+  --theme-accent: #0dcaf0;
+  --theme-warm: #ffc107;
+  --theme-danger: #dc3545;
+  --theme-neutral: #6c757d;
+  --theme-light: #f8f9fa;
+  --theme-dark: #343a40;
+  
+  --gradient-start: #198754;
+  --gradient-end: #20c997;
+}
+*/
+
+/* ===== THEME 3: SUNSET/ORANGE THEME (Energetic & Warm) ===== */
+/* Uncomment this section and comment out Custom Theme to use Sunset Orange
+:root {
+  --bs-primary: #fd7e14;
+  --bs-success: #28a745;
+  --bs-info: #17a2b8;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-secondary: #6c757d;
+  --bs-dark: #343a40;
+  --bs-light: #f8f9fa;
+  
+  --theme-primary: #fd7e14;
+  --theme-primary-dark: #e8690b;
+  --theme-primary-light: #ffa366;
+  --theme-secondary: #ffc107;
+  --theme-accent: #28a745;
+  --theme-warm: #ffc107;
+  --theme-danger: #dc3545;
+  --theme-neutral: #6c757d;
+  --theme-light: #f8f9fa;
+  --theme-dark: #343a40;
+  
+  --gradient-start: #fd7e14;
+  --gradient-end: #ffc107;
+}
+*/
+
+/* ===== THEME 4: PURPLE/MAGENTA THEME (Creative & Modern) ===== */
+/* Uncomment this section and comment out Custom Theme to use Purple/Magenta
+:root {
+  --bs-primary: #6f42c1;
+  --bs-success: #28a745;
+  --bs-info: #17a2b8;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-secondary: #6c757d;
+  --bs-dark: #343a40;
+  --bs-light: #f8f9fa;
+  
+  --theme-primary: #6f42c1;
+  --theme-primary-dark: #5a32a3;
+  --theme-primary-light: #a78bda;
+  --theme-secondary: #e83e8c;
+  --theme-accent: #17a2b8;
+  --theme-warm: #ffc107;
+  --theme-danger: #dc3545;
+  --theme-neutral: #6c757d;
+  --theme-light: #f8f9fa;
+  --theme-dark: #343a40;
+  
+  --gradient-start: #6f42c1;
+  --gradient-end: #e83e8c;
+}
+*/
+
+/* ===== THEME 5: DARK/NEON THEME (Bold & Contemporary) ===== */
+/* Uncomment this section and comment out Custom Theme to use Dark/Neon
+:root {
+  --bs-primary: #00d4ff;
+  --bs-success: #00ff88;
+  --bs-info: #0099ff;
+  --bs-warning: #ffaa00;
+  --bs-danger: #ff0066;
+  --bs-secondary: #6c757d;
+  --bs-dark: #1a1a1a;
+  --bs-light: #f8f9fa;
+  
+  --theme-primary: #00d4ff;
+  --theme-primary-dark: #00a3cc;
+  --theme-primary-light: #66e6ff;
+  --theme-secondary: #00ff88;
+  --theme-accent: #0099ff;
+  --theme-warm: #ffaa00;
+  --theme-danger: #ff0066;
+  --theme-neutral: #6c757d;
+  --theme-light: #f8f9fa;
+  --theme-dark: #1a1a1a;
+  
+  --gradient-start: #00d4ff;
+  --gradient-end: #00ff88;
+}
+*/
+
+/* ===== CUSTOM GRADIENT BACKGROUND ===== */
 .bg-gradient-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
   min-height: 100vh;
 }
 
-/* Custom card shadows */
+/* ===== ENHANCED HEADER STYLES ===== */
+.custom-header {
+  background: var(--theme-primary) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.custom-header .navbar-brand {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  color: white !important;
+  font-family: inherit;
+}
+
+.custom-header .navbar-brand:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  color: white !important;
+}
+
+.custom-header .navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.custom-header .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+}
+
+.custom-header .navbar-toggler:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.375rem;
+}
+
+.nav-link-custom {
+  position: relative;
+  font-weight: 500;
+  padding: 0.75rem 1rem !important;
+  margin: 0 0.25rem;
+  border-radius: 0.375rem;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-family: inherit;
+}
+
+.nav-link-custom:hover {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.nav-link-custom.active {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.15);
+  font-weight: 600;
+}
+
+.nav-link-custom.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: var(--theme-accent);
+  border-radius: 1px;
+}
+
+.logout-btn {
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 500 !important;
+  padding: 0.75rem 1rem !important;
+  transition: all 0.3s ease;
+  font-family: inherit !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== ENHANCED COMPONENT STYLES ===== */
+
+/* Custom card shadows with theme colors */
 .card {
   border: none;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  transition: box-shadow 0.15s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
 .card:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
-/* Custom button styles */
+/* Enhanced button styles with theme colors */
 .btn {
   border-radius: 0.375rem;
   font-weight: 500;
   transition: all 0.15s ease-in-out;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  background: var(--theme-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--theme-primary-dark);
+  color: white;
+}
+
+.btn-success {
+  background: var(--theme-accent);
+  color: var(--theme-dark);
+}
+
+.btn-outline-primary {
+  border: 2px solid var(--theme-primary);
+  color: var(--theme-primary);
+}
+
+.btn-outline-primary:hover {
+  background: var(--theme-primary);
+  color: white;
 }
 
 .btn-lg {
@@ -41,38 +337,98 @@
   font-size: 1.125rem;
 }
 
-/* Custom form styles */
+/* Enhanced form styles */
 .form-control {
   border-radius: 0.375rem;
-  border: 1px solid #dee2e6;
+  border: 2px solid #dee2e6;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-control:focus {
-  border-color: var(--bs-primary);
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 0.2rem rgba(43, 45, 66, 0.25);
 }
 
-/* Custom navbar styles */
+.form-select:focus {
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 0.2rem rgba(43, 45, 66, 0.25);
+}
+
+/* Enhanced navbar styles */
 .navbar {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .navbar-brand {
   font-weight: 700;
   font-size: 1.5rem;
+  color: white !important;
 }
 
-/* Custom alert styles */
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.15s ease-in-out;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: white;
+}
+
+/* Enhanced alert styles */
 .alert {
   border: none;
   border-radius: 0.5rem;
+  border-left: 4px solid;
 }
 
-/* Custom badge styles */
+.alert-primary {
+  background: rgba(43, 45, 66, 0.1);
+  border-left-color: var(--theme-primary);
+  color: var(--theme-primary-dark);
+}
+
+.alert-success {
+  background: rgba(141, 153, 174, 0.1);
+  border-left-color: var(--theme-secondary);
+  color: var(--theme-dark);
+}
+
+.alert-danger {
+  background: rgba(255, 0, 102, 0.1);
+  border-left-color: var(--theme-danger);
+  color: #721c24;
+}
+
+/* Enhanced badge styles */
 .badge {
   font-weight: 500;
   padding: 0.5em 0.75em;
+  border-radius: 0.375rem;
+}
+
+.badge.bg-primary {
+  background: var(--theme-primary) !important;
+}
+
+.badge.bg-success {
+  background: var(--theme-secondary) !important;
+  color: var(--theme-dark);
+}
+
+/* Enhanced card headers */
+.card-header.bg-primary {
+  background: var(--theme-primary) !important;
+}
+
+.card-header.bg-success {
+  background: var(--theme-secondary) !important;
+  color: var(--theme-dark);
+}
+
+.card-header.bg-info {
+  background: var(--theme-accent) !important;
+  color: var(--theme-dark);
 }
 
 /* Responsive adjustments */
@@ -85,9 +441,18 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
   }
+  
+  .custom-header .navbar-brand {
+    font-size: 1.5rem;
+  }
+  
+  .nav-link-custom {
+    padding: 0.5rem 0.75rem !important;
+    margin: 0.25rem 0;
+  }
 }
 
-/* Custom animations */
+/* Enhanced animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -99,16 +464,47 @@
   }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .fade-in {
   animation: fadeIn 0.5s ease-out;
 }
 
-/* Custom utility classes */
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Enhanced utility classes */
 .text-gradient {
-  background: linear-gradient(135deg, var(--bs-primary), var(--bs-info));
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.bg-theme-primary {
+  background: var(--theme-primary) !important;
+}
+
+.bg-theme-secondary {
+  background: var(--theme-secondary) !important;
+}
+
+.text-theme-primary {
+  color: var(--theme-primary) !important;
+}
+
+.text-theme-secondary {
+  color: var(--theme-secondary) !important;
 }
 
 /* Custom spacing utilities */
@@ -128,7 +524,7 @@
   opacity: 0.75 !important;
 }
 
-/* Custom shadow utilities */
+/* Enhanced shadow utilities */
 .shadow-sm {
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
@@ -139,4 +535,9 @@
 
 .shadow-lg {
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+}
+
+/* Theme-specific shadows */
+.shadow-theme {
+  box-shadow: 0 0.5rem 1rem rgba(43, 45, 66, 0.15) !important;
 }

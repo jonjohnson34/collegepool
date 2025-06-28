@@ -1,28 +1,5 @@
 <div class="min-vh-100 bg-light">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-      <a class="navbar-brand fw-bold" routerLink="/">Robs Hockey Pool</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" routerLink="/dashboard">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/profile">Profile</a>
-          </li>
-          <li class="nav-item">
-            <button (click)="authService.logout()" class="btn btn-link nav-link">Logout</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <app-header></app-header>
 
   <main class="py-5">
     <div class="container">
@@ -39,7 +16,7 @@
         <!-- User Info Card -->
         <div class="col-md-6 col-lg-4">
           <div class="card h-100 shadow-sm">
-            <div class="card-header bg-primary text-white">
+            <div class="card-header bg-success text-white">
               <h5 class="card-title mb-0">User Information</h5>
             </div>
             <div class="card-body">
@@ -69,8 +46,8 @@
             <div class="card-body">
               <div class="d-grid gap-2">
                 <a routerLink="/profile" class="btn btn-outline-success">View Profile</a>
-                <button class="btn btn-outline-info">View Settings</button>
-                <button class="btn btn-outline-warning">Help & Support</button>
+                <a routerLink="/games" class="btn btn-outline-success">View Games</a>
+                <a routerLink="/standings" class="btn btn-outline-success">View Standings</a>
               </div>
             </div>
           </div>
@@ -79,20 +56,20 @@
         <!-- Statistics Card -->
         <div class="col-md-6 col-lg-4">
           <div class="card h-100 shadow-sm">
-            <div class="card-header bg-info text-white">
-              <h5 class="card-title mb-0">Statistics</h5>
+            <div class="card-header bg-success text-white">
+              <h5 class="card-title mb-0">Standings</h5>
             </div>
             <div class="card-body">
               <div class="row text-center">
                 <div class="col-6">
                   <div class="border-end">
-                    <h4 class="text-primary mb-1">0</h4>
-                    <small class="text-muted">Projects</small>
+                    <h4 class="text-primary mb-1"></h4>
+                    <small class="text-muted"></small>
                   </div>
                 </div>
                 <div class="col-6">
-                  <h4 class="text-success mb-1">0</h4>
-                  <small class="text-muted">Tasks</small>
+                  <h4 class="text-success mb-1"></h4>
+                  <small class="text-muted"></small>
                 </div>
               </div>
             </div>
@@ -104,7 +81,7 @@
       <div class="row mt-4">
         <div class="col-12">
           <div class="card shadow-sm">
-            <div class="card-header bg-secondary text-white">
+            <div class="card-header bg-success text-white">
               <h5 class="card-title mb-0">Recent Activity</h5>
             </div>
             <div class="card-body">

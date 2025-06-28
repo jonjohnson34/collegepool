@@ -1,19 +1,26 @@
 import { Component } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { HeaderComponent } from '../header/header.component';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, RouterModule, DatePipe, HeaderComponent],
-  templateUrl: './dashboard.component.html'
+  imports: [CommonModule, RouterModule],
+  templateUrl: './header.component.html'
 })
-export class DashboardComponent {
+export class HeaderComponent {
   constructor(public authService: AuthService) {}
+
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
 
   get currentUser() {
     return this.authService.currentUserValue;
+  }
+
+  logout() {
+    this.authService.logout();
   }
 } 
