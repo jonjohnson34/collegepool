@@ -22,6 +22,55 @@ export class PicksService {
       { userId: '4', username: 'SarahWilson', correctPicks: 38, totalPicks: 55, winPercentage: 69.1, rank: 4 },
       { userId: '5', username: 'TomBrown', correctPicks: 35, totalPicks: 59, winPercentage: 59.3, rank: 5 }
     ];
+
+    // Mock picks data
+    this.mockPicks = [
+      {
+        id: '1',
+        userId: '1',
+        gameId: '1',
+        pickedTeam: 'home',
+        gameDate: '2025-01-04T19:00:00Z',
+        createdAt: new Date('2025-01-03T10:00:00Z'),
+        isCorrect: true
+      },
+      {
+        id: '2',
+        userId: '1',
+        gameId: '2',
+        pickedTeam: 'away',
+        gameDate: '2025-01-04T21:30:00Z',
+        createdAt: new Date('2025-01-03T11:00:00Z'),
+        isCorrect: undefined
+      },
+      {
+        id: '3',
+        userId: '1',
+        gameId: '3',
+        pickedTeam: 'home',
+        gameDate: '2024-12-25T20:00:00Z',
+        createdAt: new Date('2024-12-24T15:00:00Z'),
+        isCorrect: true
+      },
+      {
+        id: '4',
+        userId: '1',
+        gameId: '4',
+        pickedTeam: 'away',
+        gameDate: '2024-12-25T22:00:00Z',
+        createdAt: new Date('2024-12-24T16:00:00Z'),
+        isCorrect: false
+      },
+      {
+        id: '5',
+        userId: '1',
+        gameId: '5',
+        pickedTeam: 'home',
+        gameDate: '2024-11-28T19:00:00Z',
+        createdAt: new Date('2024-11-27T12:00:00Z'),
+        isCorrect: true
+      }
+    ];
   }
 
   // Get picks for a specific user

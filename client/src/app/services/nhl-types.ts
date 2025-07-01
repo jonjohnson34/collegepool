@@ -18,24 +18,7 @@ export interface NHLGame {
   broadcast?: string;
 }
 
-export interface NHLStanding {
-  team: {
-    name: string;
-    abbreviation: string;
-    logo?: string;
-  };
-  wins: number;
-  losses: number;
-  overtimeLosses: number;
-  points: number;
-  gamesPlayed: number;
-  goalsFor: number;
-  goalsAgainst: number;
-  goalDifferential: number;
-  winPercentage: number;
-  conference: string;
-  division: string;
-}
+
 
 export interface GamePick {
   id?: string;

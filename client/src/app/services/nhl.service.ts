@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { NHLGame, NHLStanding } from './nhl-types';
-import { MOCK_NHL_GAMES, MOCK_NHL_STANDINGS } from './mock-nhl-data';
+import { NHLGame } from './nhl-types';
+import { MOCK_NHL_GAMES } from './mock-nhl-data';
 
 @Injectable({
   providedIn: 'root'
@@ -64,11 +64,6 @@ export class NHLService {
     return of(recentGames.slice(0, 10)); // Return max 10 games
   }
 
-  // Get standings
-  getStandings(): Observable<NHLStanding[]> {
-    return of(MOCK_NHL_STANDINGS);
-  }
-
   // Get team abbreviation mapping for your existing teams
   getTeamAbbreviation(teamName: string): string {
     const teamMap: { [key: string]: string } = {
@@ -86,7 +81,7 @@ export class NHLService {
       'Florida Panthers': 'FLA',
       'Los Angeles Kings': 'LA',
       'Minnesota Wild': 'MIN',
-      'Montreal Canadiens': 'MTL',
+      'Montreal Canadians': 'MTL',
       'Nashville Predators': 'NSH',
       'New Jersey Devils': 'NJ',
       'New York Islanders': 'NYI',
