@@ -32,11 +32,11 @@
     "bootstrap": "^5.3.0",
     "bootstrap-icons": "^1.13.1",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
+    "tslib": "^2.8.1",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^17.0.0",
+    "@angular-devkit/build-angular": "^17.3.17",
     "@angular/cli": "^17.0.0",
     "@angular/compiler-cli": "^17.0.0",
     "@types/jasmine": "~5.1.0",

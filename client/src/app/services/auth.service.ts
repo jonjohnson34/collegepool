@@ -84,4 +84,8 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+  getCurrentUser(): User | null {
+    return this.currentUserValue;
+  }
 } 

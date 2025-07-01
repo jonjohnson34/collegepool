@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,7 +10,10 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) {}
 
   get isLoggedIn() {
     return this.authService.isLoggedIn();
@@ -20,7 +23,13 @@ export class HeaderComponent {
     return this.authService.currentUserValue;
   }
 
+  get isAdmin() {
+    const user = this.authService.getCurrentUser();
+    return user && user.role === 'admin';
+  }
+
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 } 

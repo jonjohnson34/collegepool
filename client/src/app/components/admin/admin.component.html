@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="mb-0">Admin Dashboard</h2>
+        </div>
+        <div class="card-body">
+          <p class="text-muted">Admin content will be added here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- User Management Section -->
+  <div class="row mt-4">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="mb-0">User Management</h3>
+        </div>
+        <div class="card-body">
+          <div *ngIf="loading" class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+
+          <div *ngIf="error" class="alert alert-danger">
+            {{ error }}
+          </div>
+
+          <div *ngIf="!loading && !error" class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead class="table-dark">
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Name</th>
+                  <th>Favorite Team</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.username }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.firstName }} {{ user.lastName }}</td>
+                  <td>{{ user.favoriteNHLTeam }}</td>
+                  <td>
+                    <select 
+                      class="form-select form-select-sm" 
+                      [value]="user.role"
+                      (change)="updateUserRole(user._id, $event)"
+                      [disabled]="user._id === authService.getCurrentUser()?._id">
+                      <option value="user">User</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                  </td>
+                  <td>
+                    <div class="form-check form-switch">
+                      <input 
+                        class="form-check-input" 
+                        type="checkbox" 
+                        [checked]="user.isActive"
+                        (change)="updateUserStatus(user._id, $event)"
+                        [disabled]="user._id === authService.getCurrentUser()?._id">
+                      <label class="form-check-label">
+                        {{ user.isActive ? 'Active' : 'Inactive' }}
+                      </label>
+                    </div>
+                  </td>
+                  <td>
+                    <small class="text-muted">
+                      {{ user._id === authService.getCurrentUser()?._id ? 'Current User' : '' }}
+                    </small>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

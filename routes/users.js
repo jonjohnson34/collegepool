@@ -110,4 +110,62 @@ router.delete('/:id', authenticateToken, async (req, res) => {
   }
 });
 
+// Update user role (admin only)
+router.patch('/:id/role', authenticateToken, async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied. Admin only.' });
+    }
+
+    const { role } = req.body;
+    if (!['user', 'admin'].includes(role)) {
+      return res.status(400).json({ message: 'Invalid role. Must be "user" or "admin".' });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { role },
+      { new: true, runValidators: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User role updated successfully', user: user.toJSON() });
+  } catch (error) {
+    console.error('Update user role error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update user status (admin only)
+router.patch('/:id/status', authenticateToken, async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Access denied. Admin only.' });
+    }
+
+    const { isActive } = req.body;
+    if (typeof isActive !== 'boolean') {
+      return res.status(400).json({ message: 'isActive must be a boolean value.' });
+    }
+
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      { isActive },
+      { new: true, runValidators: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User status updated successfully', user: user.toJSON() });
+  } catch (error) {
+    console.error('Update user status error:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router; 

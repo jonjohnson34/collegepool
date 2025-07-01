@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HeaderComponent } from '../header/header.component';
 
@@ -11,7 +11,10 @@ import { HeaderComponent } from '../header/header.component';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  constructor(public authService: AuthService) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) {}
 
   get isLoggedIn() {
     return this.authService.isLoggedIn();
@@ -23,5 +26,6 @@ export class HomeComponent {
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/']);
   }
 } 
