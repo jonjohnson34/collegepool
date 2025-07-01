@@ -1,0 +1,23 @@
+.score-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  
+  span {
+    min-width: .45rem;
+    text-align: center;
+  }
+}
+
+.team-logo {
+  object-fit: contain;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

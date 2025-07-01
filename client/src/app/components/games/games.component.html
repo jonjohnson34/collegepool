@@ -6,40 +6,377 @@
       <div class="row">
         <div class="col-12">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h2 mb-0">Games</h1>
-            <span class="text-muted">View upcoming and past hockey games</span>
+            <h1 class="h2 mb-0">
+              NHL Games
+             
+            </h1>
+            <div class="d-flex gap-2">
+              <button (click)="loadGames()" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-arrow-clockwise me-1"></i>Refresh
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="row g-4">
-        <!-- Upcoming Games -->
+      <!-- Loading State -->
+      <div *ngIf="loading" class="row">
+        <div class="col-12 text-center">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="mt-2">Loading NHL games...</p>
+        </div>
+      </div>
+
+      <!-- Date Simulation Section -->
+      <div class="row mb-4">
         <div class="col-12">
           <div class="card shadow-sm">
             <div class="card-header bg-success text-white">
-              <h5 class="card-title mb-0">Upcoming Games</h5>
+              <h5 class="card-title mb-0">
+                <i class="bi bi-calendar-event me-2"></i>Choose a Date
+              </h5>
             </div>
             <div class="card-body">
-              <div class="text-center text-muted py-4">
-                <i class="bi bi-calendar-event fs-1"></i>
-                <p class="mt-2">No upcoming games scheduled</p>
-                <p class="small">Games will appear here when they are scheduled</p>
+              <div class="d-flex gap-2 align-items-center flex-wrap">
+                <div class="d-flex align-items-center gap-2">
+                  <label for="simulationDate" class="form-label mb-0 small">Pick a date:</label>
+                  <input 
+                    type="date" 
+                    id="simulationDate" 
+                    class="form-control form-control-sm" 
+                    style="width: auto;"
+                    [value]="simulatedDate || ''"
+                    #dateInput
+                    (change)="simulateDate(dateInput.value)"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="error" class="row">
+        <div class="col-12">
+          <div class="alert alert-danger">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            {{ error }}
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!loading && !error" class="row g-4">
+        <!-- Today's Games -->
+        <div class="col-12" *ngIf="todayGames.length > 0">
+          <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-calendar-day me-2"></i>
+                {{ isSimulating ? 'Games for ' + simulatedDate : 'Today\'s Games' }}
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-6 col-lg-4" *ngFor="let game of todayGames">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="text-muted">{{ formatGameTime(game.date) }}</small>
+                        <span class="badge" [ngClass]="getGameStatusClass(game.status)">
+                          {{ game.status }}
+                        </span>
+                      </div>
+                      
+                      <div class="text-center">
+                        <div class="row align-items-center">
+                          <div class="col-5">
+                            <div class="d-flex flex-column align-items-center">
+                              <img *ngIf="game.awayTeam.logo" [src]="game.awayTeam.logo" 
+                                   [alt]="game.awayTeam.name" class="team-logo mb-1" style="width: 40px; height: 40px;">
+                              <strong>{{ game.awayTeam.name }}</strong>
+                              <small class="text-muted">{{ game.awayTeam.abbreviation }}</small>
+                            </div>
+                          </div>
+                          <div class="col-2">
+                            <div class="score-display">
+                              <span class="h4 fw-bold">{{ game.awayTeam.score }}</span>
+                              <span class="mx-2"></span>
+                              <span class="h4 fw-bold">{{ game.homeTeam.score }}</span>
+                            </div>
+                          </div>
+                          <div class="col-5">
+                            <div class="d-flex flex-column align-items-center">
+                              <img *ngIf="game.homeTeam.logo" [src]="game.homeTeam.logo" 
+                                   [alt]="game.homeTeam.name" class="team-logo mb-1" style="width: 40px; height: 40px;">
+                              <strong>{{ game.homeTeam.name }}</strong>
+                              <small class="text-muted">{{ game.homeTeam.abbreviation }}</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Pick Section -->
+                      <div class="mt-3" *ngIf="game.status === 'Scheduled'">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Your Pick:</small>
+                          <div class="d-flex gap-1">
+                            <button 
+                              class="btn btn-sm" 
+                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(game.id, 'away')"
+                              [disabled]="hasUserPicked(game.id)"
+                            >
+                              {{ game.awayTeam.abbreviation }}
+                            </button>
+                            <button 
+                              class="btn btn-sm" 
+                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(game.id, 'home')"
+                              [disabled]="hasUserPicked(game.id)"
+                            >
+                              {{ game.homeTeam.abbreviation }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Pick Result for Final Games -->
+                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(game.id)">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Your Pick:</small>
+                          <span class="badge" [ngClass]="{
+                            'bg-success': getPickStatus(game) === 'correct',
+                            'bg-danger': getPickStatus(game) === 'incorrect',
+                            'bg-warning': getPickStatus(game) === 'pending'
+                          }">
+                            <i class="bi" [ngClass]="{
+                              'bi-check-circle': getPickStatus(game) === 'correct',
+                              'bi-x-circle': getPickStatus(game) === 'incorrect',
+                              'bi-question-circle': getPickStatus(game) === 'pending'
+                            }"></i>
+                            {{ getUserPick(game.id)?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div class="mt-2 text-center">
+                        <small class="text-muted" *ngIf="game.venue">{{ game.venue }}</small>
+                        <small class="text-muted d-block" *ngIf="game.broadcast">{{ game.broadcast }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Games -->
+        <div class="col-12" *ngIf="upcomingGames.length > 0">
+          <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-calendar-plus me-2"></i>Upcoming Games
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row g-3">
+                <div class="col-md-6 col-lg-4" *ngFor="let game of upcomingGames">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="text-muted">{{ formatGameDate(game.date) }}</small>
+                        <span class="badge" [ngClass]="getGameStatusClass(game.status)">
+                          {{ game.status }}
+                        </span>
+                      </div>
+                      
+                      <div class="text-center">
+                        <div class="row align-items-center">
+                          <div class="col-5">
+                            <div class="d-flex flex-column align-items-center">
+                              <img *ngIf="game.awayTeam.logo" [src]="game.awayTeam.logo" 
+                                   [alt]="game.awayTeam.name" class="team-logo mb-1" style="width: 40px; height: 40px;">
+                              <strong>{{ game.awayTeam.name }}</strong>
+                              <small class="text-muted">{{ game.awayTeam.abbreviation }}</small>
+                            </div>
+                          </div>
+                          <div class="col-2">
+                            <div class="score-display">
+                              <span class="h4 fw-bold">{{ game.awayTeam.score }}</span>
+                              <span class="mx-2"></span>
+                              <span class="h4 fw-bold">{{ game.homeTeam.score }}</span>
+                            </div>
+                          </div>
+                          <div class="col-5">
+                            <div class="d-flex flex-column align-items-center">
+                              <img *ngIf="game.homeTeam.logo" [src]="game.homeTeam.logo" 
+                                   [alt]="game.homeTeam.name" class="team-logo mb-1" style="width: 40px; height: 40px;">
+                              <strong>{{ game.homeTeam.name }}</strong>
+                              <small class="text-muted">{{ game.homeTeam.abbreviation }}</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Pick Section -->
+                      <div class="mt-3" *ngIf="game.status === 'Scheduled'">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Your Pick:</small>
+                          <div class="d-flex gap-1">
+                            <button 
+                              class="btn btn-sm" 
+                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(game.id, 'away')"
+                              [disabled]="hasUserPicked(game.id)"
+                            >
+                              {{ game.awayTeam.abbreviation }}
+                            </button>
+                            <button 
+                              class="btn btn-sm" 
+                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(game.id, 'home')"
+                              [disabled]="hasUserPicked(game.id)"
+                            >
+                              {{ game.homeTeam.abbreviation }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Pick Result for Final Games -->
+                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(game.id)">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Your Pick:</small>
+                          <span class="badge" [ngClass]="{
+                            'bg-success': getPickStatus(game) === 'correct',
+                            'bg-danger': getPickStatus(game) === 'incorrect',
+                            'bg-warning': getPickStatus(game) === 'pending'
+                          }">
+                            <i class="bi" [ngClass]="{
+                              'bi-check-circle': getPickStatus(game) === 'correct',
+                              'bi-x-circle': getPickStatus(game) === 'incorrect',
+                              'bi-question-circle': getPickStatus(game) === 'pending'
+                            }"></i>
+                            {{ getUserPick(game.id)?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div class="mt-2 text-center">
+                        <small class="text-muted" *ngIf="game.venue">{{ game.venue }}</small>
+                        <small class="text-muted d-block" *ngIf="game.broadcast">{{ game.broadcast }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Recent Games -->
-        <div class="col-12">
+        <div class="col-12" *ngIf="recentGames.length > 0">
           <div class="card shadow-sm">
-            <div class="card-header bg-success text-white">
-              <h5 class="card-title mb-0">Recent Games</h5>
+            <div class="card-header bg-secondary text-white">
+              <h5 class="card-title mb-0">
+                <i class="bi bi-calendar-minus me-2"></i>Recent Games
+              </h5>
             </div>
             <div class="card-body">
-              <div class="text-center text-muted py-4">
-                <i class="bi bi-clock-history fs-1"></i>
-                <p class="mt-2">No recent games to display</p>
-                <p class="small">Game results will appear here after games are completed</p>
+              <div class="row g-3">
+                <div class="col-md-6 col-lg-4" *ngFor="let game of recentGames">
+                  <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="text-muted">{{ formatGameDate(game.date) }}</small>
+                        <span class="badge" [ngClass]="getGameStatusClass(game.status)">
+                          {{ game.status }}
+                        </span>
+                      </div>
+                      
+                      <div class="text-center">
+                        <div class="row align-items-center">
+                          <div class="col-5">
+                            <div class="d-flex flex-column align-items-center">
+                              <img *ngIf="game.awayTeam.logo" [src]="game.awayTeam.logo" 
+                                   [alt]="game.awayTeam.name" class="team-logo mb-1" style="width: 40px; height: 40px;">
+                              <strong>{{ game.awayTeam.name }}</strong>
+                              <small class="text-muted">{{ game.awayTeam.abbreviation }}</small>
+                            </div>
+                          </div>
+                          <div class="col-2">
+                            <div class="score-display">
+                              <span class="h4 fw-bold">{{ game.awayTeam.score }}</span>
+                              <span class="mx-2"></span>
+                              <span class="h4 fw-bold">{{ game.homeTeam.score }}</span>
+                            </div>
+                          </div>
+                          <div class="col-5">
+                            <div class="d-flex flex-column align-items-center">
+                              <img *ngIf="game.homeTeam.logo" [src]="game.homeTeam.logo" 
+                                   [alt]="game.homeTeam.name" class="team-logo mb-1" style="width: 40px; height: 40px;">
+                              <strong>{{ game.homeTeam.name }}</strong>
+                              <small class="text-muted">{{ game.homeTeam.abbreviation }}</small>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Pick Section -->
+                      <div class="mt-3" *ngIf="game.status === 'Scheduled'">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Your Pick:</small>
+                          <div class="d-flex gap-1">
+                            <button 
+                              class="btn btn-sm" 
+                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(game.id, 'away')"
+                              [disabled]="hasUserPicked(game.id)"
+                            >
+                              {{ game.awayTeam.abbreviation }}
+                            </button>
+                            <button 
+                              class="btn btn-sm" 
+                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(game.id, 'home')"
+                              [disabled]="hasUserPicked(game.id)"
+                            >
+                              {{ game.homeTeam.abbreviation }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <!-- Pick Result for Final Games -->
+                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(game.id)">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">Your Pick:</small>
+                          <span class="badge" [ngClass]="{
+                            'bg-success': getPickStatus(game) === 'correct',
+                            'bg-danger': getPickStatus(game) === 'incorrect',
+                            'bg-warning': getPickStatus(game) === 'pending'
+                          }">
+                            <i class="bi" [ngClass]="{
+                              'bi-check-circle': getPickStatus(game) === 'correct',
+                              'bi-x-circle': getPickStatus(game) === 'incorrect',
+                              'bi-question-circle': getPickStatus(game) === 'pending'
+                            }"></i>
+                            {{ getUserPick(game.id)?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div class="mt-2 text-center">
+                        <small class="text-muted" *ngIf="game.venue">{{ game.venue }}</small>
+                        <small class="text-muted d-block" *ngIf="game.broadcast">{{ game.broadcast }}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
