@@ -125,17 +125,15 @@
                           <div class="d-flex gap-1">
                             <button 
                               class="btn btn-sm" 
-                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
-                              (click)="makePick(game.id, 'away')"
-                              [disabled]="hasUserPicked(game.id)"
+                              [ngClass]="getUserPick(getGameId(game))?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(getGameId(game), 'away')"
                             >
                               {{ game.awayTeam.abbreviation }}
                             </button>
                             <button 
                               class="btn btn-sm" 
-                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
-                              (click)="makePick(game.id, 'home')"
-                              [disabled]="hasUserPicked(game.id)"
+                              [ngClass]="getUserPick(getGameId(game))?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(getGameId(game), 'home')"
                             >
                               {{ game.homeTeam.abbreviation }}
                             </button>
@@ -144,7 +142,7 @@
                       </div>
                       
                       <!-- Pick Result for Final Games -->
-                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(game.id)">
+                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(getGameId(game))">
                         <div class="d-flex justify-content-between align-items-center">
                           <small class="text-muted">Your Pick:</small>
                           <span class="badge" [ngClass]="{
@@ -157,7 +155,7 @@
                               'bi-x-circle': getPickStatus(game) === 'incorrect',
                               'bi-question-circle': getPickStatus(game) === 'pending'
                             }"></i>
-                            {{ getUserPick(game.id)?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
+                            {{ getUserPick(getGameId(game))?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
                           </span>
                         </div>
                       </div>
@@ -229,17 +227,15 @@
                           <div class="d-flex gap-1">
                             <button 
                               class="btn btn-sm" 
-                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
-                              (click)="makePick(game.id, 'away')"
-                              [disabled]="hasUserPicked(game.id)"
+                              [ngClass]="getUserPick(getGameId(game))?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(getGameId(game), 'away')"
                             >
                               {{ game.awayTeam.abbreviation }}
                             </button>
                             <button 
                               class="btn btn-sm" 
-                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
-                              (click)="makePick(game.id, 'home')"
-                              [disabled]="hasUserPicked(game.id)"
+                              [ngClass]="getUserPick(getGameId(game))?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(getGameId(game), 'home')"
                             >
                               {{ game.homeTeam.abbreviation }}
                             </button>
@@ -248,7 +244,7 @@
                       </div>
                       
                       <!-- Pick Result for Final Games -->
-                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(game.id)">
+                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(getGameId(game))">
                         <div class="d-flex justify-content-between align-items-center">
                           <small class="text-muted">Your Pick:</small>
                           <span class="badge" [ngClass]="{
@@ -261,7 +257,7 @@
                               'bi-x-circle': getPickStatus(game) === 'incorrect',
                               'bi-question-circle': getPickStatus(game) === 'pending'
                             }"></i>
-                            {{ getUserPick(game.id)?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
+                            {{ getUserPick(getGameId(game))?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
                           </span>
                         </div>
                       </div>
@@ -333,17 +329,15 @@
                           <div class="d-flex gap-1">
                             <button 
                               class="btn btn-sm" 
-                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
-                              (click)="makePick(game.id, 'away')"
-                              [disabled]="hasUserPicked(game.id)"
+                              [ngClass]="getUserPick(getGameId(game))?.pickedTeam === 'away' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(getGameId(game), 'away')"
                             >
                               {{ game.awayTeam.abbreviation }}
                             </button>
                             <button 
                               class="btn btn-sm" 
-                              [ngClass]="getUserPick(game.id)?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
-                              (click)="makePick(game.id, 'home')"
-                              [disabled]="hasUserPicked(game.id)"
+                              [ngClass]="getUserPick(getGameId(game))?.pickedTeam === 'home' ? 'btn-success' : 'btn-outline-secondary'"
+                              (click)="makePick(getGameId(game), 'home')"
                             >
                               {{ game.homeTeam.abbreviation }}
                             </button>
@@ -352,7 +346,7 @@
                       </div>
                       
                       <!-- Pick Result for Final Games -->
-                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(game.id)">
+                      <div class="mt-2" *ngIf="game.status === 'Final' && getUserPick(getGameId(game))">
                         <div class="d-flex justify-content-between align-items-center">
                           <small class="text-muted">Your Pick:</small>
                           <span class="badge" [ngClass]="{
@@ -365,7 +359,7 @@
                               'bi-x-circle': getPickStatus(game) === 'incorrect',
                               'bi-question-circle': getPickStatus(game) === 'pending'
                             }"></i>
-                            {{ getUserPick(game.id)?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
+                            {{ getUserPick(getGameId(game))?.pickedTeam === 'away' ? game.awayTeam.abbreviation : game.homeTeam.abbreviation }}
                           </span>
                         </div>
                       </div>

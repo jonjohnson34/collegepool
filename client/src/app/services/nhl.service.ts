@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { NHLGame } from './nhl-types';
 import { MOCK_NHL_GAMES } from './mock-nhl-data';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NHLService {
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   // Get today's games
   getTodayGames(): Observable<NHLGame[]> {
@@ -22,46 +23,22 @@ export class NHLService {
 
   // Get games for a specific date
   getGamesByDate(date: string): Observable<NHLGame[]> {
-    const gamesForDate = MOCK_NHL_GAMES.filter(game => 
-      game.date.startsWith(date)
-    );
-    return of(gamesForDate);
+    return this.apiService.getGames(date);
   }
 
   // Get upcoming games (next 7 days)
   getUpcomingGames(): Observable<NHLGame[]> {
-    const today = new Date();
-    const upcomingGames: NHLGame[] = [];
-    
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      const dateStr = date.toISOString().split('T')[0];
-      const gamesForDate = MOCK_NHL_GAMES.filter(game => 
-        game.date.startsWith(dateStr)
-      );
-      upcomingGames.push(...gamesForDate);
-    }
-    
-    return of(upcomingGames.slice(0, 10)); // Return max 10 games
+    return this.apiService.getUpcomingGames(10);
   }
 
   // Get recent games (last 7 days)
   getRecentGames(): Observable<NHLGame[]> {
-    const today = new Date();
-    const recentGames: NHLGame[] = [];
-    
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() - i);
-      const dateStr = date.toISOString().split('T')[0];
-      const gamesForDate = MOCK_NHL_GAMES.filter(game => 
-        game.date.startsWith(dateStr) && game.status === 'Final'
-      );
-      recentGames.push(...gamesForDate);
-    }
-    
-    return of(recentGames.slice(0, 10)); // Return max 10 games
+    return this.apiService.getRecentGames(10);
+  }
+
+  // Get game by ID
+  getGameById(gameId: string): Observable<NHLGame> {
+    return this.apiService.getGameById(gameId);
   }
 
   // Get team abbreviation mapping for your existing teams

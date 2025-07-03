@@ -1,5 +1,6 @@
 export interface NHLGame {
   id: string;
+  gameId?: string;
   date: string;
   status: string;
   homeTeam: {
@@ -16,6 +17,7 @@ export interface NHLGame {
   };
   venue?: string;
   broadcast?: string;
+  season?: string;
 }
 
 
@@ -28,6 +30,7 @@ export interface GamePick {
   gameDate: string;
   createdAt?: Date;
   isCorrect?: boolean;
+  season?: string;
 }
 
 export interface UserStanding {

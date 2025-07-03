@@ -5,6 +5,7 @@ import { HeaderComponent } from '../header/header.component';
 import { NHLService } from '../../services/nhl.service';
 import { NHLGame, GamePick } from '../../services/nhl-types';
 import { PicksService } from '../../services/picks.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-games',
@@ -22,15 +23,23 @@ export class GamesComponent implements OnInit {
   simulatedDate: string = '';
   isSimulating = false;
   userPicks: { [gameId: string]: GamePick } = {};
-  currentUserId = '1'; // Mock user ID - in real app this would come from auth service
+  currentUserId = '';
 
   constructor(
     private nhlService: NHLService,
-    private picksService: PicksService
+    private picksService: PicksService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
-    this.loadGames();
+    // Get current user ID from auth service
+    const currentUser = this.authService.currentUserValue;
+    if (currentUser && currentUser._id) {
+      this.currentUserId = currentUser._id;
+      this.loadGames();
+    } else {
+      console.error('No authenticated user found');
+    }
   }
 
   loadGames() {
@@ -77,10 +86,11 @@ export class GamesComponent implements OnInit {
   // Load user picks for games
   private loadUserPicks(games: NHLGame[]) {
     games.forEach(game => {
-      this.picksService.getUserPickForGame(this.currentUserId, game.id).subscribe({
+      const gameId = game.gameId || game.id; // Use gameId if available, fallback to id
+      this.picksService.getUserPickForGame(this.currentUserId, gameId).subscribe({
         next: (pick) => {
           if (pick) {
-            this.userPicks[game.id] = pick;
+            this.userPicks[gameId] = pick;
           }
         }
       });
@@ -90,26 +100,41 @@ export class GamesComponent implements OnInit {
   // Make a pick for a game
   makePick(gameId: string, pickedTeam: 'home' | 'away') {
     const game = [...this.todayGames, ...this.upcomingGames, ...this.recentGames]
-      .find(g => g.id === gameId);
+      .find(g => g.id === gameId || g.gameId === gameId);
     
     if (!game) return;
 
+    const actualGameId = game.gameId || game.id;
+    const existingPick = this.userPicks[actualGameId];
+    
     const pick: GamePick = {
       userId: this.currentUserId,
-      gameId: gameId,
+      gameId: actualGameId,
       pickedTeam: pickedTeam,
-      gameDate: game.date
+      gameDate: game.date,
+      season: '2024-25' // Add the required season field
     };
 
     this.picksService.savePick(pick).subscribe({
       next: (savedPick) => {
-        this.userPicks[gameId] = savedPick;
-        console.log('Pick saved successfully:', savedPick);
+        this.userPicks[actualGameId] = savedPick;
+        
+        // Show appropriate message based on whether this is a new pick or an update
+        if (existingPick) {
+          console.log('Pick updated successfully:', savedPick);
+        } else {
+          console.log('Pick saved successfully:', savedPick);
+        }
       },
       error: (err) => {
         console.error('Error saving pick:', err);
       }
     });
+  }
+
+  // Get the correct game ID (gameId or id)
+  getGameId(game: NHLGame): string {
+    return game.gameId || game.id;
   }
 
   // Get user's pick for a specific game
@@ -124,7 +149,8 @@ export class GamesComponent implements OnInit {
 
   // Get pick status for display
   getPickStatus(game: NHLGame): string {
-    const pick = this.userPicks[game.id];
+    const gameId = game.gameId || game.id;
+    const pick = this.userPicks[gameId];
     if (!pick) return '';
 
     if (game.status === 'Final') {

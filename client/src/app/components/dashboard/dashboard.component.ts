@@ -41,10 +41,15 @@ export class DashboardComponent implements OnInit {
     this.loading = true;
     this.error = '';
 
-    // Use a mock user ID for now - in real app this would come from auth service
-    const userId = '1';
+    // Get current user ID from auth service
+    const currentUser = this.authService.currentUserValue;
+    if (!currentUser || !currentUser._id) {
+      this.error = 'No authenticated user found';
+      this.loading = false;
+      return;
+    }
     
-    this.picksService.getUserPicks(userId).subscribe({
+    this.picksService.getUserPicks(currentUser._id).subscribe({
       next: (picks) => {
         this.userPicks = picks.slice(0, 10); // Show last 10 picks
         this.loadGamesForPicks(picks);
@@ -62,8 +67,11 @@ export class DashboardComponent implements OnInit {
     this.picksService.getUserStandings().subscribe({
       next: (standings) => {
         this.userStandings = standings;
-        // Find current user's standing (using mock user ID '1')
-        this.currentUserStanding = standings.find(s => s.userId === '1') || null;
+        // Find current user's standing
+        const currentUser = this.authService.currentUserValue;
+        if (currentUser && currentUser._id) {
+          this.currentUserStanding = standings.find(s => s.userId === currentUser._id) || null;
+        }
       },
       error: (err) => {
         console.error('Error loading user standings:', err);
@@ -75,12 +83,16 @@ export class DashboardComponent implements OnInit {
     // Get unique game IDs from picks
     const gameIds = [...new Set(picks.map(pick => pick.gameId))];
     
-    // Load games from mock data
+    // Load games from API
     gameIds.forEach(gameId => {
-      const game = MOCK_NHL_GAMES.find(g => g.id === gameId);
-      if (game) {
-        this.games[gameId] = game;
-      }
+      this.nhlService.getGameById(gameId).subscribe({
+        next: (game: NHLGame) => {
+          this.games[gameId] = game;
+        },
+        error: (err: any) => {
+          console.error(`Error loading game ${gameId}:`, err);
+        }
+      });
     });
   }
 

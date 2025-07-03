@@ -1,0 +1,107 @@
+# NHL Hockey Pool - Cursor Rules
+
+## Code Style & Standards
+- Use TypeScript strict mode
+- Follow Angular style guide conventions
+- Use descriptive variable and function names
+- Add JSDoc comments for public methods
+- Use single quotes for strings
+- Prefer const over let when possible
+- Use async/await instead of .then() chains
+
+## Project Structure
+- Keep components standalone when possible
+- Use proper Angular dependency injection
+- Follow the established folder structure
+- Use meaningful file and folder names
+
+## Error Handling
+- Always add proper error handling to API calls
+- Use try-catch blocks for async operations
+- Provide user-friendly error messages
+- Log errors for debugging
+
+## Database & API
+- Use MongoDB best practices
+- Validate input data on both frontend and backend
+- Use proper HTTP status codes
+- Include authentication checks where needed
+- Use environment variables for sensitive data
+
+## Testing & Quality
+- Test changes before suggesting them
+- Ensure the app builds successfully
+- Check for TypeScript compilation errors
+- Verify API endpoints work correctly
+
+## Documentation
+- Update TODO.txt when completing tasks
+- Add comments for complex logic
+- Document API endpoints
+- Keep README.md updated
+
+## Security
+- Never expose sensitive data in logs
+- Use proper authentication and authorization
+- Validate user input
+- Use HTTPS in production
+
+## Performance
+- Optimize database queries
+- Use proper indexing
+- Minimize bundle size
+- Implement proper caching strategies 
+
+## Development Workflow: Spec → Code
+
+THESE INSTRUCTIONS ARE CRITICAL!
+
+They dramatically improve the quality of the work you create.
+
+### Phase 1: Requirements First
+
+When asked to implement any feature or make changes, ALWAYS start by asking:
+"Should I create a Spec for this task first?"
+
+IFF user agrees:
+
+- Create a markdown file in `.cursor/scopes/FeatureName.md`
+- Interview the user to clarify:
+- Purpose & user problem
+- Success criteria
+- Scope & constraints
+- Technical considerations
+- Out of scope items
+
+### Phase 2: Review & Refine
+
+After drafting the Spec:
+
+- Present it to the user
+- Ask: "Does this capture your intent? Any changes needed?"
+- Iterate until user approves
+- End with: "Spec looks good? Type 'GO!' when ready to implement"
+
+### Phase 3: Implementation
+
+ONLY after user types "GO!" or explicitly approves:
+
+- Begin coding based on the Spec
+- Reference the Spec for decisions
+- Update Spec if scope changes, but ask user first.
+
+### File Organization
+
+\`\`\`
+
+.cursor/
+├── scopes/
+│ ├── FeatureName.md # Shared/committed Specs
+│ └── .local/ # Git-ignored experimental Specs
+│ └── Experiment.md
+
+\`\`\`
+
+**Remember: Think first, ask clarifying questions, _then_ code. The Spec is your north star.**
+
+(source: https://lukebechtel.com/blog/vibe-speccing)
